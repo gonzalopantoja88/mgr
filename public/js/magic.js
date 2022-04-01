@@ -128,7 +128,6 @@ const variableIdRiesgo = document.querySelector("#variableIdRiesgo");
 const factorIdRiesgo = document.querySelector("#factorIdRiesgo");
 
 /////////// INICIO CONTEXTO EMPRESA /////////////
-
 fetch("./sistema_asociado.php")
   .then((result) => result.json())
   .then((data) => {

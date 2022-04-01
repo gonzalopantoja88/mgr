@@ -186,8 +186,8 @@ class ComposerStaticInitddd7b70af4255c4dc99c8213bea6d995
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'Whoops\\' => 
         array (
@@ -331,8 +331,8 @@ class ComposerStaticInitddd7b70af4255c4dc99c8213bea6d995
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -518,7 +518,15 @@ class ComposerStaticInitddd7b70af4255c4dc99c8213bea6d995
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\CategoriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoriaController.php',
+        'App\\Http\\Controllers\\ContextoEmpresaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContextoEmpresaController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\DespliegueController' => __DIR__ . '/../..' . '/app/Http/Controllers/DespliegueController.php',
+        'App\\Http\\Controllers\\EmpresaController' => __DIR__ . '/../..' . '/app/Http/Controllers/EmpresaController.php',
+        'App\\Http\\Controllers\\FactorRiesgoController' => __DIR__ . '/../..' . '/app/Http/Controllers/FactorRiesgoController.php',
+        'App\\Http\\Controllers\\OpcionController' => __DIR__ . '/../..' . '/app/Http/Controllers/OpcionController.php',
+        'App\\Http\\Controllers\\SistemaAsosiadoController' => __DIR__ . '/../..' . '/app/Http/Controllers/SistemaAsosiadoController.php',
+        'App\\Http\\Controllers\\VariableController' => __DIR__ . '/../..' . '/app/Http/Controllers/VariableController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
@@ -528,7 +536,16 @@ class ComposerStaticInitddd7b70af4255c4dc99c8213bea6d995
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\Categoria' => __DIR__ . '/../..' . '/app/Models/Categoria.php',
+        'App\\Models\\ContextoEmpresa' => __DIR__ . '/../..' . '/app/Models/ContextoEmpresa.php',
+        'App\\Models\\Despliegue' => __DIR__ . '/../..' . '/app/Models/Despliegue.php',
+        'App\\Models\\Empresa' => __DIR__ . '/../..' . '/app/Models/Empresa.php',
+        'App\\Models\\FactorRiesgo' => __DIR__ . '/../..' . '/app/Models/FactorRiesgo.php',
+        'App\\Models\\IdentificacionRiesgo' => __DIR__ . '/../..' . '/app/Models/IdentificacionRiesgo.php',
+        'App\\Models\\Opcion' => __DIR__ . '/../..' . '/app/Models/Opcion.php',
+        'App\\Models\\SistemaAsosiado' => __DIR__ . '/../..' . '/app/Models/SistemaAsosiado.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\Variable' => __DIR__ . '/../..' . '/app/Models/Variable.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

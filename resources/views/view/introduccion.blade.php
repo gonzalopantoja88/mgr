@@ -1,6 +1,6 @@
 @extends('layout.index')
 
-@section('title', 'Contexto Empresa')
+@section('title', 'Intro')
 
 @section('content')
     <section class="m-3 p-0" id="about">

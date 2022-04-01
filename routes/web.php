@@ -1,24 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\DespliegueController;
+use App\Http\Controllers\OpcionController;
+use App\Http\Controllers\VariableController;
+use App\Http\Controllers\SistemaAsociadoController;
+use App\Http\Controllers\ContextoEmpresaController;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 Route::get('/', function () {
     return view('view.introduccion');
 })->name('index');
 
-Route::get('/contexto-empresa', function () {
-    return view('view.contexto-empresa');
-})->name('contexto-empresa');
+Route::get('/contexto-empresa', [ContextoEmpresaController::class, 'index'])->name('contexto-empresa');
 
 Route::get('/sistema-general', function () {
     return view('view.sistema-general');
@@ -35,3 +34,11 @@ Route::get('/sga', function () {
 Route::get('/sgsst', function () {
     return view('view.sst');
 })->name('sgsst');
+
+
+Route::get('/sistema-asociado', [SistemaAsociadoController::class, 'index']);
+Route::get('/despliegue', [DespliegueController::class, 'index']);
+Route::get('/categoria', [CategoriaController::class, 'index']);
+Route::get('/opcion', [OpcionController::class, 'index']);
+Route::get('/opcion/{id}', [OpcionController::class, 'show']);
+Route::get('/variable/', [VariableController::class, 'index']);
