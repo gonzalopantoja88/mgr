@@ -14,7 +14,7 @@ class ContextoEmpresaController extends Controller
      */
     public function index()
     {
-        return view('view.sistema-general');
+        return view('view.contexto-empresa');
     }
 
     /**

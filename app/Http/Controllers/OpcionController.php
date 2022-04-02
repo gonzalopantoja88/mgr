@@ -47,7 +47,7 @@ class OpcionController extends Controller
      */
     public function show($id)
     {
-        $op = Opcion::where('id_opcion',$id)->get();
+        $op = Opcion::where('id_fk_categoria', $id)->get();
         return $op;
     }
 

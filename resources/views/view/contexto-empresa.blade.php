@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Empresa-->
-<section class="resume-section m-0 p-0" id="contextoEmpresa">
+<section class="resume-section mb-5 p-0" id="contextoEmpresa">
     <div class="resume-section-content">
         <h2 class="m-3">Información Empresa</h2>
         <div class="container">
@@ -19,19 +19,19 @@
                             <div class="col-lg-3 col-sm-12">
                                 <label class="form-label m-0" for="origenCapital">Origen capital</label>
                                 <select class="form-select" id="origenCapital" name="origenCapital" aria-label="Origen capital">
-                                    <option selected disabled> --Seleccionar-- </option>
+                                    <option selected> --Seleccionar-- </option>
                                 </select>
                             </div>
                             <div class="col-lg-3 col-sm-12">
                                 <label class="form-label m-0" for="dimension">Tamaño</label>
                                 <select class="form-select" id="dimension" name="dimension" aria-label="dimension">
-                                    <option selected disabled> --Seleccionar-- </option>
+                                    <option selected> --Seleccionar-- </option>
                                 </select>
                             </div>
                             <div class="col-lg-3 col-12">
                                 <label class="form-label m-0" for="objetoSocial">Objeto social</label>
                                 <select class="form-select" id="objetoSocial" name="objetoSocial" aria-label="Objeto social">
-                                    <option selected disabled> --Seleccionar-- </option>
+                                    <option selected> --Seleccionar-- </option>
                                 </select>
                             </div>
                         </div>
@@ -39,26 +39,26 @@
                             <div class="col-lg-3 col-12">
                                 <label class="form-label m-0" for="sectorEconomico">Sector económico</label>
                                 <select class="form-select" id="sectorEconomico" name="sectorEconomico" aria-label="Sector economico">
-                                    <option selected disabled> --Seleccionar-- </option>
+                                    <option selected> --Seleccionar-- </option>
 
                                 </select>
                             </div>
                             <div class="col-lg-3 col-12">
-                                <label class="form-label m-0" for="opcionesSectorEco" id="opcionSectorEco">Sector</label>
+                                <label class="form-label m-0" for="opcionesSectorEco">Opción sector económico</label>
                                 <select disabled class="form-select" id="opcionesSectorEco" name="opcionesSectorEco" aria-label="Opcion sector economico">
-                                    <!-- <option selected disabled> --Seleccionar-- </option> -->
+                                    <option selected value="Sin opciones">--Sin opciones--</option>
                                 </select>
                             </div>
                             <div class="col-lg-3 col-12">
-                                <label class="form-label m-0" for="propietarios">Propietarios</label>
-                                <select class="form-select" id="propietarios" name="propietarios" aria-label="Propietarios">
-                                    <option selected disabled> --Seleccionar-- </option>
+                                <label class="form-label m-0" for="propietarios">Persona</label>
+                                <select class="form-select" id="propietarios" name="tipoPersona" aria-label="Propietarios">
+                                    <option selected> --Seleccionar-- </option>
                                 </select>
                             </div>
                             <div class="col-lg-3 col-12">
-                                <label class="form-label m-0" for="tipoPersona" id="opcionTipoPersona">Persona</label>
-                                <select disabled class="form-select" id="tipoPersona" name="tipoPersona" aria-label="Tipo persona">
-                                    <!-- <option selected disabled> --Seleccionar-- </option> -->
+                                <label class="form-label m-0" for="tipoPersona" id="opcionTipoPersona">Tipo de propietario</label>
+                                <select disabled class="form-select" id="tipoPersona" name="propietarios" aria-label="Tipo persona">
+                                    <option selected value="Sin opciones">--Sin opciones--</option>
                                 </select>
                             </div>
                         </div>
@@ -74,19 +74,19 @@
                             <div class="col-lg-3 col-sm-12">
                                 <label class="form-label m-0" for="tangibles">Tangibles</label>
                                 <select class="form-select" id="tangibles" name="tangibles" aria-label="Tangibles">
-                                    <option selected disabled> --Seleccionar-- </option>
+                                    <option selected> --Seleccionar-- </option>
                                 </select>
                             </div>
                             <div class="col-lg-3 col-sm-12">
                                 <label class="form-label m-0" for="bienes" id="opcionBienes">Bienes</label>
                                 <select disabled class="form-select" id="bienes" name="bienes" aria-label="Bienes">
-                                    <!-- <option selected disabled> --Seleccionar-- </option> -->
+                                    <option selected value="Sin opciones">--Sin opciones--</option>
                                 </select>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <label class="form-label m-0" for="intangibles">Intangibles</label>
                                 <select class="form-select" id="intangibles" name="intangibles" aria-label="Intangibles">
-                                    <option selected disabled> --Seleccionar-- </option>
+                                    <option selected> --Seleccionar-- </option>
                                 </select>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                             <div class="col-lg-6 col-sm-12" id="normaTecnica">
                                 <label class="form-label m-0" for="normaTec">Norma técnica</label>
                                 <select class="form-select" id="normaTec" name="normatecnica" aria-label="Norma tecnica">
-                                    <option selected disabled> --Seleccionar-- </option>
+                                    <option selected> --Seleccionar-- </option>
                                 </select>
                             </div>
                         </div>

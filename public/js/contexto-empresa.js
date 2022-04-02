@@ -1,5 +1,6 @@
-console.log('contexto empresa')
-
+const removeAccents = (str) => {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};
 // ---> VARIABLES CONTEXTO EMPRESA <---
 const formularioEmpresa = document.querySelector("#formularioEmpresa");
 const origenCapital = document.querySelector("#origenCapital");
@@ -26,11 +27,9 @@ const colBv = document.querySelector("#colBv");
 const colCv = document.querySelector("#colCv");
 const gestCliente = document.querySelector("#gestCliente");
 
-/////////// INICIO CONTEXTO EMPRESA /////////////
 fetch("http://127.0.0.1:8000/despliegue")
   .then((result) => result.json())
   .then((data) => {
-    //---CONTEXTO EMRPESA---
     fichaTecnica(data);
     normaTecnica(data);
     imagenEmpresarial(data);
@@ -41,7 +40,6 @@ fetch("http://127.0.0.1:8000/despliegue")
   fetch("http://127.0.0.1:8000/categoria")
   .then((result) => result.json())
   .then((data) => {
-    //---CONTEXTO EMRPESA---
     segunOrigen(data);
     segunDimension(data);
     segunObjetoSocial(data);
@@ -49,14 +47,11 @@ fetch("http://127.0.0.1:8000/despliegue")
     segunNumPropietarios(data);
     productoTangible(data);
     productoIntangible(data);
-    fichaTecnica(data);
   });
 
     function segunOrigen(data) {
         for (const value of data) {
-          console.log(value)
           if (value.id_fk_despliegue == 1) {
-            // console.log(value.nombreCategoria)
             origenCapital.innerHTML += `<option value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
           }
         }
@@ -65,155 +60,110 @@ fetch("http://127.0.0.1:8000/despliegue")
       function segunDimension(data) {
         for (const value of data) {
           if (value.id_fk_despliegue == 2) {
-            // console.log(value.nombreCategoria)
-            dimension.innerHTML += `<option value="${value.nombrecategoria}">${value.nombreCategoria}</option>`;
+            dimension.innerHTML += `<option value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
           }
         }
       }
       
       function segunObjetoSocial(data) {
         for (const value of data) {
-          if (value.ID_FK_Despliegue == 3) {
-            // console.log(value.nombreCategoria)
-            objetoSocial.innerHTML += `<option value="${value.nombreCategoria}">${value.nombreCategoria}</option>`;
+          if (value.id_fk_despliegue == 3) {
+            objetoSocial.innerHTML += `<option value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
           }
         }
       }
       
       function segunSectorEconomico(data) {
         for (const value of data) {
-          if (value.ID_FK_Despliegue == 4) {
-            // console.log(value.nombreCategoria)
-            sectorEconomico.innerHTML += `<option value="${value.nombreCategoria}">${value.nombreCategoria}</option>`;
+          if (value.id_fk_despliegue == 4) {
+            sectorEconomico.innerHTML += `<option data-id="${value.id_categoria}" value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
           }
         }
-      
-        sectorEconomico.addEventListener("change", function (op) {
-          let opcion = op.target.value;
-          let dataSelect = new FormData();
-          dataSelect.append("nombre_categoria", opcion);
-      
-          fetch("http://127.0.0.1:8000/opcion", {
-            method: "POST",
-            mode: "no-cors",
-            body: dataSelect,
-          })
+
+        sectorEconomico.addEventListener("change", (op) => {
+          let indexSelect = op.target.options.selectedIndex
+          let opcion = op.target.options[indexSelect].dataset.id
+          fetch("http://127.0.0.1:8000/opcion/"+opcion)
             .then((result) => result.json())
             .then((data) => {
-              // console.log(data.nombreOpcion)
-              let texthtml = "";
               opcionesSectorEco.innerHTML = "";
-      
-              if (data.nombreOpcion != "empty") {
+              if (data.length > 0) {
                 for (const value of data) {
                   opcionesSectorEco.removeAttribute("disabled", "");
                   opcionesSectorEco.setAttribute("active", "");
-                  opcionesSectorEco.innerHTML += `<option value="${value.nombreOpcion}">${value.nombreOpcion}</option>`;
-                  texthtml = value.nombreCategoria;
+                  opcionesSectorEco.innerHTML += `<option value="${value.nombre_opcion}">${value.nombre_opcion}</option>`;
                 }
               } else {
-                texthtml = "Sin opciones";
                 opcionesSectorEco.removeAttribute("active", "");
                 opcionesSectorEco.setAttribute("disabled", "");
-                opcionesSectorEco.innerHTML += `<option selected disabled value="Sin opciones">--Sin opciones--</option>`;
+                opcionesSectorEco.innerHTML += `<option value="Sin opciones">--Sin opciones--</option>`;
               }
-      
-              opcionSectorEco.innerHTML = texthtml;
             });
         });
       }
       
       function segunNumPropietarios(data) {
         for (const value of data) {
-          if (value.ID_FK_Despliegue == 5) {
-            // console.log(value.nombreCategoria)
-            propietarios.innerHTML += `<option value="${value.nombreCategoria}">${value.nombreCategoria}</option>`;
+          if (value.id_fk_despliegue == 5) {
+            propietarios.innerHTML += `<option data-id="${value.id_categoria}" value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
           }
         }
       
-        propietarios.addEventListener("change", function (op) {
-          let opcion = op.target.value;
-          let dataSelect = new FormData();
-          dataSelect.append("nombre_categoria", opcion);
-      
-          fetch("./opcion_unica.php", {
-            method: "POST",
-            mode: "no-cors",
-            body: dataSelect,
-          })
+        propietarios.addEventListener("change", (op) => {
+          let indexSelect = op.target.options.selectedIndex
+          let opcion = op.target.options[indexSelect].dataset.id
+          fetch("http://127.0.0.1:8000/opcion/"+opcion)
             .then((result) => result.json())
             .then((data) => {
-              // console.log(data.nombreOpcion)
-              let texthtml = "";
               tipoPersona.innerHTML = "";
-      
-              if (data.nombreOpcion != "empty") {
+              if (data.length > 0) {
                 for (const value of data) {
                   tipoPersona.removeAttribute("disabled", "");
                   tipoPersona.setAttribute("active", "");
-                  tipoPersona.innerHTML += `<option value="${value.nombreOpcion}">${value.nombreOpcion}</option>`;
-                  texthtml = value.nombreCategoria;
+                  tipoPersona.innerHTML += `<option value="${value.nombre_opcion}">${value.nombre_opcion}</option>`;
                 }
               } else {
-                texthtml = "Sin opciones";
                 tipoPersona.removeAttribute("active", "");
                 tipoPersona.setAttribute("disabled", "");
-                tipoPersona.innerHTML += `<option selected disabled value="Sin opciones">--Sin opciones--</option>`;
+                tipoPersona.innerHTML += `<option value="Sin opciones">--Sin opciones--</option>`;
               }
-      
-              opTipoPersona.innerHTML = texthtml;
             });
         });
       }
       
       function productoTangible(data) {
         for (const value of data) {
-          if (value.ID_FK_Despliegue == 6) {
-            // console.log(value.nombreCategoria)
-            tangibles.innerHTML += `<option value="${value.nombreCategoria}">${value.nombreCategoria}</option>`;
+          if (value.id_fk_despliegue == 6) {
+            tangibles.innerHTML += `<option data-id="${value.id_categoria}" value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
           }
         }
       
-        tangibles.addEventListener("change", function (op) {
-          let opcion = op.target.value;
-          let dataSelect = new FormData();
-          dataSelect.append("nombre_categoria", opcion);
-      
-          fetch("http://127.0.0.1:8000/opcion", {
-            method: "POST",
-            mode: "no-cors",
-            body: dataSelect,
-          })
+        tangibles.addEventListener("change", (op) => {
+          let indexSelect = op.target.options.selectedIndex
+          let opcion = op.target.options[indexSelect].dataset.id
+          fetch("http://127.0.0.1:8000/opcion/"+opcion)
             .then((result) => result.json())
             .then((data) => {
-              // console.log(data.nombreOpcion)
-              let texthtml = "";
               bienes.innerHTML = "";
-      
-              if (data.nombreOpcion != "empty") {
+              if (data.length > 0) {
                 for (const value of data) {
                   bienes.removeAttribute("disabled", "");
                   bienes.setAttribute("active", "");
-                  bienes.innerHTML += `<option value="${value.nombreOpcion}">${value.nombreOpcion}</option>`;
-                  texthtml = value.nombreCategoria;
+                  bienes.innerHTML += `<option value="${value.nombre_opcion}">${value.nombre_opcion}</option>`;
                 }
               } else {
-                texthtml = "Sin opciones";
                 bienes.removeAttribute("active", "");
                 bienes.setAttribute("disabled", "");
-                bienes.innerHTML += `<option selected disabled value="Sin opciones">--Sin opciones--</option>`;
+                bienes.innerHTML += `<option value="Sin opciones">--Sin opciones--</option>`;
               }
-      
-              opBienes.innerHTML = texthtml;
             });
         });
       }
       
       function productoIntangible(data) {
         for (const value of data) {
-          if (value.ID_FK_Despliegue == 7) {
-            // console.log(value.nombreCategoria)
-            intangibles.innerHTML += `<option value="${value.nombreCategoria}">${value.nombreCategoria}</option>`;
+          if (value.id_fk_despliegue == 7) {
+            intangibles.innerHTML += `<option value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
           }
         }
       }
@@ -224,27 +174,27 @@ fetch("http://127.0.0.1:8000/despliegue")
         let count = 1;
       
         for (const value of data) {
-          if (value.ID_FK_Variable == 3) {
-            let strDirty = removeAccents(value.nombreDespliegue);
+          if (value.id_fk_variable == 3) {
+            let strDirty = removeAccents(value.nombre_despliegue);
             let strClean = strDirty.replace(/ /g, "").toLowerCase();
       
             if (count % 2 != 0 && countColA <= countColC) {
               colA.innerHTML += `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombreDespliegue}">
-                        <label class="form-check-label" for="${strClean}">${value.nombreDespliegue}</label>
+                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                        <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                         </div>`;
               count++;
               countColA++;
             } else if (count % 2 != 0 && countColA > countColC) {
               colC.innerHTML += `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombreDespliegue}">
-                        <label class="form-check-label" for="${strClean}">${value.nombreDespliegue}</label>
+                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                        <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                         </div>`;
               countColC++;
             } else {
               colB.innerHTML += `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombreDespliegue}">
-                        <label class="form-check-label" for="${strClean}">${value.nombreDespliegue}</label>
+                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                        <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                         </div>`;
               count++;
             }
@@ -254,20 +204,20 @@ fetch("http://127.0.0.1:8000/despliegue")
       
       function normaTecnica(data) {
         for (const value of data) {
-          if (value.ID_FK_Variable == 4) {
-            normaTec.innerHTML += `<option value="${value.nombreDespliegue}">${value.nombreDespliegue}</option>`;
+          if (value.id_fk_variable == 4) {
+            normaTec.innerHTML += `<option value="${value.nombre_despliegue}">${value.nombre_despliegue}</option>`;
           }
         }
       }
       
       function imagenEmpresarial(data) {
         for (const value of data) {
-          if (value.ID_FK_Variable == 5) {
-            let strDirty = removeAccents(value.nombreDespliegue);
+          if (value.id_fk_variable == 5) {
+            let strDirty = removeAccents(value.nombre_despliegue);
             let strClean = strDirty.replace(/ /g, "").toLowerCase();
             imgEmp.innerHTML += `<div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox"  name="${strClean}" id="${strClean}" value="${value.nombreDespliegue}">
-                    <label class="form-check-label" for="${strClean}">${value.nombreDespliegue}</label>
+                    <input class="form-check-input" type="checkbox"  name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                    <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                     </div>`;
           }
         }
@@ -279,27 +229,27 @@ fetch("http://127.0.0.1:8000/despliegue")
         let countv = 1;
       
         for (const value of data) {
-          if (value.ID_FK_Variable == 53) {
-            let strDirty = removeAccents(value.nombreDespliegue);
+          if (value.id_fk_variable == 53) {
+            let strDirty = removeAccents(value.nombre_despliegue);
             let strClean = strDirty.replace(/ /g, "").toLowerCase();
       
             if (countv % 2 != 0 && countColAv <= countColCv) {
               colAv.innerHTML += `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombreDespliegue}">
-                        <label class="form-check-label" for="${strClean}">${value.nombreDespliegue}</label>
+                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                        <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                         </div>`;
               countv++;
               countColAv++;
             } else if (countv % 2 != 0 && countColAv > countColCv) {
               colCv.innerHTML += `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombreDespliegue}">
-                        <label class="form-check-label" for="${strClean}">${value.nombreDespliegue}</label>
+                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombnombre_desplieguereDespliegue}">
+                        <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                         </div>`;
               countColCv++;
             } else {
               colBv.innerHTML += `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombreDespliegue}">
-                        <label class="form-check-label" for="${strClean}">${value.nombreDespliegue}</label>
+                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                        <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                         </div>`;
               countv++;
             }
@@ -309,13 +259,13 @@ fetch("http://127.0.0.1:8000/despliegue")
       
       function gestionClientes(data) {
         for (const value of data) {
-          if (value.ID_FK_Variable == 16) {
-            let strDirty = removeAccents(value.nombreDespliegue);
+          if (value.id_fk_variable == 16) {
+            let strDirty = removeAccents(value.nombre_despliegue);
             let strClean = strDirty.replace(/ /g, "").toLowerCase();
       
             gestCliente.innerHTML += `<div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombreDespliegue}">
-                    <label class="form-check-label" for="${strClean}">${value.nombreDespliegue}</label>
+                    <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                    <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                     </div>`;
           }
         }
