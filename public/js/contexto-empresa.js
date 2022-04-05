@@ -1,7 +1,7 @@
 const removeAccents = (str) => {
   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 };
-// ---> VARIABLES CONTEXTO EMPRESA <---
+
 const formularioEmpresa = document.querySelector("#formularioEmpresa");
 const origenCapital = document.querySelector("#origenCapital");
 const dimension = document.querySelector("#dimension");
@@ -180,20 +180,20 @@ fetch("http://127.0.0.1:8000/despliegue")
       
             if (count % 2 != 0 && countColA <= countColC) {
               colA.innerHTML += `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="si">
                         <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                         </div>`;
               count++;
               countColA++;
             } else if (count % 2 != 0 && countColA > countColC) {
               colC.innerHTML += `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="si">
                         <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                         </div>`;
               countColC++;
             } else {
               colB.innerHTML += `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="si">
                         <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                         </div>`;
               count++;
@@ -216,7 +216,7 @@ fetch("http://127.0.0.1:8000/despliegue")
             let strDirty = removeAccents(value.nombre_despliegue);
             let strClean = strDirty.replace(/ /g, "").toLowerCase();
             imgEmp.innerHTML += `<div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox"  name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                    <input class="form-check-input" type="checkbox"  name="${strClean}" id="${strClean}" value="si">
                     <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                     </div>`;
           }
@@ -235,20 +235,20 @@ fetch("http://127.0.0.1:8000/despliegue")
       
             if (countv % 2 != 0 && countColAv <= countColCv) {
               colAv.innerHTML += `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="si">
                         <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                         </div>`;
               countv++;
               countColAv++;
             } else if (countv % 2 != 0 && countColAv > countColCv) {
               colCv.innerHTML += `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombnombre_desplieguereDespliegue}">
+                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="si">
                         <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                         </div>`;
               countColCv++;
             } else {
               colBv.innerHTML += `<div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                        <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="si">
                         <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                         </div>`;
               countv++;
@@ -264,7 +264,7 @@ fetch("http://127.0.0.1:8000/despliegue")
             let strClean = strDirty.replace(/ /g, "").toLowerCase();
       
             gestCliente.innerHTML += `<div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="${value.nombre_despliegue}">
+                    <input class="form-check-input" type="checkbox" name="${strClean}" id="${strClean}" value="si">
                     <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
                     </div>`;
           }
@@ -274,13 +274,16 @@ fetch("http://127.0.0.1:8000/despliegue")
       formularioEmpresa.addEventListener("submit", (e) => {
         e.preventDefault();
       
-        const datosEmpresa = new FormData(formularioEmpresa);
+        const formContextoEmpresa = new FormData(formularioEmpresa);
         // console.log(datos.get('tipo_id_riesgo')
-        console.log([...datosEmpresa]);
+        // console.log([...formContextoEmpresa]);
+        // for (const item of formContextoEmpresa.entries()) {
+          
+          console.log(formContextoEmpresa)
+        // }
       
-        fetch("http://127.0.0.1:8000/contexto-empresa", {
-          method: "POST",
-          body: datosEmpresa,
-        });
+        // fetch("http://127.0.0.1:8000/contexto-empresa", {
+        //   method: "POST",
+        //   body: datosEmpresa,
+        // });
       });
-      /////////// FIN CONTEXTO EMPRESA /////////////

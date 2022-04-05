@@ -8,14 +8,16 @@
     <div class="resume-section-content">
         <h2 class="m-3">Información Empresa</h2>
         <div class="container">
-            <form action="" method="post" id="formularioEmpresa">
+            <form method="post" action="{{route('agregar-contexto-empresa')}}">
                 <!-- card tipo empresa -->
+                @csrf
                 <div class="card mb-3">
                     <div class="card-header">
                         <div class="subheading">Tipo de empresa</div>
                     </div>
                     <div class="card-body">
                         <div class="row d-flex align-items-end justify-content-between mb-3">
+                           
                             <div class="col-lg-3 col-sm-12">
                                 <label class="form-label m-0" for="origenCapital">Origen capital</label>
                                 <select class="form-select" id="origenCapital" name="origenCapital" aria-label="Origen capital">
@@ -40,7 +42,6 @@
                                 <label class="form-label m-0" for="sectorEconomico">Sector económico</label>
                                 <select class="form-select" id="sectorEconomico" name="sectorEconomico" aria-label="Sector economico">
                                     <option selected> --Seleccionar-- </option>
-
                                 </select>
                             </div>
                             <div class="col-lg-3 col-12">
@@ -184,7 +185,3 @@
 @section('script')
     <script src="js/contexto-empresa.js"></script>
 @endsection
-
-
-
- 

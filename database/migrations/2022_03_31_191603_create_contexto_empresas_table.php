@@ -62,6 +62,7 @@ class CreateContextoEmpresasTable extends Migration
             $table->string('fidelizacion_cliente', 4);
             $table->string('pqrsf', 4);
             $table->string('identificacion_cliente', 4);
+            $table->timestamps();
         });
     }
 

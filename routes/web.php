@@ -18,6 +18,7 @@ Route::get('/', function () {
 })->name('index');
 
 Route::get('/contexto-empresa', [ContextoEmpresaController::class, 'index'])->name('contexto-empresa');
+Route::post('/contexto-empresa', [ContextoEmpresaController::class, 'store'])->name('agregar-contexto-empresa');
 
 Route::get('/sistema-general', function () {
     return view('view.sistema-general');
