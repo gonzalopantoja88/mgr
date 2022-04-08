@@ -14,7 +14,7 @@ class IdentificacionRiesgoController extends Controller
      */
     public function index()
     {
-        //
+        return view('view.identificacion-riesgo');
     }
 
     /**
@@ -35,7 +35,23 @@ class IdentificacionRiesgoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $ir = new IdentificacionRiesgo();
+
+        $ir->tipo = $request->tipo_id_riesgo;
+        $ir->proceso = $request->proceso_id_riesgo;
+        $ir->objetivo = $request->objetivo_id_riesgo;
+        $ir->actividad_critica = $request->actividad_critica_id_Riesgo;
+        $ir->sistema_asociado = $request->sistema_asociado_id_riesgo;
+        $ir->variable = $request->variable_id_riesgo;
+        $ir->factor_riesgo = $request->factor_id_riesgo;
+        $ir->riesgo = $request->riesgo_id_riesgo;
+        $ir->descripcion = $request->descripcion_id_riesgo;
+        $ir->causa_raiz = $request->causa_raiz_id_riesgo;
+        $ir->consecuencias = $request->consecuencias_id_riesgo;
+
+        $ir->save();
+        return redirect()->route('ver-identificacion-riesgo');
     }
 
     /**
@@ -44,9 +60,10 @@ class IdentificacionRiesgoController extends Controller
      * @param  \App\Models\IdentificacionRiesgo  $identificacionRiesgo
      * @return \Illuminate\Http\Response
      */
-    public function show(IdentificacionRiesgo $identificacionRiesgo)
+    public function show()
     {
-        //
+        $ir = IdentificacionRiesgo::all();
+        return $ir;
     }
 
     /**
@@ -82,4 +99,5 @@ class IdentificacionRiesgoController extends Controller
     {
         //
     }
+
 }

@@ -1,24 +1,32 @@
+@extends('layout.index')
+
+@section('title', 'Idenfiticación de riesgo')
+
+@section('content')
 <!-- Identificacion riesgos-->
-<section class="resume-section" id="identificacionRiesgo">
+<section class="resume-section mb-5 p-0" id="identificacionRiesgo">
     <div class="resume-section-content">
-        <h2 class="mb-3">Identificación de Riesgos</h2>
+        <h2 class="m-3">Identificación de Riesgos</h2>
         <div class="container">
-            <div class="row">
-                <div class="col-12 text-end pe-4">
-                    <a href="" class="fs-5"><i class="fas fa-info-circle"></i>Ayuda</a>
-                </div>
-            </div>
-            <form action="" method="post" id="formularioRiesgo">
+            <form action="{{route('agregar-identificacion-riesgo')}}" method="post">
+                @csrf
                 <div class="card mb-3">
                     <div class="card-header">
-                        <div class="subheading">Riesgo</div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="subheading">Riesgo</div>
+                            </div>
+                            <div class="col-6 text-end">
+                                <a href="" class="fs-7"><i class="fas fa-info-circle"></i>Ayuda</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row d-flex align-items-start justify-content-between mb-3">
                             <div class="col-lg-3 col-sm-12">
                                 <label class="form-label m-0" for="tipoIdRiesgo">Tipo</label>
                                 <select class="form-select" id="tipoIdRiesgo" name="tipo_id_riesgo" aria-label="tipo">
-                                    <option selected disabled> --Seleccionar-- </option>
+                                    <option selected> --Seleccionar-- </option>
                                 </select>
                             </div>
                             <div class="col-lg-3 col-sm-12">
@@ -38,19 +46,19 @@
                             <div class="col-lg-4 col-sm-12">
                                 <label class="form-label m-0" for="sistAsociadoIdRiesgo">Sistema asociado</label>
                                 <select class="form-select" id="sistAsociadoIdRiesgo" name="sistema_asociado_id_riesgo" aria-label="Sistema asociado">
-                                    <option selected disabled> --Seleccionar-- </option>
+                                    <option selected> --Seleccionar-- </option>
                                 </select>
                             </div>
                             <div class="col-lg-4 col-sm-12">
-                                <label class="form-label m-0" for="variableIdRiesgo">Variable</label>
+                                <label class="form-label m-0" for="variableIdRiesgo">Variable / Sistema asociado</label>
                                 <select class="form-select" id="variableIdRiesgo" name="variable_id_riesgo" aria-label="Variable riesgo">
-                                    <option selected disabled> --Seleccionar-- </option>
+                                    <option selected> --Seleccionar-- </option>
                                 </select>
                             </div>
                             <div class="col-lg-4 col-sm-12">
                                 <label class="form-label m-0" for="factorIdRiesgo">Factores de riesgo</label>
                                 <select class="form-select" id="factorIdRiesgo" name="factor_id_riesgo" aria-label="Factor riesgo">
-                                    <option selected disabled> --Seleccionar-- </option>
+                                    <option selected> --Seleccionar-- </option>
                                 </select>
                             </div>
                         </div>
@@ -81,72 +89,11 @@
                     </div>
                 </div>
             </form>
-
-            <div id="tarjetasRiesgos">
-                <!-- condicion para agregar cards -->
-            </div>
-
-            <template id="templateRiesgo">
-
-                <article class="card mt-3">
-                    <div class="card-header">Riesgo:</div>
-                    <div class="card-body">
-                        <div class="row d-flex align-items-start mb-3">
-                            <div class="col-lg-3 col-sm-12">
-                                <h4>Tipo:</h4>
-                                <p class="m-0" id="pTipo"></p>
-                            </div>
-                            <div class="col-lg-3 col-sm-12">
-                                <h4>Sistema asociado:</h4>
-                                <p class="m-0" id="pSistemaAsociado"></p>
-                            </div>
-                            <div class="col-lg-3 col-sm-12">
-                                <h4>Variable:</h4>
-                                <p class="m-0" id="pVariable"></p>
-                            </div>
-                            <div class="col-lg-3 col-sm-12">
-                                <h4>Factores de riesgo:</h4>
-                                <p class="m-0" id="pFactorRiesgo"></p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row d-flex align-items-start mb-3">
-                            <div class="col-lg-4 col-sm-12">
-                                <h4>Proceso:</h4>
-                                <p class="m-0" id="idProceso"></p>
-                            </div>
-                            <div class="col-lg-4 col-sm-12">
-                                <h4>Objetivo:</h4>
-                                <p class="m-0" id="pObjetivo"></p>
-                            </div>
-                            <div class="col-lg-4 col-sm-12">
-                                <h4>Actividad crítica:</h4>
-                                <p class="m-0" id="pActividadCritica"></p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row d-flex align-items-start">
-                            <div class="col-lg-3 col-sm-12">
-                                <h4>Riesgo:</h4>
-                                <p class="m-0" id="pRiesgo"></p>
-                            </div>
-                            <div class="col-lg-3 col-sm-12">
-                                <h4>Descripción:</h4>
-                                <p class="m-0" id="pDescripcion"></p>
-                            </div>
-                            <div class="col-lg-3 col-sm-12">
-                                <h4>Causa raíz:</h4>
-                                <p class="m-0" id="pCausaRaiz"></p>
-                            </div>
-                            <div class="col-lg-3 col-sm-12">
-                                <h4>Consecuencias:</h4>
-                                <p class="m-0" id="pConsecuencias"></p>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </template>
         </div>
     </div>
 </section>
-<hr class="m-0" />
+@endsection
+
+@section('script')
+    <script src="js/identificacion-riesgo.js"></script>
+@endsection

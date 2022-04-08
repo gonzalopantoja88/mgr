@@ -91,11 +91,7 @@ class ContextoEmpresaController extends Controller
         $ce->identificacion_cliente = $request->identificacionclientes ? $request->identificacionclientes : "no";
 
         $ce->save();
-
-        $dataCE = ContextoEmpresa::all();
-        return $dataCE;
-
-        // return redirect()->route('contexto-empresa');
+        return redirect()->route('contexto-empresa');
     }
 
     /**
@@ -104,9 +100,10 @@ class ContextoEmpresaController extends Controller
      * @param  \App\Models\ContextoEmpresa  $contextoEmpresa
      * @return \Illuminate\Http\Response
      */
-    public function show(ContextoEmpresa $contextoEmpresa)
+    public function show()
     {
-        //
+        $dataCE = ContextoEmpresa::all();
+        return $dataCE;
     }
 
     /**

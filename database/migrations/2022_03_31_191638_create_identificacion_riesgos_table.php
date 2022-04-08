@@ -20,12 +20,13 @@ class CreateIdentificacionRiesgosTable extends Migration
             $table->string('objetivo', 200);
             $table->string('actividad_critica', 200);
             $table->string('sistema_asociado', 40);
-            $table->string('variable', 40);
+            $table->string('variable', 100);
             $table->string('factor_riesgo', 40);
             $table->string('riesgo', 200);
             $table->string('descripcion', 200);
             $table->string('causa_raiz', 200);
             $table->string('consecuencias', 200);
+            $table->timestamps();
         });
     }
 

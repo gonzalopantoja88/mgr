@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FactorRiesgo;
+use App\Models\AnalisisRiesgo;
+use App\Models\IdentificacionRiesgo;
 use Illuminate\Http\Request;
 
-class FactorRiesgoController extends Controller
+class AnalisisRiesgoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class FactorRiesgoController extends Controller
      */
     public function index()
     {
-        $fr = FactorRiesgo::all();
-        return $fr;
+        $identificacion_riesgos = IdentificacionRiesgo::all();
+        return view('view.analisis-riesgo', compact('identificacion_riesgos'));
     }
 
     /**
@@ -42,10 +43,10 @@ class FactorRiesgoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FactorRiesgo  $factorRiesgo
+     * @param  \App\Models\AnalisisRiesgo  $analisisRiesgo
      * @return \Illuminate\Http\Response
      */
-    public function show(FactorRiesgo $factorRiesgo)
+    public function show(AnalisisRiesgo $analisisRiesgo)
     {
         //
     }
@@ -53,10 +54,10 @@ class FactorRiesgoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\FactorRiesgo  $factorRiesgo
+     * @param  \App\Models\AnalisisRiesgo  $analisisRiesgo
      * @return \Illuminate\Http\Response
      */
-    public function edit(FactorRiesgo $factorRiesgo)
+    public function edit(AnalisisRiesgo $analisisRiesgo)
     {
         //
     }
@@ -65,10 +66,10 @@ class FactorRiesgoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FactorRiesgo  $factorRiesgo
+     * @param  \App\Models\AnalisisRiesgo  $analisisRiesgo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FactorRiesgo $factorRiesgo)
+    public function update(Request $request, AnalisisRiesgo $analisisRiesgo)
     {
         //
     }
@@ -76,10 +77,10 @@ class FactorRiesgoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FactorRiesgo  $factorRiesgo
+     * @param  \App\Models\AnalisisRiesgo  $analisisRiesgo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FactorRiesgo $factorRiesgo)
+    public function destroy(AnalisisRiesgo $analisisRiesgo)
     {
         //
     }

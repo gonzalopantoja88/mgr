@@ -8,7 +8,7 @@
     <div class="resume-section-content">
         <h2 class="m-3">Información Empresa</h2>
         <div class="container">
-            <form method="post" action="{{route('agregar-contexto-empresa')}}">
+            <form action="{{route('agregar-contexto-empresa')}}" method="post">
                 <!-- card tipo empresa -->
                 @csrf
                 <div class="card mb-3">

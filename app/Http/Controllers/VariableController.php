@@ -45,9 +45,10 @@ class VariableController extends Controller
      * @param  \App\Models\Variable  $variable
      * @return \Illuminate\Http\Response
      */
-    public function show(Variable $variable)
+    public function show($id)
     {
-        //
+        $va = Variable::where('id_fk_sistema_asociado', $id)->get();
+        return $va;
     }
 
     /**
