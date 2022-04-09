@@ -18,9 +18,9 @@ const handleChange = (e) => {
         vlrImpacto = parseInt(e.target.value);
     }
     
+    calfRiesgoInherente = vlrImpacto * vlrProbabilidad 
     let zonaRiesgo = "";
     let manejo = "";
-    calfRiesgoInherente = vlrImpacto * vlrProbabilidad 
     if (calfRiesgoInherente == 1 || calfRiesgoInherente == 2 || calfRiesgoInherente == 3) {
         zonaRiesgo = "Zona de Riesgo Baja"
         manejo = "Asumir el Riesgo"
@@ -38,36 +38,3 @@ const handleChange = (e) => {
     manejoRiesgoInherente.textContent = manejo;
 };
 
-// calf_probablididad.addEventListener("change", (e) =>{
-//     // let valorProbabilidad = item.target.value
-//     // console.log(valorProbabilidad)
-//     console.log(e.target.value)
-// })
-
-// calf_impacto.addEventListener("change", (item) =>{
-//     valorImpacto = item.target.value
-//     console.log(valorImpacto)
-// })
-
-// function sistemaAsociado(data) {
-//     for (const value of data) {
-//         if (value.id_sistema_asociado != 1){
-//             sistAsociadoIdRiesgo.innerHTML += `<option data-id="${value.id_sistema_asociado}" value="${value.nombre_sistema_asociado}">${value.nombre_sistema_asociado}</option>`;
-//         }
-//     }
-
-//     sistAsociadoIdRiesgo.addEventListener("change", function (op) {
-//         let indexSelect = op.target.options.selectedIndex
-//         let opcion = op.target.options[indexSelect].dataset.id
-//         fetch("http://127.0.0.1:8000/variable/"+opcion)
-//             .then((result) => result.json())
-//             .then((data) => {
-//                 variableIdRiesgo.innerHTML = "";
-//                 for (const value of data) {
-//                     variableIdRiesgo.removeAttribute("disabled", "");
-//                     variableIdRiesgo.setAttribute("active", "");
-//                     variableIdRiesgo.innerHTML += `<option value="${value.nombre_variable}">${value.nombre_variable}</option>`;
-//                 }
-//             });
-//     });
-// }

@@ -32,6 +32,7 @@ Route::get('/datos-identificacion-riesgo', [IdentificacionRiesgoController::clas
 
 //ANÁLISIS RIESGO
 Route::get('/analisis-riesgo', [AnalisisRiesgoController::class, 'index'])->name('analisis-riesgo');
+Route::post('/analisis-riesgo', [AnalisisRiesgoController::class, 'store'])->name('agregar-analisis-riesgo');
 
 Route::get('/sistema-general', function () {
     return view('view.sistema-general');

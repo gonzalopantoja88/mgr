@@ -36,8 +36,28 @@ class AnalisisRiesgoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    { 
+        $ar = new AnalisisRiesgo();
+
+        $id = $request->id_riesgo;
+        $calf_probablididad = 'calf_probablididad_'.$id;
+        $calf_impacto = 'calf_impacto_'.$id;
+        $evaluacion_riesgo = 'evaluacion_riesgo_'.$id;
+        $manejo_riesgo = 'manejo_riesgo_'.$id;
+
+        $ar->probabilidad = $request->$calf_probablididad;
+        $ar->impacto = $request->$calf_impacto;
+        $ar->riesgo_inherente = $request->$evaluacion_riesgo;
+        $ar->manejo_riesgo = $request->$manejo_riesgo;
+        $ar->id_fk_riesgo = $request->id_riesgo;
+        $ar->save();
+
+        // Actualizar la tabla 'identificacion_riesgos' el campo 'calificado' a estado true
+        $riesgo= IdentificacionRiesgo::where('id_riesgo', $id)->first();
+        $riesgo->calificado = 1; 
+        $riesgo->save();
+
+        return redirect()->route('analisis-riesgo');    
     }
 
     /**

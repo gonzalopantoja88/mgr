@@ -26,6 +26,7 @@ class CreateIdentificacionRiesgosTable extends Migration
             $table->string('descripcion', 200);
             $table->string('causa_raiz', 200);
             $table->string('consecuencias', 200);
+            $table->boolean('calificado')->default(0);
             $table->timestamps();
         });
     }

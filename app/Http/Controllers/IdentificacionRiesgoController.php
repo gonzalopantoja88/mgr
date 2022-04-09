@@ -35,7 +35,6 @@ class IdentificacionRiesgoController extends Controller
      */
     public function store(Request $request)
     {
-
         $ir = new IdentificacionRiesgo();
 
         $ir->tipo = $request->tipo_id_riesgo;
