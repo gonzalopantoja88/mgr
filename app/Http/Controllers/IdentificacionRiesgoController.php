@@ -50,7 +50,7 @@ class IdentificacionRiesgoController extends Controller
         $ir->consecuencias = $request->consecuencias_id_riesgo;
 
         $ir->save();
-        return redirect()->route('ver-identificacion-riesgo');
+        return redirect()->route('identificacion-riesgo');
     }
 
     /**
@@ -61,8 +61,7 @@ class IdentificacionRiesgoController extends Controller
      */
     public function show()
     {
-        $ir = IdentificacionRiesgo::all();
-        return $ir;
+        //
     }
 
     /**

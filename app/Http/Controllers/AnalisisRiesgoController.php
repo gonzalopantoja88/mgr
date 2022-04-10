@@ -6,6 +6,7 @@ use App\Models\AnalisisRiesgo;
 use App\Models\IdentificacionRiesgo;
 use Illuminate\Http\Request;
 
+
 class AnalisisRiesgoController extends Controller
 {
     /**
@@ -16,7 +17,9 @@ class AnalisisRiesgoController extends Controller
     public function index()
     {
         $identificacion_riesgos = IdentificacionRiesgo::all();
-        return view('view.analisis-riesgo', compact('identificacion_riesgos'));
+        $analisis_riesgos = AnalisisRiesgo::join('identificacion_riesgos', 'analisis_riesgos.id_fk_riesgo', '=', 'identificacion_riesgos.id_riesgo')->get();
+
+        return view('view.analisis-riesgo', compact('identificacion_riesgos'), compact('analisis_riesgos'));
     }
 
     /**

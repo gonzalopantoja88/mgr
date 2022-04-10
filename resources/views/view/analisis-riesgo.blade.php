@@ -9,7 +9,7 @@
     <h2 class="m-3">Análisis de Riesgos</h2>
     <div class="container">
       <div class="table-responsive">
-        <div class="subheading">Riesgo pendientes de calificar</div>
+        <div class="subheading"><strong>Riesgos pendientes de calificar</strong></div>
         <table class="table table-sm table-bordered table-hover text-center align-middle">
           <thead class="bg-primary text-nowrap">
             <tr>
@@ -23,7 +23,7 @@
               <th class="px-5">IMPACTO</th>
               <th class="px-2">RIESGO INHERENTE</th>
               <th class="px-2">MANEJO DEL RIESGO</th>
-              <th class="px-2">ACCIÓN</th>
+              <th class="px-4">ACCIÓN</th>
             </tr>
           </thead>
           <tbody class="table-light" onchange="handleChange(event)">
@@ -79,7 +79,7 @@
           </tbody>
         </table>
        
-        <div class="subheading mt-4">Riesgo calificados</div>
+        <div class="subheading mt-4"><strong>Riesgos calificados</strong></div>
         <table class="table table-sm table-bordered table-hover text-center align-middle">
           <thead class="bg-primary text-nowrap">
             <tr>
@@ -93,16 +93,36 @@
               <th class="px-5">IMPACTO</th>
               <th class="px-2">RIESGO INHERENTE</th>
               <th class="px-2">MANEJO DEL RIESGO</th>
-              <th class="px-2">ACCIÓN</th>
+              <th class="px-4">ACCIÓN</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-            </tr>
+            @foreach ($analisis_riesgos as $item)
+              <tr>
+                <td>{{$item->tipo}}</td>
+                <td>{{$item->objetivo}}</td>
+                <td>{{$item->actividad_critica}}</td>
+                <td>{{$item->sistema_asociado}}</td>
+                <td>{{$item->variable}}</td>
+                <td>{{$item->factor_riesgo}}</td>
+                <td>{{$item->probabilidad}}</td>
+                <td>{{$item->impacto}}</td>
+                <td>{{$item->riesgo_inherente}}</td>
+                <td>{{$item->manejo_riesgo}}</td>
+                <td>
+                  <div class="row justify-content-center">
+                    <div class="col-4 me-1 p-0">
+                      <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                    </div>
+                    <div class="col-4 ms-1 p-0">
+                      <button type="submit" class="btn btn-primary"><i class="far fa-trash-alt"></i></button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
-          
       
       </div>
     </div>
