@@ -8,8 +8,9 @@
     <div class="resume-section-content">
         <h2 class="m-3">Sistema gestión de calidad</h2>
         <div class="container">
-            <form action="" method="post" id="">
-                <!--1. card palificacion y control -->
+            <form action="{{route('agregar-sgc')}}" method="post" id="SistemaGestionCalidad">
+                @csrf
+                <!--1. card palificacion y control -->  
                 <div class="card mb-3">
                     <div class="card-header">
                         <div class="subheading m2">Planificación y control operacional</div>
@@ -25,7 +26,6 @@
                                         <!-- colum B -->
                                     </div>
                                 </div>
-                           
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                     <div class="card-body">
                         <div class="row d-flex justify-content-between mb-3">
                             
-                                <h6>Comunicación con los clientes</h6>
+                                <h5>Comunicación con los clientes</h5>
                                 <div class="row">
                                     <div class="col-md-6 col-12 d-flex flex-column" id="comunicacionClientes1">
                                         <!-- colum A -->
@@ -57,7 +57,6 @@
                     </div>
                     <div class="card-body">
                         <div class="row d-flex justify-content-between mb-3">
-                           
                                 <div class="row">
                                     <div class="col-md-6 col-12 d-flex flex-column" id="revisionRequisitos1">
                                         <!-- colum A -->
@@ -77,8 +76,8 @@
                     </div>
                     <div class="card-body">
                         <div class="row d-flex justify-content-between mb-3">
-                           
-                                <h6>Planificación del diseño</h6>
+                        
+                                <h5>Planificación del diseño</h5>
                                 <div class="row">
                                     <div class="col-md-6 col-12 d-flex flex-column" id="desarrolloProductos1">
                                         <!-- colum A -->
@@ -98,7 +97,6 @@
                     </div>
                     <div class="card-body">
                         <div class="row d-flex justify-content-between mb-3">
-                         
                                 <div class="row">
                                     <div class="col-md-6 col-12 d-flex flex-column" id="controlProcesos1">
                                         <!-- colum A -->
@@ -107,7 +105,6 @@
                                         <!-- colum B -->
                                     </div>
                                 </div>
-                           
                         </div>
                     </div>
                 </div>
@@ -119,36 +116,36 @@
                     <div class="card-body">
                         <div class="row d-flex justify-content-between mb-3">
                             
-                                <h6>Control de la Producción y provisión del servicio</h6>
-                                <div class="row">
-                                    <div class="col-md-6 col-12 d-flex flex-column" id="controlProduc1">
+                            <div class="row">
+                                    <h5>Control de la Producción y provisión del servicio</h5>
+                                    <div class="row row-cols-2 mb-3 mx-1" id="controlProduc1">
                                         <!-- colum A -->
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <h5>Otros</h5>
                                     <div class="col-md-6 col-12 d-flex flex-column border-start" id="controlProduc2">
                                         <!-- colum B -->
                                     </div>
                                 </div>
-                            
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row d-flex justify-content-between mb-3">
-                           
 
                                 <div class="row">
                                     <div class="col-md-6 col-12 d-flex flex-column" id="controlProduc3">
-                                        <h6>Identificación y trazabilidad</h6>
+                                        <h5>Identificación y trazabilidad</h5>
                                         <!-- colum A -->
 
                                     </div>
 
 
                                     <div class="col-md-6 col-12 d-flex flex-column border-start" id="controlProduc4">
-                                        <h6>Propiedad perteneciente a los clientes o proveedores externos</h6>
+                                        <h5>Propiedad perteneciente a los clientes o proveedores externos</h5>
                                         <!-- colum B -->
                                     </div>
                                 </div>
-                          
                         </div>
                     </div>
 
@@ -169,7 +166,6 @@
                                         <!-- colum B -->
                                     </div>
                                 </div>
-                           
                         </div>
                     </div>
                 </div>
@@ -180,7 +176,6 @@
                     </div>
                     <div class="card-body">
                         <div class="row d-flex justify-content-between mb-3">
-                           
                                 <div class="row">
                                     <div class="col-md-6 col-12 d-flex flex-column" id="controlSalida1">
                                         <!-- colum A -->

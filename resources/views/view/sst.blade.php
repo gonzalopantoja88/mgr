@@ -9,8 +9,8 @@
         <h2 class="m-3">Sistema gestión de SST</h2> 
         <!-- <button onclick="prueba()">prueba</button> -->
         <div class="container">
-            <form action="" method="post" id="sistemaGestionSST">
-
+            <form action="{{route('agregar-sgsst')}}" method="post" id="sistemaGestionSST">
+                @csrf
 
                 <!-- card Asignación de responsabilidad SG-SST -->
                 <div class="card mb-3">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row d-flex justify-content-between mb-3">
-         
+                            <h5>Registro y análisis de accidentes de trabajo y enfermedad laboral</h5>
                                 <div class="row">
                                     <div class="col-md-6 col-12 d-flex flex-column" id="AccidenteEnfermedad1">
                                         <!-- condicion colA -->

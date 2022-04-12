@@ -8,7 +8,8 @@
         <h2 class="m-3">Sistema General</h2>
         <!-- <button onclick="prueba()">prueba</button> -->
         <div class="container">
-            <form action="" method="post" id="sistemaGeneral">
+            <form action="{{route('agregar-sistema-general')}}" method="post" id="sistemaGeneral">
+                @csrf
                 <!-- card gestion por procesos -->
                 <div class="card mb-3">
                     <div class="card-header">
@@ -38,7 +39,7 @@
                 <!-- card planeacion estrategica -->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <div class="subheading m2">Planeacion Estrategica</div>
+                        <div class="subheading m2">Planeacion Estrategica (PE)</div>
                     </div>
                     <div class="card-body">
                         <div class="row d-flex justify-content-between mb-3">
@@ -57,7 +58,7 @@
                 <!-- card partes interesadas -->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <div class="subheading m2">Partes Interesadas</div>
+                        <div class="subheading m2">Partes Interesadas (PI)</div>
                     </div>
                     <div class="card-body">
                         <div class="row d-flex justify-content-between mb-3">
@@ -169,11 +170,6 @@
                     <div class="card-body ">
                         <div class="row d-flex justify-content-between mb-3">
                                 <div class="row">
-                                    <div class="mb-5">
-                                        <div class="row" id="Recursos">
-
-                                        </div>
-                                    </div>
                                     <div class="col-md-3 col-12 d-flex flex-column border-end" id="RecursosCol1">
                                         <!-- condicion colA -->
                                         <h5 class="text-center">Personas</h5>
@@ -190,6 +186,12 @@
                                         <!-- condicion colD -->
                                         <h5 class="text-center">Informacion documentada</h5>
                                     </div>
+                                    <div class="mt-5">
+                                        <h5 class="">Otros</h5>
+                                        <div class="d-flex" id="Recursos">
+                                            
+                                        </div>
+                                    </div>
                                 </div>
                         </div>
                     </div>
@@ -203,7 +205,7 @@
                     <div class="card-body ">
                         <div class="row d-flex justify-content-between mb-3">
                                 <div class="row">
-                                    <div class="mb-5">
+                                    <div class="">
                                         <div class="row" id="Evaluacion">
 
                                         </div>
@@ -245,7 +247,7 @@
                     </div>
                 </div>
 
-                <div class="row text-center mt-3">
+                <div class="row text-center my-3">
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Guardar</button>
                     </div>
