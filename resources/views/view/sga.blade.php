@@ -9,7 +9,8 @@
         <h2 class="m-3">Sistema de Gestion Ambiental</h2>
         <!-- <button onclick="prueba()">prueba</button> -->
         <div class="container">
-            <form action="" method="post" id="">
+            <form action="{{url('agregar-sga')}}" method="post" id="">
+                @csrf
 
                 <!-- card planeacion estrategica -->
                 <div class="card mb-3">

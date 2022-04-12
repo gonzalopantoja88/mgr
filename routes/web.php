@@ -10,6 +10,11 @@ use App\Http\Controllers\ContextoEmpresaController;
 use App\Http\Controllers\IdentificacionRiesgoController;
 use App\Http\Controllers\FactorRiesgoController;
 use App\Http\Controllers\AnalisisRiesgoController;
+use App\Http\Controllers\SistemaGeneralController;
+use App\Http\Controllers\SGCalidadController;
+use App\Http\Controllers\SGAmbientalController;
+use App\Http\Controllers\SGSstController;
+use App\Models\SGSst;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +30,22 @@ Route::get('/contexto-empresa', [ContextoEmpresaController::class, 'index'])->na
 Route::post('/contexto-empresa', [ContextoEmpresaController::class, 'store'])->name('agregar-contexto-empresa');
 Route::get('/datos-contexto-empresa', [ContextoEmpresaController::class, 'show'])->name('ver-contexto-empresa');
 
+//SISTEMA GENERAL
+Route::get('/sistema-general', [SistemaGeneralController::class, 'index'])->name('sistema-general');
+Route::post('/sistemageneral', [SistemaGeneralController::class, 'store'])->name('agregar-sistema-general');
+
+
+//SISTEMA GESTION CALIDAD
+Route::get('/sgc', [SGCalidadController::class, 'index'])->name('sgc');
+
+//SISTEMA GESTION AMBIENTAL
+Route::get('/sga', [SGAmbientalController::class, 'index'])->name('sga');
+Route::post('/sga', [SGAmbientalController::class, 'store'])->name('agregar-sga');
+
+
+//SISTEMA GESTION SST
+Route::get('/sgsst', [SGSstController::class, 'index'])->name('sgsst');
+
 //IDENTIFICACIÓN RIESGO
 Route::get('/identificacion-riesgo', [IdentificacionRiesgoController::class, 'index'])->name('identificacion-riesgo');
 Route::post('/identificacion-riesgo', [IdentificacionRiesgoController::class, 'store'])->name('agregar-identificacion-riesgo');
@@ -32,22 +53,6 @@ Route::get('/datos-identificacion-riesgo', [IdentificacionRiesgoController::clas
 
 //ANÁLISIS RIESGO
 Route::get('/analisis-riesgo', [AnalisisRiesgoController::class, 'index'])->name('analisis-riesgo');
-
-Route::get('/sistema-general', function () {
-    return view('view.sistema-general');
-})->name('sistema-general');
-
-Route::get('/sgc', function () {
-    return view('view.sgc');
-})->name('sgc');
-
-Route::get('/sga', function () {
-    return view('view.sga');
-})->name('sga');
-
-Route::get('/sgsst', function () {
-    return view('view.sst');
-})->name('sgsst');
 
 //DATOS PARA LLENAR LOS FORMULARIOS
 Route::get('/sistema-asociado', [SistemaAsociadoController::class, 'index']);
