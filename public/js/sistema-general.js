@@ -87,7 +87,7 @@ function opcMapaProcesos(data) {
         if (value.id_fk_despliegue == 46) {
             //console.log(value.nombre_categoria)
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_");
 
             mapaProcesos.innerHTML += `<div class="form-check">
                       <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
@@ -103,7 +103,8 @@ function opcCaracterizaciones(data) {
         if (value.id_fk_despliegue == 47) {
             //console.log(value.nombre_categoria)
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).toLowerCase().replace(/\((\w+)\)/g, "$1").replace(/\//g, "_");
+
 
             if (count % 2 != 0) {
                 opc_caracterizaciones1.innerHTML += `<div class="form-check">
@@ -128,7 +129,7 @@ function opcDesplieguePlaneacionEstrategica(data) {
         if (value.id_fk_variable == 18) {
             //console.log(value.nombre_despliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             if (count % 2 != 0) {
                 despliegue_planeacion_e1.innerHTML += `<div class="form-check">
@@ -153,7 +154,7 @@ function opcDesplieguePartesInteresadas(data) {
         if (value.id_fk_variable == 19) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             if (count % 2 != 0) {
                 despliegue_partes_i1.innerHTML += `<div class="form-check">
@@ -178,7 +179,7 @@ function opcDespliegueAlcance(data) {
         if (value.id_fk_variable == 20) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             if (count % 2 != 0) {
                 despliegue_alcance1.innerHTML += `<div class="form-check">
@@ -203,7 +204,7 @@ function opcCategoriaLiderazgo(data) {
         if (value.id_fk_despliegue == 67) {
             //console.log(value.nombre_categoria)
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             if (count % 2 != 0) {
                 categoria_liderazgo1.innerHTML += `<div class="form-check">
@@ -228,7 +229,7 @@ function opcDespliegueLiderazgo(data) {
         if (value.id_fk_variable == 21 && value.id_despliegue != 67) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             if (count % 2 != 0) {
                 categoria_liderazgo1.innerHTML += `<div class="form-check">
@@ -252,7 +253,7 @@ function opcDespliegueRiesgo(data) {
         if (value.id_fk_variable == 22) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             despliegue_riesgos_oprtunidades.innerHTML += `<div class="form-check">
                       <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
@@ -267,7 +268,7 @@ function opcDespliegueObjetivo(data) {
         if (value.id_fk_variable == 23) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             despliegue_objetivos.innerHTML += `<div class="form-check">
                       <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
@@ -280,7 +281,7 @@ function opcDespliegueObjetivo(data) {
 function opcCategoriaRecursos(data) {
     for (const value of data) {
         let strDirty = removeAccents(value.nombre_categoria);
-        let strClean = strDirty.replace(/ /g, '').toLowerCase();
+        let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
         if (value.id_fk_despliegue == 71) {
             //console.log(value.nombre_categoria)
 
@@ -322,7 +323,7 @@ function opcDespliegueRecursos(data) {
         ) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             despliegue_recursos.innerHTML += `<div class="form-check col-3">
                       <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="$${strClean}">
@@ -335,7 +336,7 @@ function opcDespliegueRecursos(data) {
 function opcCategoriaEvalucacion(data) {
     for (const value of data) {
         let strDirty = removeAccents(value.nombre_categoria);
-        let strClean = strDirty.replace(/ /g, '').toLowerCase();
+        let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
         if (value.id_fk_despliegue == 78) {
             //console.log(value.nombre_categoria)
 
@@ -392,7 +393,7 @@ function opcDespliegueMejora(data) {
         if (value.id_fk_variable == 27) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             despliegue_mejora.innerHTML += `<div class="form-check col-4">
                       <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">

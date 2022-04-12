@@ -34,6 +34,7 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('sgc')}}">SGC</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('sga')}}">SGA</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('sgsst')}}">SST</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('result-sg')}}">RESUlTADOS SG</a></li>
                 <hr class="text-black">
                 <h4>Identificar riesgo</h4>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('identificacion-riesgo')}}">Identificar riesgo</a></li>
@@ -65,7 +66,7 @@
 
     @yield('script')
 
-    <script src="js/magic.js"></script>
+    {{-- <script src="js/magic.js"></script> --}}
 </body>
 
 </html>

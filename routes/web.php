@@ -33,10 +33,13 @@ Route::get('/datos-contexto-empresa', [ContextoEmpresaController::class, 'show']
 //SISTEMA GENERAL
 Route::get('/sistema-general', [SistemaGeneralController::class, 'index'])->name('sistema-general');
 Route::post('/sistemageneral', [SistemaGeneralController::class, 'store'])->name('agregar-sistema-general');
+Route::get('/datos-sistemageneral', [SistemaGeneralController::class, 'show'])->name('result-sg');
+
 
 
 //SISTEMA GESTION CALIDAD
 Route::get('/sgc', [SGCalidadController::class, 'index'])->name('sgc');
+Route::post('/sgc', [SGCalidadController::class, 'store'])->name('agregar-sgc');
 
 //SISTEMA GESTION AMBIENTAL
 Route::get('/sga', [SGAmbientalController::class, 'index'])->name('sga');
@@ -45,6 +48,7 @@ Route::post('/sga', [SGAmbientalController::class, 'store'])->name('agregar-sga'
 
 //SISTEMA GESTION SST
 Route::get('/sgsst', [SGSstController::class, 'index'])->name('sgsst');
+Route::post('/sgsst', [SGSstController::class, 'store'])->name('agregar-sgsst');
 
 //IDENTIFICACIÓN RIESGO
 Route::get('/identificacion-riesgo', [IdentificacionRiesgoController::class, 'index'])->name('identificacion-riesgo');

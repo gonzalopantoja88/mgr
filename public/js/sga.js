@@ -14,15 +14,15 @@ const Contexto_social = document.querySelector('#conSocial1');
 const Impactos_ambientales1 = document.querySelector('#impAmbientales1');
 const Impactos_ambientales2 = document.querySelector('#impAmbientales2');
 const Impactos_ambientales3 = document.querySelector('#impAmbientales3');
-//const Prácticas_gestión= document.querySelector('#praGestion1');
+const praGestion1= document.querySelector('#praGestion1');
 const Agua = document.querySelector('#agua1');
 const Aire = document.querySelector('#aire1');
 const Residuos = document.querySelector('#residuo1');
-const Servicios_sociales = document.querySelector('#serviso');
+const Servicios_sociales = document.querySelector('#servicios');
 const Demografia = document.querySelector('#demia');
 const Contexto_organización = document.querySelector('#contorgan');
 const Lideres = document.querySelector('#lidera')
-const APoyo = document.querySelector('#apoyo')
+const Apoyo = document.querySelector('#apoyo')
 const Planifi = document.querySelector('#planificar')
 const Opera = document.querySelector('#opera')
 const Evaluación_Desempeño = document.querySelector('#evadese')
@@ -44,7 +44,7 @@ fetch("/categoria")
         ImpactosAmbientales1(data)
         ImpactosAmbientales2(data)
         ImpactosAmbientales3(data)
-        //PrácticasGestión(data)
+        PrácticasGestión(data)
 
     });
 
@@ -52,14 +52,14 @@ fetch("./opcion")
     .then((result) => result.json())
     .then((data) => {
         //---SGA---
-        Agua1(data);
-        Aire1(data);
-        Residuos1(data);
+        // Agua1(data);
+        // Aire1(data);
+        // Residuos1(data);
         ServicioSociales(data);
         demografia(data);
         ContextoOrganización(data);
         LideRazgo(data);
-        Apoyo(data);
+        opcApoyo(data);
         Planificacion(data);
         Operacion(data);
         EvaluaciónDesempeño(data);
@@ -73,7 +73,7 @@ function ClimaTeología1(data) {
         if (value.id_fk_despliegue == 124) {
             //console.log(value.nombre_categoria);
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '').replace(/-/g, '_').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Clima_teologia1.innerHTML +=
                 `<div class="form-check">
@@ -91,7 +91,7 @@ function ClimaTeología2(data) {
         if (value.id_fk_despliegue == 125) {
             //console.log(value.nombre_categoria);
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '').replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Clima_teologia2.innerHTML +=
                 `<div class="form-check">
@@ -109,7 +109,7 @@ function ClimaTeología3(data) {
         if (value.id_fk_despliegue == 126) {
             //console.log(value.nombre_categoria);
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/-/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Clima_teologia3.innerHTML +=
                 `<div class="form-check">
@@ -127,7 +127,7 @@ function ClimaTeología4(data) {
         if (value.id_fk_despliegue == 127) {
             //console.log(value.nombre_categoria);
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/-/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
             
 
             Clima_teologia4.innerHTML +=
@@ -146,7 +146,7 @@ function ClimaTeología5(data) {
         if (value.id_fk_despliegue == 128) {
             //console.log(value.nombre_categoria);
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/-/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Clima_teologia5.innerHTML +=
                 `<div class="form-check">
@@ -164,7 +164,7 @@ function ClimaTeología6(data) {
         if (value.id_fk_despliegue == 129) {
             //console.log(value.nombre_categoria);
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/-/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Clima_teologia6.innerHTML +=
                 `<div class="form-check">
@@ -182,9 +182,9 @@ function LegislaciónAmbiental(data) {
         if (value.id_fk_despliegue == 130 && value.ID_Categoria != 164 && value.ID_Categoria != 165 && value.ID_Categoria != 166) {
             //console.log(value.nombre_categoria);
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/-/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
-            desRreglamentario1.innerHTML +=
+            Legislacion_ambiental.innerHTML +=
                 `<div class="form-check">
                         <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
                         <label class="form-check-label" for="${strClean}">${value.nombre_categoria}</label>
@@ -200,7 +200,7 @@ function ContextoSocial(data) {
         if (value.id_fk_despliegue == 131) {
             //console.log(value.nombre_categoria);
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/-/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             conSocial1.innerHTML +=
                 `<div class="form-check">
@@ -218,9 +218,9 @@ function ImpactosAmbientales1(data) {
         if (value.id_fk_despliegue == 132) {
             //console.log(value.nombre_categoria);
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
-            impAmbientales1.innerHTML +=
+            Impactos_ambientales1.innerHTML +=
                 `<div class="form-check">
                         <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
                         <label class="form-check-label" for="${strClean}">${value.nombre_categoria}</label>
@@ -236,9 +236,9 @@ function ImpactosAmbientales2(data) {
         if (value.id_fk_despliegue == 133) {
             //console.log(value.nombre_categoria);
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1").replace(/:/g, '_', );
 
-            impAmbientales2.innerHTML +=
+            //impAmbientales2.innerHTML +=
                 `<div class="form-check">
                         <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
                         <label class="form-check-label" for="${strClean}">${value.nombre_categoria}</label>
@@ -254,7 +254,7 @@ function ImpactosAmbientales3(data) {
         if (value.id_fk_despliegue == 134) {
             //console.log(value.nombre_categoria);
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             impAmbientales3.innerHTML +=
                 `<div class="form-check">
@@ -266,88 +266,91 @@ function ImpactosAmbientales3(data) {
     }
 }
 
-// function PrácticasGestión(data) {
-//     let count = 1;
-//         for (const value of data) {
-//             if (value.id_fk_despliegue == 135) {
-//                  //console.log(value.nombre_categoria);
+function PrácticasGestión(data) {
+    let count = 1;
+        for (const value of data) {
+            if (value.id_fk_despliegue == 135 &&
+                value.id_categoria == 190 || value.id_categoria == 191) {
+                 //console.log(value.nombre_categoria);
+                 let strDirty = removeAccents(value.nombre_categoria);
+                 let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
-//                  praGestion1.innerHTML +=
-//                     `<div class="form-check">
-//                         <input class="form-check-input" type="checkbox" name="" value="" id="${value.nombre_categoria}">
-//                         <label class="form-check-label" for="${value.nombre_categoria}">${value.nombre_categoria}</label>
+                 praGestion1.innerHTML +=
+                    `<div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="" value="" id="${value.nombre_categoria}">
+                        <label class="form-check-label" for="${value.nombre_categoria}">${value.nombre_categoria}</label>
+                    </div>`
+            count++;
+        }
+    }
+}
+
+// function Agua1(data) {
+//     let count = 1;
+//     for (const value of data) {
+//         if (value.id_fk_categoria == 164) {
+//             //console.log(value.nombre_opcion);
+//             let strDirty = removeAccents(value.nombre_opcion);
+//             let strClean = strDirty.replace(/ /g, '').toLowerCase();
+
+//             Agua.innerHTML +=
+//                 `<div class="form-check">
+//                         <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
+//                         <label class="form-check-label" for="${strClean}">${value.nombre_opcion}</label>
 //                     </div>`
 //             count++;
 //         }
 //     }
 // }
 
-function Agua1(data) {
-    let count = 1;
-    for (const value of data) {
-        if (value.id_fk_categoria == 164) {
-            //console.log(value.nombre_opcion);
-            let strDirty = removeAccents(value.nombre_opcion);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+// function Aire1(data) {
+//     let count = 1;
+//     for (const value of data) {
+//         if (value.id_fk_categoria == 165) {
+//             //console.log(value.nombre_opcion);
+//             let strDirty = removeAccents(value.nombre_opcion);
+//             let strClean = strDirty.replace(/ /g, '').toLowerCase();
 
-            Agua.innerHTML +=
-                `<div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
-                        <label class="form-check-label" for="${strClean}">${value.nombre_opcion}</label>
-                    </div>`
-            count++;
-        }
-    }
-}
+//             Aire.innerHTML +=
+//                 `<div class="form-check">
+//                         <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
+//                         <label class="form-check-label" for="${strClean}">${value.nombre_opcion}</label>
+//                     </div>`
+//             count++;
+//         }
+//     }
+// }
 
-function Aire1(data) {
-    let count = 1;
-    for (const value of data) {
-        if (value.id_fk_categoria == 165) {
-            //console.log(value.nombre_opcion);
-            let strDirty = removeAccents(value.nombre_opcion);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+// function Residuos1(data) {
+//     let count = 1;
+//     for (const value of data) {
+//         if (value.id_fk_categoria == 166) {
+//             //console.log(value.nombreOption);
+//             let strDirty = removeAccents(value.nombre_opcion);
+//             let strClean = strDirty.replace(/ /g, '').toLowerCase();
 
-            Aire.innerHTML +=
-                `<div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
-                        <label class="form-check-label" for="${strClean}">${value.nombre_opcion}</label>
-                    </div>`
-            count++;
-        }
-    }
-}
-
-function Residuos1(data) {
-    let count = 1;
-    for (const value of data) {
-        if (value.id_fk_categoria == 166) {
-            //console.log(value.nombreOption);
-            let strDirty = removeAccents(value.nombre_opcion);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
-
-            Residuos.innerHTML +=
-                `<div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
-                        <label class="form-check-label" for="${strClean}">${value.nombre_opcion}</label>
-                    </div>`
-            count++;
-        }
-    }
-}
+//             Residuos.innerHTML +=
+//                 `<div class="form-check">
+//                         <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
+//                         <label class="form-check-label" for="${strClean}">${value.nombre_opcion}</label>
+//                     </div>`
+//             count++;
+//         }
+//     }
+// }
 
 function ServicioSociales(data) {
     let count = 1;
     for (const value of data) {
         if (value.id_fk_categoria == 182) {
-            //console.log(value.nombreOption);
+            //console.log(value.nombre_opcion);
             let strDirty = removeAccents(value.nombre_opcion);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Servicios_sociales.innerHTML +=
                 `<div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
-                        <label class="form-check-label" for="${strClean}">${value.nombre_opcion}</label>
+                    <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
+                    <label class="form-check-label" for="${strClean}">${value.nombre_opcion}</label>
                     </div>`
             count++;
         }
@@ -361,7 +364,7 @@ function demografia(data) {
         if (value.id_fk_categoria == 183) {
             //console.log(value.nombreOption);
             let strDirty = removeAccents(value.nombre_opcion);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Demografia.innerHTML +=
                 `<div class="form-check">
@@ -379,7 +382,7 @@ function ContextoOrganización(data) {
         if (value.id_fk_categoria == 189) {
             //console.log(value.nombreOption);
             let strDirty = removeAccents(value.nombre_opcion);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Contexto_organización.innerHTML +=
                 `<div class="form-check">
@@ -397,7 +400,7 @@ function LideRazgo(data) {
         if (value.id_fk_categoria == 192) {
             //console.log(value.nombreOption);
             let strDirty = removeAccents(value.nombre_opcion);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Lideres.innerHTML +=
                 `<div class="form-check">
@@ -415,7 +418,7 @@ function Planificacion(data) {
         if (value.id_fk_categoria == 193) {
             //console.log(value.nombreOption);
             let strDirty = removeAccents(value.nombre_opcion);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Planifi.innerHTML +=
                 `<div class="form-check">
@@ -427,15 +430,15 @@ function Planificacion(data) {
     }
 }
 
-function Apoyo(data) {
+function opcApoyo(data) {
     let count = 1;
     for (const value of data) {
         if (value.id_fk_categoria == 194) {
             //console.log(value.nombreOption);
             let strDirty = removeAccents(value.nombre_opcion);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
-            APoyo.innerHTML +=
+            Apoyo.innerHTML +=
                 `<div class="form-check">
                         <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
                         <label class="form-check-label" for="${strClean}">${value.nombre_opcion}</label>
@@ -451,7 +454,7 @@ function Operacion(data) {
         if (value.id_fk_categoria == 195) {
             //console.log(value.nombreOption);
             let strDirty = removeAccents(value.nombre_opcion);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Opera.innerHTML +=
                 `<div class="form-check">
@@ -470,7 +473,7 @@ function EvaluaciónDesempeño(data) {
         if (value.id_fk_categoria == 196) {
             //console.log(value.nombreOption);
             let strDirty = removeAccents(value.nombre_opcion);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Evaluación_Desempeño.innerHTML +=
                 `<div class="form-check">
@@ -488,7 +491,7 @@ function Mejorar(data) {
         if (value.id_fk_categoria == 197) {
             //console.log(value.nombreOption);
             let strDirty = removeAccents(value.nombre_opcion);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase();
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
 
             Mejora.innerHTML +=
                 `<div class="form-check">
@@ -500,3 +503,4 @@ function Mejorar(data) {
     }
 }
 //////////// FIN SGA ////////////
+

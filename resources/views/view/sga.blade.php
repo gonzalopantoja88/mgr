@@ -9,7 +9,7 @@
         <h2 class="m-3">Sistema de Gestion Ambiental</h2>
         <!-- <button onclick="prueba()">prueba</button> -->
         <div class="container">
-            <form action="{{url('agregar-sga')}}" method="post" id="">
+            <form action="{{route('agregar-sga')}}" method="post" id="">
                 @csrf
 
                 <!-- card planeacion estrategica -->
@@ -78,25 +78,10 @@
                         <div class="row d-flex justify-content-between mb-3">
 
                             <div class="row">
-
                                 <h5 class="text-center">Legislación ambiental y empresarial</h5>
-
-                                <div class="row row-cols-3 mb-3" id="desRreglamentario1">
-                                    <!-- condicion colA -->
+                                <div class="row row-cols-2 mb-3 mx-1" id="desRreglamentario1">
+                                    
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-4" id="agua1">
-                                        <h6>agua</h6>
-                                    </div>
-                                    <div class="col-4" id="aire1">
-                                        <h6>aire</h6>
-                                    </div>
-                                    <div class="col-4" id="residuo1">
-                                        <h6>residuos solidos</h6>
-                                    </div>
-                                </div>
-                                
                             </div>
 
                         </div>
@@ -110,8 +95,9 @@
                     <div class="card-body ">
 
                         <div class="row">   
-                            <div class="col-md-12 col-12 d-flex flex-column border-end" id="conSocial1">
-                                <!-- condicion colA -->
+                            <h5 class="text-center">Valores éticos y morales de la sociedad </h5>
+                            <div class="row row-cols-2 mb-3 mx-1" id="conSocial1">
+                                
                             </div>
                         </div>
 
@@ -132,28 +118,35 @@
 
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-12 d-flex flex-column border-end" id="impAmbientales1">
+                                
+                                <div class="col-md-4 col-12 d-flex flex-column border-end" >
                                     <!-- condicion colA -->
                                     <h5 class="text-center">Ambiental</h5>
+                                    <div id="impAmbientales1">
+
+                                    </div>
                                 </div>
 
-                                <div class="col-md-4 col-12 d-flex flex-column border-end" id="impAmbientales2">
+                                <div class="col-md-4 col-12 d-flex flex-column border-end" >
                                     <!-- condicion colB -->
                                     <h5 class="text-center">Social</h5>
                                     <div class="row">
-                                        <div class="col-12" id="serviso">
+                                        <div class="col-12" id="servicios">
                                             <h6> Servicios sociales y equipamientos</h6>
+
                                         </div>
-                                        <div class="col-12" id="demia">
+                                        <div class="col-12 mt-2" id="demia">
                                             <h6> Demografía</h6>
                                         </div>
                                     </div>
-
                                 </div>
 
-                                <div class="col-md-4 col-12 d-flex flex-column" id="impAmbientales3">
+                                <div class="col-md-4 col-12 d-flex flex-column">
                                     <!-- condicion colC -->
                                     <h5 class="text-center">Económico </h5>
+                                    <div id="impAmbientales3">
+
+                                    </div>
                                 </div>
 
                             </div>
@@ -198,6 +191,13 @@
                                         </div>
                                         <div class="col-3" id="mejor">
                                             <h6> Mejora </h6>
+                                        </div>
+                                        
+                                        <div class="mt-5">
+                                            <h5 class="">Otros</h5>
+                                            <div class="" id="praGestion1">
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
