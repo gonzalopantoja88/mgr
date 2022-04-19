@@ -14,7 +14,8 @@ class IdentificacionRiesgoController extends Controller
      */
     public function index()
     {
-        return view('view.identificacion-riesgo');
+        $idenfiticacion_riesgo = IdentificacionRiesgo::all();
+        return view('view.identificacion-riesgo', compact('idenfiticacion_riesgo'));
     }
 
     /**

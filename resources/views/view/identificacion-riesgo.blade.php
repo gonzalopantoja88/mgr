@@ -89,6 +89,56 @@
                     </div>
                 </div>
             </form>
+
+            <div class="subheading mt-4"><strong>Riesgos identificados</strong></div>
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered table-hover text-center align-middle">
+                    <thead class="bg-primary text-nowrap">
+                        <tr>
+                            <th class="px-2">TIPO</th>
+                            <th class="px-2">PROCESO</th>
+                            <th class="px-2">OBJETIVO</th>
+                            <th class="px-2">ACTIVIDAD CRÍTICA</th>
+                            <th class="px-2">SISTEMA ASOCIADO</th>
+                            <th class="px-2">VARIABLE</th>
+                            <th class="px-2">FACTOR RIESGO</th>
+                            <th class="px-3">RIESGO</th>
+                            <th class="px-5">DESCRIPCIÓN</th>
+                            <th class="px-2">CAUSA RAÍZ</th>
+                            <th class="px-2">CONSECUENCIAS</th>
+                            <th class="px-4">ACCIÓN</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-light">
+                        @foreach ($idenfiticacion_riesgo as $item)
+                        <tr>
+                            <td>{{$item->tipo}}</td>
+                            <td>{{$item->proceso}}</td>
+                            <td>{{$item->objetivo}}</td>
+                            <td>{{$item->actividad_critica}}</td>
+                            <td>{{$item->sistema_asociado}}</td>
+                            <td>{{$item->variable}}</td>
+                            <td>{{$item->factor_riesgo}}</td>
+                            <td>{{$item->riesgo}}</td>
+                            <td>{{$item->descripcion}}</td>
+                            <td>{{$item->causa_raiz}}</td>
+                            <td>{{$item->consecuencias}}</td>
+                            <td>
+                                <div class="row justify-content-center">
+                                    <div class="col-4 me-1 p-0">
+                                        <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                                    </div>
+                                    <div class="col-4 ms-1 p-0">
+                                        <button type="submit" class="btn btn-primary"><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </section>

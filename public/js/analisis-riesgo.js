@@ -1,7 +1,7 @@
 let vlrProbabilidad = 1;
 let vlrImpacto = 1;
 
-const handleChange = (e) => {
+const handleChange = (e) => { 
     const idFila = e.path[2].dataset.id;
     const calfProbabilidad = "calf_probablididad_" + idFila;
     const calfImpacto = "calf_impacto_" + idFila;
@@ -35,6 +35,6 @@ const handleChange = (e) => {
         manejo = "Reducir el Riesgo, Evitar, Compartir o Transferir"
     }
     evaluacionRiesgoInherente.value = zonaRiesgo;
-    manejoRiesgoInherente.textContent = manejo;
+    manejoRiesgoInherente.value = manejo;
 };
 
