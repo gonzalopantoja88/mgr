@@ -10,20 +10,34 @@ use App\Http\Controllers\ContextoEmpresaController;
 use App\Http\Controllers\IdentificacionRiesgoController;
 use App\Http\Controllers\FactorRiesgoController;
 use App\Http\Controllers\AnalisisRiesgoController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SistemaGeneralController;
 use App\Http\Controllers\SGCalidadController;
 use App\Http\Controllers\SGAmbientalController;
 use App\Http\Controllers\SGSstController;
 use App\Models\SGSst;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Mockery\Generator\StringManipulation\Pass\Pass;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
+//LOGIN
 Route::get('/', function () {
     return view('view.introduccion');
-})->name('index');
+})->name('index')->middleware('auth');
+
+Route::get('/login', function () {
+    return view('view.login');
+})->name('login')->middleware('guest');
+
+Route::post('/login', [LoginController::class, 'login'])->name('login-post');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 //CONTEXTO EMPRESA
 Route::get('/contexto-empresa', [ContextoEmpresaController::class, 'index'])->name('contexto-empresa');

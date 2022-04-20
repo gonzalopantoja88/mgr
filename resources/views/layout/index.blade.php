@@ -27,7 +27,30 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
-                <hr class="text-black">
+                <hr class="text-black m-0">
+
+                <!-- Login -->
+                @auth
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user fs-5"></i>
+                        @foreach (Auth::user()->all() as $item)
+                            <span class="h6">{{$item->name}}</span>
+                        @endforeach
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item py-0" href="#">Perfil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <!-- Logout -->
+                        <form action="{{route('logout')}}" method="post">
+                            @csrf
+                            <li><a class="dropdown-item py-0" href="#" onclick="this.closest('form').submit()">Cerrar sesión</a></li>
+                        </form>
+                    </ul>
+                </li>
+                @endauth
+
+                <hr class="text-black mt-0">
                 <h4>Definir contexto</h4>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('contexto-empresa')}}">Empresa</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('sistema-general')}}">Sistema general</a></li>
@@ -48,7 +71,7 @@
         </div>
     </nav>
     <!-- Page Content-->
-    <div class="container-fluid p-0">       
+    <div class="container-fluid p-0">      
         <h1 class="m-4 text-center">
             Gestión del
             <span class="text-primary">Riesgo</span>
