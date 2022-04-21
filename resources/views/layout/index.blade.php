@@ -33,10 +33,8 @@
                 @auth
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-user fs-5"></i>
-                        @foreach (Auth::user()->all() as $item)
-                            <span class="h6">{{$item->name}}</span>
-                        @endforeach
+                        <i class="fas fa-user-circle fs-5"></i>
+                        <span class="h6">{{$user->first_name}}</span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li><a class="dropdown-item py-0" href="#">Perfil</a></li>
@@ -52,21 +50,21 @@
 
                 <hr class="text-black mt-0">
                 <h4>Definir contexto</h4>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('contexto-empresa')}}">Empresa</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('sistema-general')}}">Sistema general</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('sgc')}}">SGC</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('sga')}}">SGA</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('sgsst')}}">SST</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('result-sg')}}">RESUlTADOS SG</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('contexto-empresa')}}">Empresa</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('sistema-general')}}">Sistema general</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('sgc')}}">SGC</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('sga')}}">SGA</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('sgsst')}}">SST</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('result-sg')}}">RESUlTADOS SG</a></li>
                 <hr class="text-black">
                 <h4>Identificar riesgo</h4>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('identificacion-riesgo')}}">Identificar riesgo</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('identificacion-riesgo')}}">Identificar riesgo</a></li>
                 <hr class="text-black">
                 <h4>Gestionar riesgo</h4>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('analisis-riesgo')}}">Análisis de riesgo</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Valoración de riesgo</a>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('analisis-riesgo')}}">Análisis de riesgo</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="#interests">Valoración de riesgo</a>
                 </li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Plan de acción</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="#interests">Plan de acción</a></li>
             </ul>
         </div>
     </nav>

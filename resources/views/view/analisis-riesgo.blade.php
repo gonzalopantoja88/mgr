@@ -27,7 +27,7 @@
             </tr>
           </thead>
           <tbody class="table-light" onchange="handleChange(event)">
-            @foreach ($identificacion_riesgos as $item)
+            @foreach ($idenfiticacion_riesgos as $item)
               @if (!$item->calificado)
                 <form action="{{route('agregar-analisis-riesgo')}}" method="post">
                   @csrf

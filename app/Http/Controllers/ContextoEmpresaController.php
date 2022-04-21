@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ContextoEmpresa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContextoEmpresaController extends Controller
 {
@@ -14,7 +15,8 @@ class ContextoEmpresaController extends Controller
      */
     public function index()
     {
-        return view('view.contexto-empresa');
+        $user = Auth::user();
+        return view('view.contexto-empresa', compact('user'));
     }
 
     /**

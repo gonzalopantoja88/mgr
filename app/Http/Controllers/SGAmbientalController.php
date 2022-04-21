@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SGAmbiental;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SGAmbientalController extends Controller
 {
@@ -15,7 +16,8 @@ class SGAmbientalController extends Controller
      */
     public function index()
     {
-        return view('view.sga');
+        $user = Auth::user();
+        return view('view.sga', compact('user'));
     }
 
     /**

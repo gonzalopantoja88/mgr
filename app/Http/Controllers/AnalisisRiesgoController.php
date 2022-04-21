@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AnalisisRiesgo;
 use App\Models\IdentificacionRiesgo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class AnalisisRiesgoController extends Controller
@@ -16,10 +17,12 @@ class AnalisisRiesgoController extends Controller
      */
     public function index()
     {
-        $identificacion_riesgos = IdentificacionRiesgo::all();
+        $user = Auth::user();
+
+        $idenfiticacion_riesgos = IdentificacionRiesgo::all();
         $analisis_riesgos = AnalisisRiesgo::join('identificacion_riesgos', 'analisis_riesgos.id_fk_riesgo', '=', 'identificacion_riesgos.id_riesgo')->get();
 
-        return view('view.analisis-riesgo', compact('identificacion_riesgos'), compact('analisis_riesgos'));
+        return view('view.analisis-riesgo', compact(['user', 'idenfiticacion_riesgos', 'analisis_riesgos']));
     }
 
     /**

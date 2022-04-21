@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SistemaGeneral;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SistemaGeneralController extends Controller
 {
@@ -15,7 +16,8 @@ class SistemaGeneralController extends Controller
      */
     public function index()
     {
-        return view('view.sistema-general');
+        $user = Auth::user();
+        return view('view.sistema-general', compact('user'));
     }
 
     /**

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Mockery\Generator\StringManipulation\Pass\Pass;
+use Illuminate\Support\Facades\Crypt;
 
 class LoginController extends Controller
 {
@@ -17,13 +19,25 @@ class LoginController extends Controller
         ]);
         //parametro opcional para habilitar recordar contraseña
         $remember = $request->filled('remember');
-    
-        if(Auth::attempt($credentials, $remember)){
+
+        $user = User::where('email', $credentials['email'])->first();
+        $decryptPassword = Crypt::decryptString($user->password);
+
+        if($credentials['password'] === $decryptPassword)
+        {
+            Auth::login($user);
             //linea de abajo evita ataques de seguridad
             $request->session()->regenerate();
             return redirect()->route('index');
-        };  
+        }
         return redirect('/login');
+    
+        // if(Auth::attempt($credentials, $remember)){
+        //     //linea de abajo evita ataques de seguridad
+        //     $request->session()->regenerate();
+
+        //     return redirect()->route('index');
+        // };  
     }
 
 
