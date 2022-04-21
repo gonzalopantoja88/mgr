@@ -15,13 +15,18 @@ use App\Http\Controllers\SGCalidadController;
 use App\Http\Controllers\SGAmbientalController;
 use App\Http\Controllers\SGSstController;
 use App\Models\SGSst;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
-Route::get('/', function () {
+ 
+ /*
+ |--------------------------------------------------------------------------
+ | Web Routes
+ |--------------------------------------------------------------------------
++|
++| Here is where you can register web routes for your application. These
++| routes are loaded by the RouteServiceProvider within a group which
++| contains the "web" middleware group. Now create something great!
++|
+ */
+Route::get('/mgr', function () {
     return view('view.introduccion');
 })->name('index');
 
@@ -54,10 +59,16 @@ Route::post('/sgsst', [SGSstController::class, 'store'])->name('agregar-sgsst');
 Route::get('/identificacion-riesgo', [IdentificacionRiesgoController::class, 'index'])->name('identificacion-riesgo');
 Route::post('/identificacion-riesgo', [IdentificacionRiesgoController::class, 'store'])->name('agregar-identificacion-riesgo');
 Route::get('/datos-identificacion-riesgo', [IdentificacionRiesgoController::class, 'show'])->name('ver-identificacion-riesgo');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 //ANÁLISIS RIESGO
 Route::get('/analisis-riesgo', [AnalisisRiesgoController::class, 'index'])->name('analisis-riesgo');
 Route::post('/analisis-riesgo', [AnalisisRiesgoController::class, 'store'])->name('agregar-analisis-riesgo');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 //DATOS PARA LLENAR LOS FORMULARIOS
 Route::get('/sistema-asociado', [SistemaAsociadoController::class, 'index']);
@@ -68,3 +79,5 @@ Route::get('/opcion/{id}', [OpcionController::class, 'show']);
 Route::get('/variable', [VariableController::class, 'index']);
 Route::get('/variable/{id}', [VariableController::class, 'show']);
 Route::get('/factor-riesgo', [FactorRiesgoController::class, 'index']);
+
+require __DIR__.'/auth.php';

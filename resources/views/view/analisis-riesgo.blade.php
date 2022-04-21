@@ -9,6 +9,7 @@
     <h2 class="m-3">Análisis de Riesgos</h2>
     <div class="container">
       <div class="table-responsive">
+        <a href="" class="fs-7" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-info-circle"></i>Ayuda Probabilidad</a>
         <div class="subheading"><strong>Riesgos pendientes de calificar</strong></div>
         <table class="table table-sm table-bordered table-hover text-center align-middle">
           <thead class="bg-primary text-nowrap">
@@ -128,6 +129,87 @@
     </div>
   </div>
 </section>
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h3 class="modal-title">
+          CRITERIOS PARA DEFINIR EL NIVEL DE PROBABILIDAD
+        </h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body text-center">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>NIVEL</th>
+              <th>FRECUENCIA DE LA ACTIVIDAD</th>
+              <th>CALIFICACIÓN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="v_claro">Muy baja</td>
+              <td>
+                La actividad que conlleva el riesgo se ejecuta como máximo 2
+                veces por año
+              </td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td class="v_oscuro">Baja</td>
+              <td>
+                La actividad que conlleva el riesgo se ejecuta de 3 a 24 veces
+                por año
+              </td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td class="amarillo">Media</td>
+              <td>
+                La actividad que conlleva el riesgo se ejecuta de 24 a 500 veces
+                por año
+              </td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td class="a_palido">Alta</td>
+              <td>
+                La actividad que conlleva el riesgo se ejecuta mínimo 500 veces
+                al año y máximo 5000 veces por año
+              </td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td class="rojo">Muy alta</td>
+              <td>
+                La actividad que conlleva el riesgo se ejecuta más de 5000 veces
+                por año
+              </td>
+              <td>5</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 @section('script')
