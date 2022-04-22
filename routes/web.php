@@ -10,6 +10,7 @@ use App\Http\Controllers\ContextoEmpresaController;
 use App\Http\Controllers\IdentificacionRiesgoController;
 use App\Http\Controllers\FactorRiesgoController;
 use App\Http\Controllers\AnalisisRiesgoController;
+use App\Http\Controllers\AnalisisValoracionRiesgoController;
 use App\Http\Controllers\SistemaGeneralController;
 use App\Http\Controllers\SGCalidadController;
 use App\Http\Controllers\SGAmbientalController;
@@ -56,8 +57,8 @@ Route::post('/identificacion-riesgo', [IdentificacionRiesgoController::class, 's
 Route::get('/datos-identificacion-riesgo', [IdentificacionRiesgoController::class, 'show'])->name('ver-identificacion-riesgo');
 
 //ANÁLISIS RIESGO
-Route::get('/analisis-riesgo', [AnalisisRiesgoController::class, 'index'])->name('analisis-riesgo');
-Route::post('/analisis-riesgo', [AnalisisRiesgoController::class, 'store'])->name('agregar-analisis-riesgo');
+Route::get('/analisis-riesgo', [AnalisisValoracionRiesgoController::class, 'index'])->name('analisis-riesgo');
+Route::post('/analisis-riesgo', [AnalisisValoracionRiesgoController::class, 'store'])->name('agregar-analisis-riesgo');
 
 //DATOS PARA LLENAR LOS FORMULARIOS
 Route::get('/sistema-asociado', [SistemaAsociadoController::class, 'index']);
