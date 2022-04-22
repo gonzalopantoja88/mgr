@@ -13,7 +13,7 @@ class CreateSGAmbientalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('s_g_ambientals', function (Blueprint $table) {
+        Schema::create('sga', function (Blueprint $table) {
             $table->integerIncrements('id_sg_ambiental');
             $table->string('precipitacionmm_ano_mm_mes', 4);
             $table->string('temperaturamediamaxima_minima', 4);
@@ -110,6 +110,6 @@ class CreateSGAmbientalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_g_ambientals');
+        Schema::dropIfExists('sga');
     }
 }

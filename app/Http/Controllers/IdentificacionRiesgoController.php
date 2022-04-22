@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\IdentificacionRiesgo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IdentificacionRiesgoController extends Controller
 {
@@ -14,8 +15,10 @@ class IdentificacionRiesgoController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+
         $idenfiticacion_riesgo = IdentificacionRiesgo::all();
-        return view('view.identificacion-riesgo', compact('idenfiticacion_riesgo'));
+        return view('view.identificacion-riesgo', compact(['user', 'idenfiticacion_riesgo']));
     }
 
     /**

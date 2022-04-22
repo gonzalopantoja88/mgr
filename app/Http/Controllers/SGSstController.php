@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SGSst;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SGSstController extends Controller
 {
@@ -15,7 +16,8 @@ class SGSstController extends Controller
      */
     public function index()
     {
-        return view('view.sst');
+        $user = Auth::user();
+        return view('view.sst', compact('user'));
     }
 
     /**
