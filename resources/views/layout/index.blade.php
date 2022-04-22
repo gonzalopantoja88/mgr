@@ -37,7 +37,7 @@
                         <span class="h6">{{$user->first_name}}</span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item py-0" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item py-0" href="{{ route('register') }}">Perfil</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <!-- Logout -->
                         <form action="{{route('logout')}}" method="post">

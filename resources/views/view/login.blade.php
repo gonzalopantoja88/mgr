@@ -33,7 +33,7 @@
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text bg-primary"><i class="fas fa-key"></i></span>
-                                <input type="text" name="password" class="form-control" placeholder="Password" aria-label="Password" required>
+                                <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password" required>
                             </div>
 
                             <div class="form-check">

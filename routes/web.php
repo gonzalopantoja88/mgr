@@ -29,8 +29,6 @@ use Mockery\Generator\StringManipulation\Pass\Pass;
 // use App\Models\User;
 // dd(User::all()->toArray());
 
-// gonzalo pantoja osorio
-
 Route::get('/register', [UserController::class, 'index'])->name('register');
 Route::post('/register', [UserController::class, 'store'])->name('post-register');
 

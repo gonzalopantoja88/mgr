@@ -13,7 +13,7 @@ class CreateSGCalidadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('s_g_calidads', function (Blueprint $table) {
+        Schema::create('sgc', function (Blueprint $table) {
 
             $table->integerIncrements('id_sg_calidad');
             $table->string('determinacion_requisitos_productos_servicios',4);
@@ -89,6 +89,6 @@ class CreateSGCalidadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_g_calidads');
+        Schema::dropIfExists('sgc');
     }
 }

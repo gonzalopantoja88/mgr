@@ -71,6 +71,39 @@
   box-sizing: border-box;
 }
 
+td.v_claro {
+  background-color: #92d050 !important;
+}
+td.v_oscuro {
+  background-color: #00b050 !important;
+}
+td.amarillo {
+  background-color: #ffff00 !important;
+}
+td.a_palido {
+  background-color: #ffc000 !important;
+}
+td.rojo {
+  background-color: #ff0000 !important;
+}
+td.naranja {
+  background-color: #ff6600 !important;
+}
+.abajo {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+/* Retirar botones incrementar y decrementar en input tipo number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
