@@ -17,7 +17,7 @@
                                 <div class="subheading">Riesgo</div>
                             </div>
                             <div class="col-6 text-end">
-                                <a href="" class="fs-7"><i class="fas fa-info-circle"></i>Ayuda</a>
+                                <a href="" class="fs-7" data-bs-toggle="modal" data-bs-target="#modalFactores"><i class="fas fa-info-circle"></i>Ayuda</a>
                             </div>
                         </div>
                     </div>
@@ -142,6 +142,99 @@
         </div>
     </div>
 </section>
+
+<!--Modal factores riesgo-->
+<div class="modal fade" tabindex="-1" id="modalFactores">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h3 class="modal-title">FACTORES RIESGO</h3>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+          ></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body text-center">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="text-center">
+                <th>FACTOR</th>
+                <th>DEFINICIÓN</th>
+                <th>DESCRIPCIÓN</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-center">
+                <td>PROCESOS</td>
+                <td>
+                  Eventos relacionados con errores en las actividades que deben
+                  realizar los servidores de la organización
+                </td>
+                <td>
+                  <p>- Falta de procedimientos</p>
+                  <p>- Errores de grabación, autorización</p>
+                  <p>- Errores de calculos para pagos internos y externos</p>
+                  <p>
+                    - Falta de capacitación, temas relacionados con el personal
+                  </p>
+                </td>
+              </tr>
+              <tr class="text-center">
+                <td>TALENTO HUMANO</td>
+                <td>
+                  Incluye seguridad y salud en el trabajo. Se analiza posible
+                  dolo e intención frente a la corrupción
+                </td>
+                <td>
+                  <p>- Hurto activos</p>
+                  <p>- Posibles comportamientos no éticos de los empleados</p>
+                  <p>- Fraude interno (corrupción, soborno)</p>
+                </td>
+              </tr>
+              <tr class="text-center">
+                <td>TECNOLOGÍA</td>
+                <td>
+                  Eventos relacionados con la infraestructura tecnológica de la
+                  entidad
+                </td>
+                <td>
+                  <p>- Daño de equipos</p>
+                  <p>- Caida de aplicaciones</p>
+                  <p>- Caida de redes</p>
+                  <p>- Errores en programas</p>
+                </td>
+              </tr>
+              <tr class="text-center">
+                <td>INFRAESTRUCTURA</td>
+                <td>
+                  Eventos relacionados con la infraestructura física de la
+                  entidad
+                </td>
+                <td>
+                  <p>- Derrumbes</p>
+                  <p>- Incendios</p>
+                  <p>- Inundaciones</p>
+                  <p>- Daños a activos fijos</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    </div>
+</div>
+
 @endsection
 
 @section('script')

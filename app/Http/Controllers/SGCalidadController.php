@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SGCalidad;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SGCalidadController extends Controller
 {
@@ -15,7 +16,8 @@ class SGCalidadController extends Controller
      */
     public function index()
     {
-        return view('view.sgc');
+        $user = Auth::user();
+        return view('view.sgc',compact('user'));
     }
 
     /**

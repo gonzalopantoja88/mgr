@@ -13,7 +13,7 @@ class CreateSGSstsTable extends Migration
      */
     public function up()
     {
-        Schema::create('s_g_ssts', function (Blueprint $table) {
+        Schema::create('sgsst', function (Blueprint $table) {
 
             $table->integerIncrements('id_sg_sst');
             $table->string('profesional_con_licencia_sst', 4);
@@ -81,6 +81,6 @@ class CreateSGSstsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_g_ssts');
+        Schema::dropIfExists('sgsst');
     }
 }
