@@ -35,6 +35,8 @@
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
   --bs-primary: #ff6b00;
+  --bs-primary1: #ffef5ee5;
+  --bs-primary2: #fc9637;
   --bs-secondary: #6c757d;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
@@ -427,7 +429,8 @@ button:not(:disabled),
 }
 
 textarea {
-  resize: vertical;
+  /* resize: vertical; */
+  resize:none;
 }
 
 fieldset {
@@ -7854,6 +7857,14 @@ textarea.form-control-lg {
 .bg-primary {
   --bs-bg-opacity: 1;
   background-color: var(--bs-primary) !important;
+}
+.bg-primary1 {
+  --bs-bg-opacity: 1;
+  background-color: var(--bs-primary1) !important;
+}
+.bg-primary2 {
+  --bs-bg-opacity: 1;
+  background-color: var(--bs-primary2) !important;
 }
 
 .bg-orange300 {

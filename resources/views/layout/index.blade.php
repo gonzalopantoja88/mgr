@@ -61,8 +61,7 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('identificacion-riesgo')}}">Identificar riesgo</a></li>
                 <hr class="text-black">
                 <h4>Gestionar riesgo</h4>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('analisis-riesgo')}}">Análisis de riesgo</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="#interests">Valoración de riesgo</a>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('analisis-riesgo')}}">Análisis y valoracion</a></li>
                 </li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="#interests">Plan de acción</a></li>
             </ul>

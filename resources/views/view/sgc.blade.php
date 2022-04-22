@@ -124,7 +124,7 @@
                                 </div>
                                 <div class="row">
                                     <h5>Otros</h5>
-                                    <div class="col-md-6 col-12 d-flex flex-column border-start" id="controlProduc2">
+                                    <div class="col-md-6 col-12 d-flex flex-column" id="controlProduc2">
                                         <!-- colum B -->
                                     </div>
                                 </div>
