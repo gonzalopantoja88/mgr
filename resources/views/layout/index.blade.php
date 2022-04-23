@@ -73,7 +73,7 @@
             Gestión del
             <span class="text-primary">Riesgo</span>
         </h1>
-
+        
         @yield('content')
 
     </div>
