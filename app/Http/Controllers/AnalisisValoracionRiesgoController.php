@@ -6,6 +6,8 @@ use App\Models\AnalisisValoracionRiesgo;
 use App\Models\IdentificacionRiesgo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class AnalisisValoracionRiesgoController extends Controller
 {
@@ -16,10 +18,12 @@ class AnalisisValoracionRiesgoController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+
         $identificacion_riesgos = IdentificacionRiesgo::all();
         $analisis_riesgos = AnalisisValoracionRiesgo::join('identificacion_riesgos', 'analisis_valoracion_riesgos.id_fk_riesgo', '=', 'identificacion_riesgos.id_riesgo')->get();
 
-        return view('view.analisis-valoracion-riesgo', compact('identificacion_riesgos'), compact('analisis_riesgos'));
+        return view('view.analisis-valoracion-riesgo', compact(['identificacion_riesgos', 'user', 'analisis_riesgos']));
     }
 
     /**
@@ -96,9 +100,10 @@ class AnalisisValoracionRiesgoController extends Controller
      * @param  \App\Models\AnalisisValoracionRiesgo  $analisisValoracionRiesgo
      * @return \Illuminate\Http\Response
      */
-    public function edit(AnalisisValoracionRiesgo $analisisValoracionRiesgo)
+    public function edit($id_riesgo)
     {
-        //
+        $cont_editar_riesgo = AnalisisValoracionRiesgo::where('id_analisis_valoracion', $id_riesgo)->first();
+        return $cont_editar_riesgo;
     }
 
     /**
@@ -108,9 +113,35 @@ class AnalisisValoracionRiesgoController extends Controller
      * @param  \App\Models\AnalisisValoracionRiesgo  $analisisValoracionRiesgo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AnalisisValoracionRiesgo $analisisValoracionRiesgo)
-    {
-        //
+    public function update(Request $request)
+    {        
+        $id = $request->id_analisis_valoracion;
+        $vlr_probabilidad = 'edit_calf_probablididad_'.$id;
+        $vlr_impacto = 'edit_calf_impacto_'.$id;
+        $vlr_riesgo_inherente = 'edit_evaluacion_riesgo_'.$id;
+        $vlr_manejo_riesgo = 'edit_manejo_riesgo_'.$id;
+        $vlr_controles_existentes = 'edit_controles_existentes_'.$id;
+        $vlr_tipos_control = 'edit_tipos_control_'.$id;
+        $vlr_probabilidad_definitivo = 'edit_nueva_calf_probabilidad_'.$id;
+        $vlr_impacto_definitivo = 'edit_nueva_calf_impacto_'.$id;
+        $vlr_nuevo_riesgo_inherente = 'edit_nueva_evaluacion_riesgo_'.$id;
+        $vlr_nuevo_manejo_riesgo = 'edit_nuevo_manejo_riesgo_'.$id;
+        $vlr_opciones_manejo = 'edit_opciones_manejo_'.$id;
+
+        AnalisisValoracionRiesgo::where('id_analisis_valoracion', $id)
+                ->update(['probabilidad' => $request->$vlr_probabilidad,
+                          'impacto' => $request->$vlr_impacto,
+                          'riesgo_inherente' => $request->$vlr_riesgo_inherente,
+                          'manejo_riesgo' => $request->$vlr_manejo_riesgo,
+                          'controles_existentes' => $request->$vlr_controles_existentes,
+                          'tipos_control' => $request->$vlr_tipos_control,
+                          'probabilidad_definitivo' => $request->$vlr_probabilidad_definitivo,
+                          'impacto_definitivo' => $request->$vlr_impacto_definitivo,
+                          'nueva_evaluacion_riesgo' => $request->$vlr_nuevo_riesgo_inherente,
+                          'nuevo_manejo_riesgo' => $request->$vlr_nuevo_manejo_riesgo,
+                          'opciones_manejo' => $request->$vlr_opciones_manejo]);
+
+        return redirect()->route('analisis-riesgo'); 
     }
 
     /**

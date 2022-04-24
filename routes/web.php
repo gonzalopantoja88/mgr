@@ -74,9 +74,10 @@ Route::get('/identificacion-riesgo', [IdentificacionRiesgoController::class, 'in
 Route::post('/identificacion-riesgo', [IdentificacionRiesgoController::class, 'store'])->name('agregar-identificacion-riesgo');
 Route::get('/datos-identificacion-riesgo', [IdentificacionRiesgoController::class, 'show'])->name('ver-identificacion-riesgo');
 
-//ANÁLISIS RIESGO
+//ANÁLISIS Y VALORACION DE RIESGO
 Route::get('/analisis-riesgo', [AnalisisValoracionRiesgoController::class, 'index'])->name('analisis-riesgo');
 Route::post('/analisis-riesgo', [AnalisisValoracionRiesgoController::class, 'store'])->name('agregar-analisis-riesgo');
+Route::post('/editar-riesgo/{id}', [AnalisisValoracionRiesgoController::class, 'update'])->name('editar-riesgo');
 
 //DATOS PARA LLENAR LOS FORMULARIOS
 Route::get('/sistema-asociado', [SistemaAsociadoController::class, 'index']);
