@@ -19,7 +19,7 @@
 
 <body id="page-top">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top overflow-auto" style="max-height: 100vh;" id="sideNav">
         <a class="navbar-brand js-scroll-trigger" href="{{route('index')}}">
             <span class="d-block d-lg-none">Gestion de Riesgo</span>
             <span class="d-none d-lg-block"><img class="w-30 rounded-circle" src="{{asset('img/logo-sena.png')}}" alt="logo-sena" /></span>
