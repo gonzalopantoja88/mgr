@@ -8,13 +8,23 @@
     <div class="resume-section-content">
         <h2 class="m-3">Análisis de Riesgos</h2>
         <div class="container">
-            <div class="subheading"><strong>Riesgos pendientes de calificar</strong></div>
+                 
+            <!-- Riesgos pendiente de calificar -->
+            <div class="row">
+                <div class="col-6">
+                    <div class="subheading"><strong>Riesgos pendientes de calificar</strong></div>
+                    </div>
+                <div class="col-6 text-end">
+                    <a href="" class="fs-7" data-bs-toggle="modal" data-bs-target="#myModal_3"><i class="fas fa-info-circle"></i>Matriz de calor</a>    
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-sm table-bordered table-hover text-center align-middle">
                     <thead class="bg-primary text-nowrap">
                         <tr>
-                            <th colspan="6" class="bg-primary1">ANÁLISIS DE RIESGO</th>
-                            <th colspan="11" class="bg-primary2">VALORACION DEL RIESGO RESIDUAL</th>
+                            <th colspan="6" class="bg-primary1">RIESGO</th>
+                            <th colspan="4" class="bg-primary2">ANÁLISIS DEL RIESGO</th>
+                            <th colspan="7" class="bg-primary3">VALORACIÓN DEL RIESGO</th>
                             <th rowspan="2" class="align-middle">ACCION</th>
                         </tr>
                         <tr>
@@ -24,8 +34,14 @@
                             <th class="px-2">SISTEMA DE GESTIÓN</th>
                             <th class="px-2"> VARIABLE </th>
                             <th class="px-2">FACTOR RIESGO</th>
-                            <th class="px-3">PROBABILIDAD</th>
-                            <th class="px-5">IMPACTO</th>
+                            <th class="px-2">
+                            <span>PROBABILIDAD</span>
+                            <a href="" data-bs-toggle="modal" data-bs-target="#myModal"><i class="text-black fas fa-info-circle"></i></a>
+                            </th>
+                            <th class="px-4">
+                            <span>IMPACTO</span>
+                            <a href="" data-bs-toggle="modal" data-bs-target="#myModal_2"><i class="text-black fas fa-info-circle"></i></a>
+                            </th>
                             <th class="px-2">RIESGO INHERENTE</th>
                             <th class="px-2">MANEJO DEL RIESGO</th>
                             <th>CONTROLES EXISTENTES</th>
@@ -123,153 +139,18 @@
                         @endforeach
                     </tbody>
                 </table>
-
-          <div class="row">
-            <div class="col-6">
-              <div class="subheading"><strong>Riesgos pendientes de calificar</strong></div>
             </div>
-            <div class="col-6 text-end">
-              <a href="" class="fs-7" data-bs-toggle="modal" data-bs-target="#myModal_3"><i class="fas fa-info-circle"></i>Matriz de calor</a>    
 
-            </div>
-          </div>
-          <div class="table-responsive">
-            <table class="table table-sm table-bordered table-hover text-center align-middle">
-                <thead class="bg-primary text-nowrap">
-                    <tr>
-                        <th colspan="6" class="bg-primary1">RIESGO</th>
-                        <th colspan="4" class="bg-primary2">ANÁLISIS DEL RIESGO</th>
-                        <th colspan="7" class="bg-primary3">VALORACIÓN DEL RIESGO</th>
-                        <th rowspan="2" class="align-middle">ACCION</th>
-                    </tr>
-                    <tr>
-                        <th class="px-2">PROCESO</th>
-                        <th class="px-2">OBJETIVO</th>
-                        <th class="px-2">ACTIVIDAD CRÍTICA</th>
-                        <th class="px-2">SISTEMA DE GESTIÓN</th>
-                        <th class="px-2"> VARIABLE </th>
-                        <th class="px-2">FACTOR RIESGO</th>
-                        <th class="px-2">
-                          <span>PROBABILIDAD</span>
-                          <a href="" data-bs-toggle="modal" data-bs-target="#myModal"><i class="text-black fas fa-info-circle"></i></a>
-                        </th>
-                        <th class="px-4">
-                          <span>IMPACTO</span>
-                          <a href="" data-bs-toggle="modal" data-bs-target="#myModal_2"><i class="text-black fas fa-info-circle"></i></a>
-                        </th>
-                        <th class="px-2">RIESGO INHERENTE</th>
-                        <th class="px-2">MANEJO DEL RIESGO</th>
-                        <th>CONTROLES EXISTENTES</th>
-                        <th>TIPOS DE CONTROL</th>
-                        <th>PROBABILIDAD DEFINITIVO</th>
-                        <th>IMPACTO DEFINITIVO</th>
-                        <th>NUEVO RIESGO INHERENTE</th>
-                        <th>NUEVO MANEJO DEL RIESGO</th>
-                        <th>OPCIONES DE MANEJO</th>
-                    </tr>
-                </thead>
-                <tbody class="table-light" onchange="handleChange(event)">
-                    @foreach ($identificacion_riesgos as $item)
-                    @if (!$item->calificado)
-                    <form action="{{route('agregar-analisis-riesgo')}}" method="post">
-                        @csrf
-                        {{-- analisis riego --}}
-                        <input type="hidden" name="id_riesgo" value="{{$item->id_riesgo}}">
-                        <tr data-id="{{$item->id_riesgo}}">
-                            <td>{{$item->tipo}}</td>
-                            <td>{{$item->objetivo}}</td>
-                            <td>{{$item->actividad_critica}}</td>
-                            <td>{{$item->sistema_asociado}}</td>
-                            <td class="">{{$item->variable}}</td>
-                            <td>{{$item->factor_riesgo}}</td>
-                            <td>
-                              <select class="form-select" name="calf_probablididad_{{$item->id_riesgo}}" required>
-                                <option selected disabled>-Calificar-</option>
-                                <option value="1">Muy baja</option>
-                                <option value="2">Baja</option>
-                                <option value="3">Media</option>
-                                <option value="4">Alta</option>
-                                <option value="5">Muy alta</option>
-                              </select>
-                            </td>
-                            <td>
-                              <select class="form-select" name="calf_impacto_{{$item->id_riesgo}}" required>
-                                <option selected disabled>-Calificar-</option>
-                                <option value="1">Leve</option>
-                                <option value="2">Menor</option>
-                                <option value="3">Moderado</option>
-                                <option value="4">Mayor</option>
-                                <option value="5">Catastrófico</option>
-                              </select>
-                            </td>
-                            <td>
-                              <textarea class="form-control" name="evaluacion_riesgo_{{$item->id_riesgo}}" id="evaluacion_riesgo_{{$item->id_riesgo}}" rows="2" readonly> {{-- Condición de la funcion handleChange --}} </textarea>
-                            </td>
-                            <td>
-                              <textarea class="form-control" name="manejo_riesgo_{{$item->id_riesgo}}" id="manejo_riesgo_{{$item->id_riesgo}}" rows="2" readonly> {{-- Condición de la funcion handleChange --}} </textarea>
-                            </td>
-
-                                {{-- valoracion riesgo --}}
-
-                            <td>
-                              <textarea class="form-control" name="controles_existentes_{{$item->id_riesgo}}" id="controles_existentes_{{$item->id_riesgo}}" rows="2" placeholder="Digitar el control existente del riesgo..." required></textarea>
-                            </td>
-                            <td>
-                              <select class="form-select" name="tipos_control_{{$item->id_riesgo}}" required>
-                                <option selected disabled>-Calificar-</option>
-                                <option value="control preventivo">Control preventivo</option>
-                                <option value="control detectivo">Control detectivo</option>
-                                <option value="control correctivo">Control correctivo</option>
-                              </select>
-                            </td>
-
-                            <td>
-                                <textarea class="text-center form-control" type="text"
-                                    name="nueva_calf_probabilidad_{{$item->id_riesgo}}"
-                                    id="nueva_calf_probabilidad_{{$item->id_riesgo}}" readonly rows="1"></textarea>
-                            </td>
-                            <td>
-                                <textarea class="text-center form-control" type="text"
-                                    name="nueva_calf_impacto_{{$item->id_riesgo}}"
-                                    id="nueva_calf_impacto_{{$item->id_riesgo}}" readonly rows="1"></textarea>
-                            </td>
-                            <td>
-                              <textarea class="form-control" name="nueva_evaluacion_riesgo_{{$item->id_riesgo}}" id="nueva_evaluacion_riesgo_{{$item->id_riesgo}}" rows="2" readonly> {{-- Condición de la nueva evaluacion --}} </textarea>
-                            </td>
-                            <td>
-                              <textarea class="form-control" name="nuevo_manejo_riesgo_{{$item->id_riesgo}}" id="nuevo_manejo_riesgo_{{$item->id_riesgo}}" rows="2" readonly> {{-- Condición del nuevo manejo --}}
-                            </textarea>
-                            </td>
-                            <td>
-                              <select class="form-select" name="opciones_manejo_{{$item->id_riesgo}}" required>
-                                <option selected disabled>-Calificar-</option>
-                                <option value="asumir">Asumir</option>
-                                <option value="reducir">Reducir</option>
-                                <option value="mitigar">Mitigar</option>
-                                <option value="evitar">Evitar</option>
-                                <option value="transferir">Transferir</option>
-                              </select>
-                            </td>
-                            <td>
-                              <button type="submit" class="btn btn-primary rounded-pill">Guardar</button>
-                            </td>
-                        </tr>
-                    </form>
-                    @endif
-                    @endforeach
-                </tbody>
-            </table>
-          </div>
-
+            <!-- Riesgos calificados -->
             <div class="subheading mt-4"><strong>Riesgos calificados</strong></div>
             <div class="table-responsive">
                 <table class="table table-sm table-bordered table-hover text-center align-middle">
                     <thead class="bg-primary text-nowrap">
                         <tr>
-                          <th colspan="6" class="bg-primary1">RIESGO</th>
-                          <th colspan="4" class="bg-primary2">ANÁLISIS DEL RIESGO</th>
-                          <th colspan="7" class="bg-primary3">VALORACIÓN DEL RIESGO</th>
-                          <th rowspan="2" class="align-middle">ACCION</th>
+                            <th colspan="6" class="bg-primary1">RIESGO</th>
+                            <th colspan="4" class="bg-primary2">ANÁLISIS DEL RIESGO</th>
+                            <th colspan="7" class="bg-primary3">VALORACIÓN DEL RIESGO</th>
+                            <th rowspan="2" class="px-4 align-middle">ACCION</th>
                         </tr>
                         <tr>
                             <th class="px-2">PROCESO</th>
@@ -433,8 +314,8 @@
                         @endforeach
                     </tbody>
                 </table>
-
             </div>
+
         </div>
     </div>
 </section>
