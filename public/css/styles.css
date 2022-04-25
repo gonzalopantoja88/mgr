@@ -35,8 +35,9 @@
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
   --bs-primary: #ff6b00;
-  --bs-primary1: #ffef5ee5;
-  --bs-primary2: #fc9637;
+  --bs-primary1: #FFB72B;
+  --bs-primary2: #FF9F45;
+  --bs-primary3: #E5890A;
   --bs-secondary: #6c757d;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
@@ -7865,6 +7866,10 @@ textarea.form-control-lg {
 .bg-primary2 {
   --bs-bg-opacity: 1;
   background-color: var(--bs-primary2) !important;
+}
+.bg-primary3 {
+  --bs-bg-opacity: 1;
+  background-color: var(--bs-primary3) !important;
 }
 
 .bg-orange300 {

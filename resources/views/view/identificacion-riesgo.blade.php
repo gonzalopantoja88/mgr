@@ -149,18 +149,17 @@
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-          <h3 class="modal-title">FACTORES RIESGO</h3>
+          <h3 class="modal-title">FACTORES DE RIESGO</h3>
           <button
             type="button"
             class="btn-close"
             data-bs-dismiss="modal"
           ></button>
         </div>
-
         <!-- Modal body -->
-        <div class="modal-body text-center">
-          <table class="table table-bordered">
-            <thead>
+        <div class="modal-body">
+          <table class="table table-sm table-bordered table-hover align-middle">
+            <thead class="bg-primary text-nowrap">
               <tr class="text-center">
                 <th>FACTOR</th>
                 <th>DEFINICIÓN</th>
@@ -168,68 +167,67 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="text-center">
-                <td>PROCESOS</td>
-                <td>
+              <tr>
+                <td class="text-center">Procesos</td>
+                <td class="text-center">
                   Eventos relacionados con errores en las actividades que deben
                   realizar los servidores de la organización
                 </td>
                 <td>
-                  <p>- Falta de procedimientos</p>
-                  <p>- Errores de grabación, autorización</p>
-                  <p>- Errores de calculos para pagos internos y externos</p>
-                  <p>
-                    - Falta de capacitación, temas relacionados con el personal
-                  </p>
+                  <ul class="m-0">
+                    <li>Falta de procedimientos</li>
+                    <li>Errores de grabación, autorización</li>
+                    <li>Errores de calculos para pagos internos y externos</li>
+                    <li>Falta de capacitación, temas relacionados con el personal</li>
+                  </ul>
                 </td>
               </tr>
-              <tr class="text-center">
-                <td>TALENTO HUMANO</td>
-                <td>
+              <tr>
+                <td class="text-center">Talento humano</td>
+                <td class="text-center">
                   Incluye seguridad y salud en el trabajo. Se analiza posible
                   dolo e intención frente a la corrupción
                 </td>
                 <td>
-                  <p>- Hurto activos</p>
-                  <p>- Posibles comportamientos no éticos de los empleados</p>
-                  <p>- Fraude interno (corrupción, soborno)</p>
+                  <ul class="m-0">
+                    <li>Hurto activos</li>
+                    <li>Posibles comportamientos no éticos de los empleados</li>
+                    <li>Fraude interno (corrupción, soborno)</li>
+                  </ul>
                 </td>
               </tr>
-              <tr class="text-center">
-                <td>TECNOLOGÍA</td>
-                <td>
+              <tr>
+                <td class="text-center">Tecnología</td>
+                <td class="text-center">
                   Eventos relacionados con la infraestructura tecnológica de la
                   entidad
                 </td>
                 <td>
-                  <p>- Daño de equipos</p>
-                  <p>- Caida de aplicaciones</p>
-                  <p>- Caida de redes</p>
-                  <p>- Errores en programas</p>
+                  <ul class="m-0">
+                    <li>Daño de equipos</li>
+                    <li>Caida de aplicaciones</li>
+                    <li>Caida de redes</li>
+                    <li>Errores en programas</li>
+                  </ul>
                 </td>
               </tr>
-              <tr class="text-center">
-                <td>INFRAESTRUCTURA</td>
-                <td>
+              <tr>
+                <td class="text-center">Infraestructura</td>
+                <td class="text-center">
                   Eventos relacionados con la infraestructura física de la
                   entidad
                 </td>
                 <td>
-                  <p>- Derrumbes</p>
-                  <p>- Incendios</p>
-                  <p>- Inundaciones</p>
-                  <p>- Daños a activos fijos</p>
+                  <ul class="m-0">
+                    <li>Derrumbes</li>
+                    <li>Incendios</li>
+                    <li>Inundaciones</li>
+                    <li>Daños a activos fijos</li>
+                  </ul>
                 </td>
               </tr>
             </tbody>
           </table>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-            Cerrar
-          </button>
         </div>
       </div>
     </div>

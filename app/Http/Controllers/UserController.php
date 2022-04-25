@@ -19,10 +19,14 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-
-        $users_companys = Empresa::join('users', 'empresas.id_fk_user', '=', 'users.id')->get();
-
-        return view('view.register', compact(['user', 'users_companys']));
+  
+        if($user->email == 'admin@mail.com')
+        {
+            $users_companys = Empresa::join('users', 'empresas.id_fk_user', '=', 'users.id')->get();
+        } else {
+            $users_companys = Empresa::join('users', 'empresas.id_fk_user', '=', 'users.id')->where('id_fk_user', '=', $user->id)->get();
+        }
+        return view('view.register', compact(['user', 'users_companys']));;
     }
 
     /**

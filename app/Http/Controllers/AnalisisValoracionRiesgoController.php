@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
 class AnalisisValoracionRiesgoController extends Controller
 {
     /**
@@ -23,7 +22,7 @@ class AnalisisValoracionRiesgoController extends Controller
         $identificacion_riesgos = IdentificacionRiesgo::all();
         $analisis_riesgos = AnalisisValoracionRiesgo::join('identificacion_riesgos', 'analisis_valoracion_riesgos.id_fk_riesgo', '=', 'identificacion_riesgos.id_riesgo')->get();
 
-        return view('view.analisis-valoracion-riesgo', compact(['identificacion_riesgos', 'user', 'analisis_riesgos']));
+        return view('view.analisis-valoracion-riesgo', compact(['identificacion_riesgos', 'analisis_riesgos', 'user']));
     }
 
     /**
