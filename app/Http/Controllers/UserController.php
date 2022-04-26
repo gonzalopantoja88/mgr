@@ -19,9 +19,8 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-  
-        if($user->email == 'admin@mail.com')
-        {
+
+        if ($user->email == 'admin@mail.com') {
             $users_companys = Empresa::join('users', 'empresas.id_fk_user', '=', 'users.id')->get();
         } else {
             $users_companys = Empresa::join('users', 'empresas.id_fk_user', '=', 'users.id')->where('id_fk_user', '=', $user->id)->get();
@@ -58,7 +57,7 @@ class UserController extends Controller
         $user->save();
 
         $company->id = $request->nit;
-        $company->company_name= $request->company_name;
+        $company->company_name = $request->company_name;
         $company->id_fk_user = $request->cedula;
         $company->save();
 
