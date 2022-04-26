@@ -36,12 +36,12 @@
                                 <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password" required>
                             </div>
 
-                            <div class="form-check">
+                            {{-- <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="remember" id="check">
                                 <label class="form-check-label" for="check">
                                   Recordar contraseña
                                 </label>
-                              </div>
+                            </div> --}}
                     
                             <div class="input-group d-flex justify-content-center px-8">
                                 <button type="submit" class="btn btn-outline-primary mt-3">Login</button>

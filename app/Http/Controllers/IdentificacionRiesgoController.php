@@ -19,8 +19,12 @@ class IdentificacionRiesgoController extends Controller
     {
         $user = Auth::user();
 
-        $idenfiticacion_riesgo = IdentificacionRiesgo::all();
-        return view('view.identificacion-riesgo', compact(['user', 'idenfiticacion_riesgo']));
+        $emp = Empresa::where('id_fk_user', $user->id)->first();
+        $emp_riesgo = EmpresaRiesgo::where('id_fk_empresa', $emp->id)->first();
+        
+        $idenfiticacion_riesgo = EmpresaRiesgo::join('identificacion_riesgos', 'empresa_riesgos.id_fk_riesgo', '=', 'identificacion_riesgos.id_riesgo')->where('id_fk_empresa', $emp_riesgo->id_fk_empresa)->get();
+
+        return view('view.identificacion-riesgo', compact(['user', 'idenfiticacion_riesgo']));       
     }
 
     /**

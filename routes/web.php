@@ -72,7 +72,7 @@ Route::post('/sgsst', [SGSstController::class, 'store'])->name('agregar-sgsst');
 //IDENTIFICACIÓN RIESGO
 Route::get('/identificacion-riesgo', [IdentificacionRiesgoController::class, 'index'])->name('identificacion-riesgo')->middleware('auth');
 Route::post('/identificacion-riesgo', [IdentificacionRiesgoController::class, 'store'])->name('agregar-identificacion-riesgo');
-Route::get('/datos-identificacion-riesgo', [IdentificacionRiesgoController::class, 'show'])->name('ver-identificacion-riesgo');
+// Route::get('/datos-identificacion-riesgo', [IdentificacionRiesgoController::class, 'show'])->name('ver-identificacion-riesgo');
 
 //ANÁLISIS Y VALORACION DE RIESGO
 Route::get('/analisis-riesgo', [AnalisisValoracionRiesgoController::class, 'index'])->name('analisis-riesgo');
