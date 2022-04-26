@@ -20,9 +20,9 @@
 <body id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top overflow-auto" style="max-height: 100vh;" id="sideNav">
-        <a class="navbar-brand js-scroll-trigger" href="{{route('index')}}">
-            <span class="d-block d-lg-none">Gestion de Riesgo</span>
-            <span class="d-none d-lg-block"><img class="w-30 rounded-circle" src="{{asset('img/logo-sena.png')}}" alt="logo-sena" /></span>
+        <a class="navbar-brand js-scroll-trigger mt-2" href="{{route('index')}}">
+            <span class="d-block d-lg-none">Gestión de Riesgo</span>
+            <span class="d-none d-lg-block"><img class="w-30 rounded-circle mb-4" src="{{asset('img/logo-sena.png')}}" alt="logo-sena" /></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -55,7 +55,7 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('sgc')}}">SGC</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('sga')}}">SGA</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('sgsst')}}">SST</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('result-sg')}}">RESUlTADOS SG</a></li>
+                {{-- <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('result-sg')}}">Resultados</a></li> --}}
                 <hr class="text-black">
                 <h4>Identificar riesgo</h4>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('identificacion-riesgo')}}">Identificar riesgo</a></li>

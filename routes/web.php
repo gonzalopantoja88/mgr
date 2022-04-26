@@ -9,7 +9,6 @@ use App\Http\Controllers\SistemaAsociadoController;
 use App\Http\Controllers\ContextoEmpresaController;
 use App\Http\Controllers\IdentificacionRiesgoController;
 use App\Http\Controllers\FactorRiesgoController;
-use App\Http\Controllers\AnalisisRiesgoController;
 use App\Http\Controllers\AnalisisValoracionRiesgoController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SistemaGeneralController;
@@ -30,8 +29,6 @@ use Mockery\Generator\StringManipulation\Pass\Pass;
 // use App\Models\User;
 // dd(User::all()->toArray());
 
-Route::get('/register', [UserController::class, 'index'])->name('register');
-Route::post('/register', [UserController::class, 'store'])->name('post-register');
 
 //LOGIN
 Route::get('/', function () {
@@ -46,6 +43,9 @@ Route::get('/login', function () {
 Route::post('/login', [LoginController::class, 'login'])->name('login-post');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+//REGISTRAR USUARIO
+Route::get('/register', [UserController::class, 'index'])->name('register');
+Route::post('/register', [UserController::class, 'store'])->name('post-register');
 
 //CONTEXTO EMPRESA
 Route::get('/contexto-empresa', [ContextoEmpresaController::class, 'index'])->name('contexto-empresa')->middleware('auth');
