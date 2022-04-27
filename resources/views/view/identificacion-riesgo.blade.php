@@ -110,31 +110,33 @@
                         </tr>
                     </thead>
                     <tbody class="table-light">
+                      @if( !isset($idenfiticacion_riesgo))@else
                         @foreach ($idenfiticacion_riesgo as $item)
-                        <tr>
-                            <td>{{$item->tipo}}</td>
-                            <td>{{$item->proceso}}</td>
-                            <td>{{$item->objetivo}}</td>
-                            <td>{{$item->actividad_critica}}</td>
-                            <td>{{$item->sistema_asociado}}</td>
-                            <td>{{$item->variable}}</td>
-                            <td>{{$item->factor_riesgo}}</td>
-                            <td>{{$item->riesgo}}</td>
-                            <td>{{$item->descripcion}}</td>
-                            <td>{{$item->causa_raiz}}</td>
-                            <td>{{$item->consecuencias}}</td>
-                            <td>
-                                <div class="row justify-content-center">
-                                    <div class="col-4 me-1 p-0">
-                                        <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i></button>
-                                    </div>
-                                    <div class="col-4 ms-1 p-0">
-                                        <button type="submit" class="btn btn-primary"><i class="far fa-trash-alt"></i></button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                          <tr>
+                              <td>{{$item->tipo}}</td>
+                              <td>{{$item->proceso}}</td>
+                              <td>{{$item->objetivo}}</td>
+                              <td>{{$item->actividad_critica}}</td>
+                              <td>{{$item->sistema_asociado}}</td>
+                              <td>{{$item->variable}}</td>
+                              <td>{{$item->factor_riesgo}}</td>
+                              <td>{{$item->riesgo}}</td>
+                              <td>{{$item->descripcion}}</td>
+                              <td>{{$item->causa_raiz}}</td>
+                              <td>{{$item->consecuencias}}</td>
+                              <td>
+                                  <div class="row justify-content-center">
+                                      <div class="col-4 me-1 p-0">
+                                          <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                                      </div>
+                                      <div class="col-4 ms-1 p-0">
+                                          <button type="submit" class="btn btn-primary"><i class="far fa-trash-alt"></i></button>
+                                      </div>
+                                  </div>
+                              </td>
+                          </tr>
                         @endforeach
+                      @endif
                     </tbody>
                 </table>
             </div>

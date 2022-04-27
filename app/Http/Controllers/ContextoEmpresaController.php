@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContextoEmpresa;
+use App\Models\Empresa;
+use App\Models\EmpresaContextoEmpresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +18,28 @@ class ContextoEmpresaController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('view.contexto-empresa', compact('user'));
+        $emp = Empresa::where('id_fk_user', $user->id)->first();
+
+        $count_row = EmpresaContextoEmpresa::where('id_fk_empresa', $emp->id)->count();
+        $count = isset($count_row) ? $count_row : 0;
+        
+        if ($user->email == 'admin@mail.com') {
+            $contexto_empresa = ContextoEmpresa::all();
+
+        } else {
+            $emp_contexto = EmpresaContextoEmpresa::where('id_fk_empresa', $emp->id)->first();
+            
+            if (!isset($emp_contexto)) {  
+                return view('view.contexto-empresa', compact(['user', 'count']));
+
+            } 
+            else {
+                $contexto_empresa = EmpresaContextoEmpresa::join('contexto_empresas', 'empresa_contexto_empresas.id_fk_contexto_emp', '=', 'contexto_empresas.id_contexto_empresa')
+                                            ->where('id_fk_empresa', $emp_contexto->id_fk_empresa)->get();
+            }
+        }
+
+        return view('view.contexto-empresa', compact(['user', 'contexto_empresa', 'count']));
     }
 
     /**
@@ -37,7 +60,9 @@ class ContextoEmpresaController extends Controller
      */
     public function store(Request $request)
     {
+        $user = Auth::user();
         $ce = new ContextoEmpresa();
+        $emp_contexto_emp = new EmpresaContextoEmpresa();
 
         $ce->origen_capital = $request->origenCapital;
         $ce->dimension = $request->dimension;
@@ -91,8 +116,15 @@ class ContextoEmpresaController extends Controller
         $ce->fidelizacion_cliente = $request->fidelizaciondeclientes ? $request->fidelizaciondeclientes : "no";
         $ce->pqrsf = $request->pqrsf ? $request->pqrsf : "no";
         $ce->identificacion_cliente = $request->identificacionclientes ? $request->identificacionclientes : "no";
-
         $ce->save();
+
+        $ultimo_contexto_agregado = ContextoEmpresa::select('id_contexto_empresa')->orderByDesc('id_contexto_empresa')->first();
+        $emp = Empresa::where('id_fk_user', $user->id)->first();
+
+        $emp_contexto_emp->id_fk_empresa = $emp->id;;
+        $emp_contexto_emp->id_fk_contexto_emp = $ultimo_contexto_agregado->id_contexto_empresa;
+        $emp_contexto_emp->save();
+
         return redirect()->route('contexto-empresa');
     }
 

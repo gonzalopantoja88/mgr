@@ -55,84 +55,86 @@
             </tr>
           </thead>
           <tbody class="table-light" onchange="handleChange(event)">
-            @foreach ($identificacion_riesgos as $item)
-              @if (!$item->calificado)
-                <form action="{{route('agregar-analisis-riesgo')}}" method="post">
-                  @csrf
-                  <input type="hidden" name="id_riesgo" value="{{$item->id_riesgo}}">
-                  <tr data-id="{{$item->id_riesgo}}" data-evento="1">
-                    <td>{{$item->tipo}}</td>
-                    <td>{{$item->objetivo}}</td>
-                    <td>{{$item->actividad_critica}}</td>
-                    <td>{{$item->sistema_asociado}}</td>
-                    <td class="">{{$item->variable}}</td>
-                    <td>{{$item->factor_riesgo}}</td>
-                    <td>
-                      <select class="form-select" name="calf_probablididad_{{$item->id_riesgo}}" required>
-                        <option selected disabled>-Calificar-</option>
-                        <option value="1">Muy baja</option>
-                        <option value="2">Baja</option>
-                        <option value="3">Media</option>
-                        <option value="4">Alta</option>
-                        <option value="5">Muy alta</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select class="form-select" name="calf_impacto_{{$item->id_riesgo}}" required>
-                        <option selected disabled>-Calificar-</option>
-                        <option value="1">Leve</option>
-                        <option value="2">Menor</option>
-                        <option value="3">Moderado</option>
-                        <option value="4">Mayor</option>
-                        <option value="5">Catastrófico</option>
-                      </select>
-                    </td>
-                    <td>
-                      <textarea class="form-control" name="evaluacion_riesgo_{{$item->id_riesgo}}" id="evaluacion_riesgo_{{$item->id_riesgo}}" rows="2" readonly> {{-- Condición de la funcion handleChange --}} </textarea>
-                    </td>
-                    <td>
-                      <textarea class="form-control" name="manejo_riesgo_{{$item->id_riesgo}}" id="manejo_riesgo_{{$item->id_riesgo}}" rows="2" readonly> {{-- Condición de la funcion handleChange --}} </textarea>
-                    </td>
-                    <td>
-                      <textarea class="form-control" name="controles_existentes_{{$item->id_riesgo}}" id="controles_existentes_{{$item->id_riesgo}}" rows="2" placeholder="Digitar controles existentes..." required></textarea>
-                    </td>
-                    <td>
-                      <select class="form-select" name="tipos_control_{{$item->id_riesgo}}" required>
-                        <option selected disabled>-Calificar-</option>
-                        <option value="control preventivo">Control preventivo</option>
-                        <option value="control detectivo">Control detectivo</option>
-                        <option value="control correctivo">Control correctivo</option>
-                      </select>
-                    </td>
-                    <td>
-                      <textarea class="text-center form-control" type="text" name="nueva_calf_probabilidad_{{$item->id_riesgo}}" id="nueva_calf_probabilidad_{{$item->id_riesgo}}" readonly rows="1"></textarea>
-                    </td>
-                    <td>
-                      <textarea class="text-center form-control" type="text" name="nueva_calf_impacto_{{$item->id_riesgo}}" id="nueva_calf_impacto_{{$item->id_riesgo}}" readonly rows="1"></textarea>
-                    </td>
-                    <td>
-                      <textarea class="form-control" name="nueva_evaluacion_riesgo_{{$item->id_riesgo}}" id="nueva_evaluacion_riesgo_{{$item->id_riesgo}}" rows="2" readonly> {{-- Condición de la nueva evaluacion --}} </textarea>
-                    </td>
-                    <td>
-                      <textarea class="form-control" name="nuevo_manejo_riesgo_{{$item->id_riesgo}}" id="nuevo_manejo_riesgo_{{$item->id_riesgo}}" rows="2" readonly> {{-- Condición del nuevo manejo --}} </textarea>
-                    </td>
-                    <td>
-                      <select class="form-select" name="opciones_manejo_{{$item->id_riesgo}}" required>
-                        <option selected disabled>-Calificar-</option>
-                        <option value="asumir">Asumir</option>
-                        <option value="reducir">Reducir</option>
-                        <option value="mitigar">Mitigar</option>
-                        <option value="evitar">Evitar</option>
-                        <option value="transferir">Transferir</option>
-                      </select>
-                    </td>
-                    <td>
-                      <button type="submit" class="btn btn-primary rounded-pill">Guardar</button>
-                    </td>
-                  </tr>
-                </form>
-              @endif
-            @endforeach
+            @if( !isset($identificacion_riesgos))@else
+              @foreach ($identificacion_riesgos as $item)
+                @if (!$item->calificado)
+                  <form action="{{route('agregar-analisis-riesgo')}}" method="post">
+                    @csrf
+                    <input type="hidden" name="id_riesgo" value="{{$item->id_riesgo}}">
+                    <tr data-id="{{$item->id_riesgo}}" data-evento="1">
+                      <td>{{$item->tipo}}</td>
+                      <td>{{$item->objetivo}}</td>
+                      <td>{{$item->actividad_critica}}</td>
+                      <td>{{$item->sistema_asociado}}</td>
+                      <td class="">{{$item->variable}}</td>
+                      <td>{{$item->factor_riesgo}}</td>
+                      <td>
+                        <select class="form-select" name="calf_probablididad_{{$item->id_riesgo}}" required>
+                          <option selected disabled>-Calificar-</option>
+                          <option value="1">Muy baja</option>
+                          <option value="2">Baja</option>
+                          <option value="3">Media</option>
+                          <option value="4">Alta</option>
+                          <option value="5">Muy alta</option>
+                        </select>
+                      </td>
+                      <td>
+                        <select class="form-select" name="calf_impacto_{{$item->id_riesgo}}" required>
+                          <option selected disabled>-Calificar-</option>
+                          <option value="1">Leve</option>
+                          <option value="2">Menor</option>
+                          <option value="3">Moderado</option>
+                          <option value="4">Mayor</option>
+                          <option value="5">Catastrófico</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea class="form-control" name="evaluacion_riesgo_{{$item->id_riesgo}}" id="evaluacion_riesgo_{{$item->id_riesgo}}" rows="2" readonly> {{-- Condición de la funcion handleChange --}} </textarea>
+                      </td>
+                      <td>
+                        <textarea class="form-control" name="manejo_riesgo_{{$item->id_riesgo}}" id="manejo_riesgo_{{$item->id_riesgo}}" rows="2" readonly> {{-- Condición de la funcion handleChange --}} </textarea>
+                      </td>
+                      <td>
+                        <textarea class="form-control" name="controles_existentes_{{$item->id_riesgo}}" id="controles_existentes_{{$item->id_riesgo}}" rows="2" placeholder="Digitar controles existentes..." required></textarea>
+                      </td>
+                      <td>
+                        <select class="form-select" name="tipos_control_{{$item->id_riesgo}}" required>
+                          <option selected disabled>-Calificar-</option>
+                          <option value="control preventivo">Control preventivo</option>
+                          <option value="control detectivo">Control detectivo</option>
+                          <option value="control correctivo">Control correctivo</option>
+                        </select>
+                      </td>
+                      <td>
+                        <textarea class="text-center form-control" type="text" name="nueva_calf_probabilidad_{{$item->id_riesgo}}" id="nueva_calf_probabilidad_{{$item->id_riesgo}}" readonly rows="1"></textarea>
+                      </td>
+                      <td>
+                        <textarea class="text-center form-control" type="text" name="nueva_calf_impacto_{{$item->id_riesgo}}" id="nueva_calf_impacto_{{$item->id_riesgo}}" readonly rows="1"></textarea>
+                      </td>
+                      <td>
+                        <textarea class="form-control" name="nueva_evaluacion_riesgo_{{$item->id_riesgo}}" id="nueva_evaluacion_riesgo_{{$item->id_riesgo}}" rows="2" readonly> {{-- Condición de la nueva evaluacion --}} </textarea>
+                      </td>
+                      <td>
+                        <textarea class="form-control" name="nuevo_manejo_riesgo_{{$item->id_riesgo}}" id="nuevo_manejo_riesgo_{{$item->id_riesgo}}" rows="2" readonly> {{-- Condición del nuevo manejo --}} </textarea>
+                      </td>
+                      <td>
+                        <select class="form-select" name="opciones_manejo_{{$item->id_riesgo}}" required>
+                          <option selected disabled>-Calificar-</option>
+                          <option value="asumir">Asumir</option>
+                          <option value="reducir">Reducir</option>
+                          <option value="mitigar">Mitigar</option>
+                          <option value="evitar">Evitar</option>
+                          <option value="transferir">Transferir</option>
+                        </select>
+                      </td>
+                      <td>
+                        <button type="submit" class="btn btn-primary rounded-pill">Guardar</button>
+                      </td>
+                    </tr>
+                  </form>
+                @endif
+              @endforeach
+            @endif
           </tbody>
         </table>
       </div>
@@ -169,41 +171,43 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($analisis_riesgos as $item)
-              <tr>
-                <td>{{$item->tipo}}</td>
-                <td>{{$item->objetivo}}</td>
-                <td>{{$item->actividad_critica}}</td>
-                <td>{{$item->sistema_asociado}}</td>
-                <td>{{$item->variable}}</td>
-                <td>{{$item->factor_riesgo}}</td>
-                <td>{{$item->probabilidad}}</td>
-                <td>{{$item->impacto}}</td>
-                <td>{{$item->riesgo_inherente}}</td>
-                <td>{{$item->manejo_riesgo}}</td>
-                <td>{{$item->controles_existentes}}</td>
-                <td class="text-capitalize">{{$item->tipos_control}}</td>
-                <td>{{$item->probabilidad_definitivo}}</td>
-                <td>{{$item->impacto_definitivo}}</td>
-                <td>{{$item->nueva_evaluacion_riesgo}}</td>
-                <td>{{$item->nuevo_manejo_riesgo}}</td>
-                <td class="text-capitalize">{{$item->opciones_manejo}}</td>
-                <td>
-                  <div class="row justify-content-center">
-                    <div class="col-4 me-1 p-0">
-                      <button type="button" onclick="llenandoModal({{$item}})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarCalificacion{{$item->id_analisis_valoracion}}" >
-                        <i class="far fa-edit"></i>
-                      </button>
+            @if( !isset($analisis_riesgos))@else
+              @foreach ($analisis_riesgos as $item)
+                <tr>
+                  <td>{{$item->tipo}}</td>
+                  <td>{{$item->objetivo}}</td>
+                  <td>{{$item->actividad_critica}}</td>
+                  <td>{{$item->sistema_asociado}}</td>
+                  <td>{{$item->variable}}</td>
+                  <td>{{$item->factor_riesgo}}</td>
+                  <td>{{$item->probabilidad}}</td>
+                  <td>{{$item->impacto}}</td>
+                  <td>{{$item->riesgo_inherente}}</td>
+                  <td>{{$item->manejo_riesgo}}</td>
+                  <td>{{$item->controles_existentes}}</td>
+                  <td class="text-capitalize">{{$item->tipos_control}}</td>
+                  <td>{{$item->probabilidad_definitivo}}</td>
+                  <td>{{$item->impacto_definitivo}}</td>
+                  <td>{{$item->nueva_evaluacion_riesgo}}</td>
+                  <td>{{$item->nuevo_manejo_riesgo}}</td>
+                  <td class="text-capitalize">{{$item->opciones_manejo}}</td>
+                  <td>
+                    <div class="row justify-content-center">
+                      <div class="col-4 me-1 p-0">
+                        <button type="button" onclick="llenandoModal({{$item}})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarCalificacion{{$item->id_analisis_valoracion}}" >
+                          <i class="far fa-edit"></i>
+                        </button>
+                      </div>
+                      <div class="col-4 ms-1 p-0">
+                        <button type="submit" class="btn btn-primary">
+                          <i class="far fa-trash-alt"></i>
+                        </button>
+                      </div>
                     </div>
-                    <div class="col-4 ms-1 p-0">
-                      <button type="submit" class="btn btn-primary">
-                        <i class="far fa-trash-alt"></i>
-                      </button>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            @endforeach
+                  </td>
+                </tr>
+              @endforeach
+            @endif
           </tbody>
         </table>
       </div>
@@ -213,7 +217,8 @@
 
 
 <!-- Modal Editar -->
-@foreach ($analisis_riesgos as $item)
+@if( !isset($contexto_empresa))@else         
+  @foreach ($analisis_riesgos as $item)
     <div class="modal fade" id="modalEditarCalificacion{{$item->id_analisis_valoracion}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -318,7 +323,8 @@
         </div>
         </div>
     </div>
-@endforeach
+  @endforeach
+@endif
 
   <!--Modal Ayuda Probabilidad-->
   <div class="modal fade" id="myModal">

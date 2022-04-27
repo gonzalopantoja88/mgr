@@ -31,14 +31,19 @@ class AnalisisValoracionRiesgoController extends Controller
             $emp = Empresa::where('id_fk_user', $user->id)->first();
             $emp_riesgo = EmpresaRiesgo::where('id_fk_empresa', $emp->id)->first();
 
-            // Trae los riesgos sin calificar
-            $identificacion_riesgos = EmpresaRiesgo::join('identificacion_riesgos', 'empresa_riesgos.id_fk_riesgo', '=', 'identificacion_riesgos.id_riesgo')
-                                        ->where('id_fk_empresa', $emp_riesgo->id_fk_empresa)->get();
+            if (!isset($emp_riesgo)) {
+                return view('view.analisis-valoracion-riesgo', compact('user'));
+                
+            } else {
+                // Trae los riesgos sin calificar
+                $identificacion_riesgos = EmpresaRiesgo::join('identificacion_riesgos', 'empresa_riesgos.id_fk_riesgo', '=', 'identificacion_riesgos.id_riesgo')
+                                                    ->where('id_fk_empresa', $emp_riesgo->id_fk_empresa)->get();
 
-            // Trae los riesgos calificados
-            $analisis_riesgos = EmpresaRiesgo::join('identificacion_riesgos', 'empresa_riesgos.id_fk_riesgo', '=', 'identificacion_riesgos.id_riesgo')
+                // Trae los riesgos calificados
+                $analisis_riesgos = EmpresaRiesgo::join('identificacion_riesgos', 'empresa_riesgos.id_fk_riesgo', '=', 'identificacion_riesgos.id_riesgo')
                                         ->join('analisis_valoracion_riesgos', 'identificacion_riesgos.id_riesgo', '=', 'analisis_valoracion_riesgos.id_fk_riesgo')
                                         ->where('id_fk_empresa', $emp_riesgo->id_fk_empresa)->get();
+            }     
         }
 
         return view('view.analisis-valoracion-riesgo', compact(['identificacion_riesgos', 'analisis_riesgos', 'user']));

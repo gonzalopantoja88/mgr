@@ -29,7 +29,6 @@ use Mockery\Generator\StringManipulation\Pass\Pass;
 // use App\Models\User;
 // dd(User::all()->toArray());
 
-
 //LOGIN
 Route::get('/', function () {
     $user = Auth::user();
