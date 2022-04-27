@@ -32,7 +32,9 @@ const despliegue_mejora = document.querySelector("#DespliegueMejora");
 
 
 
-fetch("./variable")
+fetch("./variable",{
+    mode: 'no-cors'
+})
     .then((result) => result.json())
     .then((data) => {
 
@@ -49,7 +51,9 @@ fetch("./variable")
     });
 
 
-fetch("./categoria")
+fetch("./categoria",{
+    mode: 'no-cors'
+})
     .then((result) => result.json())
     .then((data) => {
 
@@ -61,7 +65,9 @@ fetch("./categoria")
         opcCategoriaEvalucacion(data);
     });
 
-    fetch("./despliegue")
+fetch("./despliegue",{
+    mode: 'no-cors'
+})
   .then((result) => result.json())
   .then((data) => {
 

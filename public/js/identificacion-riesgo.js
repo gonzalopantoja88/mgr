@@ -3,19 +3,25 @@ const sistAsociadoIdRiesgo = document.querySelector("#sistAsociadoIdRiesgo");
 const variableIdRiesgo = document.querySelector("#variableIdRiesgo");
 const factorIdRiesgo = document.querySelector("#factorIdRiesgo");
 
-fetch("http://127.0.0.1:8000/categoria")
+fetch("./categoria",{
+    mode: 'no-cors'
+})
     .then((result) => result.json())
     .then((data) => {
         tipoIdentificacionRiesgo(data);
     });
 
-fetch("http://127.0.0.1:8000/sistema-asociado")
+fetch("./sistema-asociado",{
+    mode: 'no-cors'
+})
     .then((result) => result.json())
     .then((data) => {
         sistemaAsociado(data);
     });
 
-fetch("http://127.0.0.1:8000/factor-riesgo")
+fetch("./factor-riesgo",{
+    mode: 'no-cors'
+})
     .then((result) => result.json())
     .then((data) => {
         factorRiesgo(data);
@@ -45,7 +51,9 @@ function sistemaAsociado(data) {
     sistAsociadoIdRiesgo.addEventListener("change", function (op) {
         let indexSelect = op.target.options.selectedIndex
         let opcion = op.target.options[indexSelect].dataset.id
-        fetch("http://127.0.0.1:8000/variable/"+opcion)
+        fetch("./variable/"+opcion,{
+            mode: 'no-cors'
+        })
             .then((result) => result.json())
             .then((data) => {
                 variableIdRiesgo.innerHTML = "";

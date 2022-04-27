@@ -23,7 +23,9 @@ const opcion_controlProduc3 = document.querySelector("#controlProduc3");
 
 
 /////////// INICIO CONTEXTO EMPRESA /////////////
-fetch("./despliegue")
+fetch("./despliegue",{
+    mode: 'no-cors'
+})
     .then((result) => result.json())
     .then((data) => {
         //---SGC---
@@ -36,7 +38,9 @@ fetch("./despliegue")
         controlProduccion2(data);
     });
 
-fetch("./categoria")
+fetch("./categoria",{
+    mode: 'no-cors'
+})
     .then((result) => result.json())
     .then((data) => {
         //---SGC---
@@ -47,7 +51,9 @@ fetch("./categoria")
         controlProduccion4(data);
     });
 
-fetch("./opcion")
+fetch("./opcion",{
+    mode: 'no-cors'
+})
     .then((result) => result.json())
     .then((data) => {
         //---SGC---

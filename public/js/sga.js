@@ -28,7 +28,9 @@ const Opera = document.querySelector('#opera')
 const Evaluación_Desempeño = document.querySelector('#evadese')
 const Mejora = document.querySelector('#mejor')
 
-fetch("/categoria")
+fetch("/categoria",{
+    mode: 'no-cors'
+})
     .then((result) => result.json())
     .then((data) => {
 
@@ -48,7 +50,9 @@ fetch("/categoria")
 
     });
 
-fetch("./opcion")
+fetch("./opcion",{
+    mode: 'no-cors'
+})
     .then((result) => result.json())
     .then((data) => {
         //---SGA---

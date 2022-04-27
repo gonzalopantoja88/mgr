@@ -27,7 +27,9 @@ const colBv = document.querySelector("#colBv");
 const colCv = document.querySelector("#colCv");
 const gestCliente = document.querySelector("#gestCliente");
 
-fetch("http://127.0.0.1:8000/despliegue")
+fetch("./despliegue",{
+  mode: 'no-cors'
+})
   .then((result) => result.json())
   .then((data) => {
     fichaTecnica(data);
@@ -37,7 +39,9 @@ fetch("http://127.0.0.1:8000/despliegue")
     gestionClientes(data);
   });
 
-fetch("http://127.0.0.1:8000/categoria")
+fetch("./categoria",{
+  mode: 'no-cors'
+})
   .then((result) => result.json())
   .then((data) => {
     segunOrigen(data);
@@ -83,7 +87,9 @@ function segunSectorEconomico(data) {
   sectorEconomico.addEventListener("change", (op) => {
     let indexSelect = op.target.options.selectedIndex
     let opcion = op.target.options[indexSelect].dataset.id
-    fetch("http://127.0.0.1:8000/opcion/"+opcion)
+    fetch("./opcion/"+opcion,{
+      mode: 'no-cors'
+    })
       .then((result) => result.json())
       .then((data) => {
         opcionesSectorEco.innerHTML = "";
@@ -112,7 +118,9 @@ function segunNumPropietarios(data) {
   propietarios.addEventListener("change", (op) => {
     let indexSelect = op.target.options.selectedIndex
     let opcion = op.target.options[indexSelect].dataset.id
-    fetch("http://127.0.0.1:8000/opcion/"+opcion)
+    fetch("./opcion/"+opcion,{
+      mode: 'no-cors'
+    })
       .then((result) => result.json())
       .then((data) => {
         tipoPersona.innerHTML = "";
@@ -141,7 +149,9 @@ function productoTangible(data) {
   tangibles.addEventListener("change", (op) => {
     let indexSelect = op.target.options.selectedIndex
     let opcion = op.target.options[indexSelect].dataset.id
-    fetch("http://127.0.0.1:8000/opcion/"+opcion)
+    fetch("./opcion/"+opcion,{
+      mode: 'no-cors'
+    })
       .then((result) => result.json())
       .then((data) => {
         bienes.innerHTML = "";
@@ -271,19 +281,3 @@ function gestionClientes(data) {
   }
 }
 
-formularioEmpresa.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const formContextoEmpresa = new FormData(formularioEmpresa);
-  // console.log(datos.get('tipo_id_riesgo')
-  // console.log([...formContextoEmpresa]);
-  // for (const item of formContextoEmpresa.entries()) {
-    
-    console.log(formContextoEmpresa)
-  // }
-
-  // fetch("http://127.0.0.1:8000/contexto-empresa", {
-  //   method: "POST",
-  //   body: datosEmpresa,
-  // });
-});
