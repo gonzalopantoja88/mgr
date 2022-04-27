@@ -6,7 +6,7 @@
 <!-- Identificacion riesgos-->
 <section class="resume-section mb-5 p-0" id="identificacionRiesgo">
   <div class="resume-section-content">
-    <h2 class="m-3">Análisis de Riesgos</h2>
+    <h2 class="m-3">Análisis y valoración de Riesgos</h2>
     <div class="container">
               
       <!-- Riesgos pendiente de calificar -->
@@ -216,114 +216,115 @@
 </section>
 
 
+
 <!-- Modal Editar -->
-@if( !isset($contexto_empresa))@else         
-  @foreach ($analisis_riesgos as $item)
-    <div class="modal fade" id="modalEditarCalificacion{{$item->id_analisis_valoracion}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h3 class="modal-title">
-                Editar Valoracion Riesgo
-            </h3>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="{{route('editar-riesgo', $item->id_analisis_valoracion)}}" method="POST">
-                <div class="modal-body g-2">
-                    @csrf
-                    <input type="hidden" name="id_analisis_valoracion" value="{{$item->id_analisis_valoracion}}">
-                    <div onchange="handleChange(event)">
-                        <div class="row g-2 mb-3" data-id="{{$item->id_analisis_valoracion}}" data-evento="2">
-                            <div class="col-3">
-                                <h5 class="">PROBABILIDAD</h5>
-                                <select class="form-select" name="edit_calf_probablididad_{{$item->id_analisis_valoracion}}" id="edit_calf_probablididad_{{$item->id_analisis_valoracion}}">
-                                    <option selected disabled>-Calificar-</option>
-                                    <option value="1">Muy baja</option>
-                                    <option value="2">Baja</option>
-                                    <option value="3">Media</option>
-                                    <option value="4">Alta</option>
-                                    <option value="5">Muy alta</option>
-                                </select>
-                            </div>
-                            <div class="col-3 mb-3">
-                                <h5 class="">IMPACTO</h5>
-                                <select class="form-select" name="edit_calf_impacto_{{$item->id_analisis_valoracion}}" id="edit_calf_impacto_{{$item->id_analisis_valoracion}}">
-                                    <option selected disabled>-Calificar-</option>
-                                    <option value="1">Leve</option>
-                                    <option value="2">Menor</option>
-                                    <option value="3">Moderado</option>
-                                    <option value="4">Mayor</option>
-                                    <option value="5">Catastrófico</option>
-                                </select>                    
-                            </div>
-                            <div class="col-3">
-                                <h5 class="">RIESGO INHERENTE</h5>
-                                <textarea class="form-control" name="edit_evaluacion_riesgo_{{$item->id_analisis_valoracion}}" id="edit_evaluacion_riesgo_{{$item->id_analisis_valoracion}}" rows="2" readonly> {{-- Condición de la funcion handleChange --}} </textarea>
-                                
-                            </div>
-                            <div class="col-3">
-                                <h5 class="">MANEJO DEL RIESGO</h5>
-                                <textarea class="form-control" name="edit_manejo_riesgo_{{$item->id_analisis_valoracion}}" id="edit_manejo_riesgo_{{$item->id_analisis_valoracion}}" rows="2" readonly> {{-- Condición de la funcion handleChange --}} </textarea>              
-                            </div>
-                        </div>
-                        <div class="row g-2 mb-3"  data-id="{{$item->id_analisis_valoracion}}" data-tipo-evento="2">
-                            <div class="col-12">
-                                <h5>CONTROLES EXISTENTES</h5>
-                                <textarea class="form-control" name="edit_controles_existentes_{{$item->id_analisis_valoracion}}" id="edit_controles_existentes_{{$item->id_analisis_valoracion}}" rows="3">Escribe controles existentes</textarea>
-                            </div>
-                        </div>
-                        <div class="row g-1 mb-3"  data-id="{{$item->id_analisis_valoracion}}" data-evento="2">
-                            <div class="col-4">
-                                <h5>TIPOS DE CONTROL</h5>
-                                <select class="form-select" name="edit_tipos_control_{{$item->id_analisis_valoracion}}" id="edit_tipos_control_{{$item->id_analisis_valoracion}}">
-                                    <option selected disabled>-Calificar-</option>
-                                    <option value="control preventivo">Control preventivo</option>
-                                    <option value="control detectivo">Control detectivo</option>
-                                    <option value="control correctivo">Control correctivo</option>
-                                </select>                    
-                            </div>
-                            <div class="col-4">
-                                <h5>PROBABILIDAD DEFINITIVO</h5>
-                                <textarea class="text-center form-control" type="text" name="edit_nueva_calf_probabilidad_{{$item->id_analisis_valoracion}}" id="edit_nueva_calf_probabilidad_{{$item->id_analisis_valoracion}}" readonly rows="1"></textarea>                   
-                            </div>
-                            <div class="col-4">
-                                <h5>IMPACTO DEFINITIVO</h5>
-                                <textarea class="text-center form-control" type="text" name="edit_nueva_calf_impacto_{{$item->id_analisis_valoracion}}" id="edit_nueva_calf_impacto_{{$item->id_analisis_valoracion}}" readonly rows="1"></textarea>
-                            </div>
-                        </div>
-                        <div class="row g-2 mb-3"  data-id="{{$item->id_analisis_valoracion}}" data-evento="2">
-                            <div class="col-4">
-                                <h5>NUEVO RIESGO INHERENTE</h5>
-                                <textarea class="form-control" name="edit_nueva_evaluacion_riesgo_{{$item->id_analisis_valoracion}}" id="edit_nueva_evaluacion_riesgo_{{$item->id_analisis_valoracion}}" rows="2" readonly> {{-- Condición de la nueva evaluacion --}} </textarea>
-                            </div>
-                            <div class="col-4">
-                                <h5>NUEVO MANEJO DEL RIESGO</h5>
-                                <textarea class="form-control" name="edit_nuevo_manejo_riesgo_{{$item->id_analisis_valoracion}}" id="edit_nuevo_manejo_riesgo_{{$item->id_analisis_valoracion}}" rows="2" readonly> {{-- Condición del nuevo manejo --}} </textarea>
-                            </div>
-                            <div class="col-4">
-                                <h5>OPCIONES DE MANEJO</h5>
-                                <select class="form-select" name="edit_opciones_manejo_{{$item->id_analisis_valoracion}}" id="edit_opciones_manejo_{{$item->id_analisis_valoracion}}">
-                                    <option selected disabled>-Calificar-</option>
-                                    <option value="asumir">Asumir</option>
-                                    <option value="reducir">Reducir</option>
-                                    <option value="mitigar">Mitigar</option>
-                                    <option value="evitar">Evitar</option>
-                                    <option value="transferir">Transferir</option>
-                                </select>                    
-                            </div>
-                        </div>
-                    </div>
-                        
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                </div>
-            </form>
-        </div>
-        </div>
-    </div>
-  @endforeach
+@if( !isset($analisis_riesgos))@else  
+    @foreach ($analisis_riesgos as $item)
+      <div class="modal fade" id="modalEditarCalificacion{{$item->id_analisis_valoracion}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+              <h3 class="modal-title">
+                  Editar Valoracion Riesgo
+              </h3>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <form action="{{route('editar-riesgo', $item->id_analisis_valoracion)}}" method="POST">
+                  <div class="modal-body g-2">
+                      @csrf
+                      <input type="hidden" name="id_analisis_valoracion" value="{{$item->id_analisis_valoracion}}">
+                      <div onchange="handleChange(event)">
+                          <div class="row g-2 mb-3" data-id="{{$item->id_analisis_valoracion}}" data-evento="2">
+                              <div class="col-3">
+                                  <h5 class="">PROBABILIDAD</h5>
+                                  <select class="form-select" name="edit_calf_probablididad_{{$item->id_analisis_valoracion}}" id="edit_calf_probablididad_{{$item->id_analisis_valoracion}}">
+                                      <option selected disabled>-Calificar-</option>
+                                      <option value="1">Muy baja</option>
+                                      <option value="2">Baja</option>
+                                      <option value="3">Media</option>
+                                      <option value="4">Alta</option>
+                                      <option value="5">Muy alta</option>
+                                  </select>
+                              </div>
+                              <div class="col-3 mb-3">
+                                  <h5 class="">IMPACTO</h5>
+                                  <select class="form-select" name="edit_calf_impacto_{{$item->id_analisis_valoracion}}" id="edit_calf_impacto_{{$item->id_analisis_valoracion}}">
+                                      <option selected disabled>-Calificar-</option>
+                                      <option value="1">Leve</option>
+                                      <option value="2">Menor</option>
+                                      <option value="3">Moderado</option>
+                                      <option value="4">Mayor</option>
+                                      <option value="5">Catastrófico</option>
+                                  </select>                    
+                              </div>
+                              <div class="col-3">
+                                  <h5 class="">RIESGO INHERENTE</h5>
+                                  <textarea class="form-control" name="edit_evaluacion_riesgo_{{$item->id_analisis_valoracion}}" id="edit_evaluacion_riesgo_{{$item->id_analisis_valoracion}}" rows="2" readonly> {{-- Condición de la funcion handleChange --}} </textarea>
+                                  
+                              </div>
+                              <div class="col-3">
+                                  <h5 class="">MANEJO DEL RIESGO</h5>
+                                  <textarea class="form-control" name="edit_manejo_riesgo_{{$item->id_analisis_valoracion}}" id="edit_manejo_riesgo_{{$item->id_analisis_valoracion}}" rows="2" readonly> {{-- Condición de la funcion handleChange --}} </textarea>              
+                              </div>
+                          </div>
+                          <div class="row g-2 mb-3"  data-id="{{$item->id_analisis_valoracion}}" data-tipo-evento="2">
+                              <div class="col-12">
+                                  <h5>CONTROLES EXISTENTES</h5>
+                                  <textarea class="form-control" name="edit_controles_existentes_{{$item->id_analisis_valoracion}}" id="edit_controles_existentes_{{$item->id_analisis_valoracion}}" rows="3">Escribe controles existentes</textarea>
+                              </div>
+                          </div>
+                          <div class="row g-1 mb-3"  data-id="{{$item->id_analisis_valoracion}}" data-evento="2">
+                              <div class="col-4">
+                                  <h5>TIPOS DE CONTROL</h5>
+                                  <select class="form-select" name="edit_tipos_control_{{$item->id_analisis_valoracion}}" id="edit_tipos_control_{{$item->id_analisis_valoracion}}">
+                                      <option selected disabled>-Calificar-</option>
+                                      <option value="control preventivo">Control preventivo</option>
+                                      <option value="control detectivo">Control detectivo</option>
+                                      <option value="control correctivo">Control correctivo</option>
+                                  </select>                    
+                              </div>
+                              <div class="col-4">
+                                  <h5>PROBABILIDAD DEFINITIVO</h5>
+                                  <textarea class="text-center form-control" type="text" name="edit_nueva_calf_probabilidad_{{$item->id_analisis_valoracion}}" id="edit_nueva_calf_probabilidad_{{$item->id_analisis_valoracion}}" readonly rows="1"></textarea>                   
+                              </div>
+                              <div class="col-4">
+                                  <h5>IMPACTO DEFINITIVO</h5>
+                                  <textarea class="text-center form-control" type="text" name="edit_nueva_calf_impacto_{{$item->id_analisis_valoracion}}" id="edit_nueva_calf_impacto_{{$item->id_analisis_valoracion}}" readonly rows="1"></textarea>
+                              </div>
+                          </div>
+                          <div class="row g-2 mb-3"  data-id="{{$item->id_analisis_valoracion}}" data-evento="2">
+                              <div class="col-4">
+                                  <h5>NUEVO RIESGO INHERENTE</h5>
+                                  <textarea class="form-control" name="edit_nueva_evaluacion_riesgo_{{$item->id_analisis_valoracion}}" id="edit_nueva_evaluacion_riesgo_{{$item->id_analisis_valoracion}}" rows="2" readonly> {{-- Condición de la nueva evaluacion --}} </textarea>
+                              </div>
+                              <div class="col-4">
+                                  <h5>NUEVO MANEJO DEL RIESGO</h5>
+                                  <textarea class="form-control" name="edit_nuevo_manejo_riesgo_{{$item->id_analisis_valoracion}}" id="edit_nuevo_manejo_riesgo_{{$item->id_analisis_valoracion}}" rows="2" readonly> {{-- Condición del nuevo manejo --}} </textarea>
+                              </div>
+                              <div class="col-4">
+                                  <h5>OPCIONES DE MANEJO</h5>
+                                  <select class="form-select" name="edit_opciones_manejo_{{$item->id_analisis_valoracion}}" id="edit_opciones_manejo_{{$item->id_analisis_valoracion}}">
+                                      <option selected disabled>-Calificar-</option>
+                                      <option value="asumir">Asumir</option>
+                                      <option value="reducir">Reducir</option>
+                                      <option value="mitigar">Mitigar</option>
+                                      <option value="evitar">Evitar</option>
+                                      <option value="transferir">Transferir</option>
+                                  </select>                    
+                              </div>
+                          </div>
+                      </div>
+                          
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                  </div>
+              </form>
+          </div>
+          </div>
+      </div>
+    @endforeach
 @endif
 
   <!--Modal Ayuda Probabilidad-->

@@ -312,12 +312,48 @@
                                             <i class="fas fa-times"></i>
                                         @endif
                                     </td>
-                                    <td>{{$item->ctrc_microbiologicas}}</td>
-                                    <td>{{$item->restricciones}}</td>
-                                    <td>{{$item->empaque}}</td>
-                                    <td>{{$item->logotipo}}</td>
-                                    <td>{{$item->marca}}</td>
-                                    <td>{{$item->eslogan}}</td>
+                                    <td>
+                                        @if($item->ctrc_microbiologicas === 'si')
+                                            <i class="fas fa-check"></i>
+                                        @else
+                                            <i class="fas fa-times"></i>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($item->restricciones === 'si')
+                                            <i class="fas fa-check"></i>
+                                        @else
+                                            <i class="fas fa-times"></i>
+                                        @endif                                    
+                                    </td>
+                                    <td>
+                                        @if($item->empaque === 'si')
+                                            <i class="fas fa-check"></i>
+                                        @else
+                                            <i class="fas fa-times"></i>
+                                        @endif 
+                                    </td>
+                                    <td>
+                                        @if($item->logotipo === 'si')
+                                            <i class="fas fa-check"></i>
+                                        @else
+                                            <i class="fas fa-times"></i>
+                                        @endif 
+                                    </td>
+                                    <td>
+                                        @if($item->marca === 'si')
+                                            <i class="fas fa-check"></i>
+                                        @else
+                                            <i class="fas fa-times"></i>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($item->eslogan === 'si')
+                                            <i class="fas fa-check"></i>
+                                        @else
+                                            <i class="fas fa-times"></i>
+                                        @endif 
+                                    </td>
                                     <td>{{$item->norma_tecnica}}</td>
                                     <td>
                                         <div class="row justify-content-center">

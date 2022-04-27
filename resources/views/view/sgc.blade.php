@@ -188,7 +188,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row text-center mt-3">
+                <div class="row text-center my-3">
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Guardar</button>
                     </div>

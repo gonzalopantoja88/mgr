@@ -21,7 +21,7 @@
                                 <h5 class="text-center">Mapa de Procesos</h5>
                                 <!-- mapa de procesos llamado en js -->
                             </div>
-                            <div class="col-lg-8 col-sm-12 border-start border-end px-3 " id="">
+                            <div class="col-lg-8 col-sm-12 border-start" id="">
                                 <h5 class="text-center mb-2">Caracterizaciones</h5>
                                 <div class="row">
                                     <div class="col-md-6 col-12 d-flex flex-column" id="caracterizacionesCol1">
