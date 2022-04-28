@@ -17,7 +17,6 @@ let nuevaCalfRiesgoInherenteModal = 0;
 const handleChange = (e) => {
     const idFila = e.path[2].dataset.id;
     const tipoevento = e.path[2].dataset.evento;
-    console.log(tipoevento)
     const calfProbabilidad = "calf_probablididad_" + idFila;
     const calfImpacto = "calf_impacto_" + idFila;
     const evaluacionRiesgo = "evaluacion_riesgo_" + idFila;

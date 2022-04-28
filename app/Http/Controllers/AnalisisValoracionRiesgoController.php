@@ -140,7 +140,7 @@ class AnalisisValoracionRiesgoController extends Controller
                           'nuevo_manejo_riesgo' => $request->$vlr_nuevo_manejo_riesgo,
                           'opciones_manejo' => $request->$vlr_opciones_manejo]);
 
-        return redirect()->route('analisis-riesgo'); 
+        return redirect()->route('identificacion-riesgo'); 
     }
 
     /**

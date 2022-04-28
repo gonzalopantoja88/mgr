@@ -65,7 +65,7 @@
                     <td>{{$item->objetivo}}</td>
                     <td>{{$item->actividad_critica}}</td>
                     <td>{{$item->sistema_asociado}}</td>
-                    <td class="">{{$item->variable}}</td>
+                    <td>{{$item->variable}}</td>
                     <td>{{$item->factor_riesgo}}</td>
                     <td>
                       <select class="form-select" name="calf_probablididad_{{$item->id_riesgo}}" required>

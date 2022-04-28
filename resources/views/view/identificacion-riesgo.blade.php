@@ -126,11 +126,13 @@
                             <td>
                                 <div class="row justify-content-center">
                                     <div class="col-4 me-1 p-0">
-                                        <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i></button>
+                                        <button type="button" onclick="llenandoModalIdentificacion({{$item}})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarIdentificacion{{$item->id_riesgo}}"><i class="far fa-edit"></i></button>
                                     </div>
-                                    <div class="col-4 ms-1 p-0">
+                                    <form class="col-4 ms-1 p-0" action="{{route('eliminar-identificacion-riesgo', $item->id_riesgo)}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="id_identificacion_riesgo" value="{{$item->id_riesgo}}">
                                         <button type="submit" class="btn btn-primary"><i class="far fa-trash-alt"></i></button>
-                                    </div>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -142,6 +144,97 @@
         </div>
     </div>
 </section>
+
+{{-- Modal Editar Identificacion Riesgo --}}
+@foreach ($idenfiticacion_riesgo as $item)
+    <div class="modal fade" id="modalEditarIdentificacion{{$item->id_riesgo}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h3 class="modal-title">
+                Editar Identificación Riesgo
+            </h3>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{route('editar-identificacion-riesgo', $item->id_riesgo)}}" method="POST">
+                <div class="modal-body g-2">
+                    @csrf
+                    <input type="hidden" name="id_identificacion_riesgo" value="{{$item->id_riesgo}}">
+					
+					<div class="card-body">
+						<div class="row d-flex align-items-start justify-content-between mb-3">
+							<div class="col-lg-3 col-sm-12">
+								<label class="form-label m-0" for="editarTipoIdRiesgo_{{$item->id_riesgo}}">Tipo</label>
+								<select class="form-select" id="editarTipoIdRiesgo_{{$item->id_riesgo}}" name="editar_tipo_id_riesgo_{{$item->id_riesgo}}" aria-label="tipo">
+									<option selected> --Seleccionar-- </option>
+								</select>
+							</div>
+							<div class="col-lg-3 col-sm-12">
+								<label class="form-label m-0" for="editar_procesoIdRiesgo_{{$item->id_riesgo}}">Proceso</label>
+								<input type="text" class="form-control" id="editar_procesoIdRiesgo_{{$item->id_riesgo}}" name="editar_proceso_id_riesgo_{{$item->id_riesgo}}" placeholder="Escribir...">
+							</div>
+							<div class="col-lg-3 col-12">
+								<label class="form-label m-0" for="editar_objetivoIdRiesgo_{{$item->id_riesgo}}">Objetivo</label>
+								<textarea class="form-control" id="editar_objetivoIdRiesgo_{{$item->id_riesgo}}" name="editar_objetivo_id_riesgo_{{$item->id_riesgo}}" rows="2" placeholder="Escribir..."></textarea>
+							</div>
+							<div class="col-lg-3 col-12">
+								<label class="form-label m-0" for="editar_actCriticaIdRiesgo_{{$item->id_riesgo}}">Actividad crítica</label>
+								<textarea class="form-control" id="editar_actCriticaIdRiesgo_{{$item->id_riesgo}}" name="editar_actividad_critica_id_Riesgo_{{$item->id_riesgo}}" rows="2" placeholder="Escribir..."></textarea>
+							</div>
+						</div>
+						<div class="row d-flex align-items-end justify-content-between mb-3">
+							<div class="col-lg-4 col-sm-12">
+								<label class="form-label m-0" for="editarSistAsociadoIdRiesgo_{{$item->id_riesgo}}">Sistema asociado</label>
+								<select class="form-select" id="editarSistAsociadoIdRiesgo_{{$item->id_riesgo}}" name="editar_sistema_asociado_id_riesgo_{{$item->id_riesgo}}" aria-label="Sistema asociado">
+									<option selected> --Seleccionar-- </option>
+								</select>
+							</div>
+							<div class="col-lg-4 col-sm-12">
+								<label class="form-label m-0" for="editarVariableIdRiesgo_{{$item->id_riesgo}}">Variable / Sistema asociado</label>
+								<select class="form-select" id="editarVariableIdRiesgo_{{$item->id_riesgo}}" name="editar_variable_id_riesgo_{{$item->id_riesgo}}" aria-label="Variable riesgo">
+									<option selected> --Seleccionar-- </option>
+								</select>
+							</div>
+							<div class="col-lg-4 col-sm-12">
+								<label class="form-label m-0" for="editarFactorIdRiesgo_{{$item->id_riesgo}}">Factores de riesgo</label>
+								<select class="form-select" id="editarFactorIdRiesgo_{{$item->id_riesgo}}"
+								    name="editar_factor_id_riesgo_{{$item->id_riesgo}}" aria-label="Factor riesgo">
+									<option selected> --Seleccionar-- </option>
+								</select>
+							</div>
+						</div>
+						<div class="row d-flex align-items-start justify-content-between">
+							<div class="col-lg-3 col-sm-12">
+								<label class="form-label m-0" for="editar_riesgoIdRiesgo_{{$item->id_riesgo}}">Riesgo</label>
+								<textarea class="form-control" id="editar_riesgoIdRiesgo_{{$item->id_riesgo}}" name="editar_riesgo_id_riesgo_{{$item->id_riesgo}}" rows="2" placeholder="Escribir..."></textarea>
+							</div>
+							<div class="col-lg-3 col-12">
+								<label class="form-label m-0" for="editar_descripcionIdRiesgo_{{$item->id_riesgo}}">Descripción</label>
+								<textarea class="form-control" id="editar_descripcionIdRiesgo_{{$item->id_riesgo}}" name="editar_descripcion_id_riesgo_{{$item->id_riesgo}}" rows="2" placeholder="Escribir..."></textarea>
+							</div>
+							<div class="col-lg-3 col-12">
+								<label class="form-label m-0" for="editar_causaRaizIdRiesgo_{{$item->id_riesgo}}">Causa raíz</label>
+								<textarea class="form-control" id="editar_causaRaizIdRiesgo_{{$item->id_riesgo}}" name="editar_causa_raiz_id_riesgo_{{$item->id_riesgo}}" rows="2" placeholder="Escribir..."></textarea>
+							</div>
+							<div class="col-lg-3 col-12">
+								<label class="form-label m-0" for="editar_consecuenciasIdRiesgo_{{$item->id_riesgo}}">Consecuencias</label>
+								<textarea class="form-control" id="editar_consecuenciasIdRiesgo_{{$item->id_riesgo}}" name="editar_consecuencias_id_riesgo_{{$item->id_riesgo}}" rows="2" placeholder="Escribir..."></textarea>
+							</div>
+						</div>
+	
+					</div>
+					
+                        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+@endforeach
 
 <!--Modal factores riesgo-->
 <div class="modal fade" tabindex="-1" id="modalFactores">
