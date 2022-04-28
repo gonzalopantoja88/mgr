@@ -10,6 +10,7 @@ use App\Http\Controllers\ContextoEmpresaController;
 use App\Http\Controllers\IdentificacionRiesgoController;
 use App\Http\Controllers\FactorRiesgoController;
 use App\Http\Controllers\AnalisisValoracionRiesgoController;
+use App\Http\Controllers\PlanAccionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SistemaGeneralController;
 use App\Http\Controllers\SGCalidadController;
@@ -71,12 +72,19 @@ Route::post('/sgsst', [SGSstController::class, 'store'])->name('agregar-sgsst');
 //IDENTIFICACIÓN RIESGO
 Route::get('/identificacion-riesgo', [IdentificacionRiesgoController::class, 'index'])->name('identificacion-riesgo')->middleware('auth');
 Route::post('/identificacion-riesgo', [IdentificacionRiesgoController::class, 'store'])->name('agregar-identificacion-riesgo');
+Route::post('/editar-identificacion-riesgo/{id}', [IdentificacionRiesgoController::class, 'update'])->name('editar-identificacion-riesgo');
+Route::delete('/eliminar-identificacion-riesgo/{id}', [IdentificacionRiesgoController::class, 'destroy'])->name('eliminar-identificacion-riesgo');
+
 // Route::get('/datos-identificacion-riesgo', [IdentificacionRiesgoController::class, 'show'])->name('ver-identificacion-riesgo');
 
 //ANÁLISIS Y VALORACION DE RIESGO
 Route::get('/analisis-riesgo', [AnalisisValoracionRiesgoController::class, 'index'])->name('analisis-riesgo');
 Route::post('/analisis-riesgo', [AnalisisValoracionRiesgoController::class, 'store'])->name('agregar-analisis-riesgo');
 Route::post('/editar-riesgo/{id}', [AnalisisValoracionRiesgoController::class, 'update'])->name('editar-riesgo');
+
+//PLAN DE ACCIÓN
+Route::get('/plan-accion', [PlanAccionController::class, 'index'])->name('plan-accion');
+
 
 //DATOS PARA LLENAR LOS FORMULARIOS
 Route::get('/sistema-asociado', [SistemaAsociadoController::class, 'index']);

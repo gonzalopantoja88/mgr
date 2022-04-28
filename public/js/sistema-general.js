@@ -1,20 +1,29 @@
 const removeAccents = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  };
+};
 
 // ---> VARIABLES SISTEMA GENERAL <---
 const mapaProcesos = document.querySelector("#mapaProcesos");
 const opc_caracterizaciones1 = document.querySelector("#caracterizacionesCol1");
 const opc_caracterizaciones2 = document.querySelector("#caracterizacionesCol2");
-const despliegue_planeacion_e1 = document.querySelector("#desplieguePlaneacionECol1");
-const despliegue_planeacion_e2 = document.querySelector("#desplieguePlaneacionECol2");
-const despliegue_partes_i1 = document.querySelector("#desplieguePartesInteresadasCol1");
-const despliegue_partes_i2 = document.querySelector("#desplieguePartesInteresadasCol2");
+const despliegue_planeacion_e1 = document.querySelector(
+    "#desplieguePlaneacionECol1"
+);
+const despliegue_planeacion_e2 = document.querySelector(
+    "#desplieguePlaneacionECol2"
+);
+const despliegue_partes_i1 = document.querySelector(
+    "#desplieguePartesInteresadasCol1"
+);
+const despliegue_partes_i2 = document.querySelector(
+    "#desplieguePartesInteresadasCol2"
+);
 const despliegue_alcance1 = document.querySelector("#depliegueAlcance1");
 const despliegue_alcance2 = document.querySelector("#depliegueAlcance2");
 const categoria_liderazgo1 = document.querySelector("#categoriaLiderazgo1");
 const categoria_liderazgo2 = document.querySelector("#categoriaLiderazgo2");
-const despliegue_riesgos_oprtunidades = document.querySelector("#DespliegueRiesgos");
+const despliegue_riesgos_oprtunidades =
+    document.querySelector("#DespliegueRiesgos");
 const despliegue_objetivos = document.querySelector("#DespliegueObjetivos");
 const categoria_recursos1 = document.querySelector("#RecursosCol1");
 const categoria_recursos2 = document.querySelector("#RecursosCol2");
@@ -28,17 +37,11 @@ const categoria_evaluacion4 = document.querySelector("#EvaluacionCol4");
 const despliegue_evaluacion = document.querySelector("#Evaluacion");
 const despliegue_mejora = document.querySelector("#DespliegueMejora");
 
-
-
-
-
-fetch("./variable",{
-    mode: 'no-cors'
+fetch("./variable", {
+    mode: "no-cors",
 })
     .then((result) => result.json())
     .then((data) => {
-
-        //---SISTEMA GENERAL---
         opcDesplieguePlaneacionEstrategica(data);
         opcDesplieguePartesInteresadas(data);
         opcDespliegueAlcance(data);
@@ -46,18 +49,14 @@ fetch("./variable",{
         opcDespliegueRiesgo(data);
         opcDespliegueObjetivo(data);
         opcDespliegueRecursos(data);
-        //opcDespliegueEvaluacion(data);
         opcDespliegueMejora(data);
     });
 
-
-fetch("./categoria",{
-    mode: 'no-cors'
+fetch("./categoria", {
+    mode: "no-cors",
 })
     .then((result) => result.json())
     .then((data) => {
-
-        //---SISTEMA GENERAL---
         opcMapaProcesos(data);
         opcCaracterizaciones(data);
         opcCategoriaLiderazgo(data);
@@ -65,35 +64,31 @@ fetch("./categoria",{
         opcCategoriaEvalucacion(data);
     });
 
-fetch("./despliegue",{
-    mode: 'no-cors'
+fetch("./despliegue", {
+    mode: "no-cors",
 })
-  .then((result) => result.json())
-  .then((data) => {
+    .then((result) => result.json())
+    .then((data) => {
+        opcDesplieguePlaneacionEstrategica(data);
+        opcDesplieguePartesInteresadas(data);
+        opcDespliegueAlcance(data);
+        opcDespliegueLiderazgo(data);
+        opcDespliegueRiesgo(data);
+        opcDespliegueObjetivo(data);
+        opcDespliegueRecursos(data);
+        opcDespliegueMejora(data);
+    });
 
 
-    //---SISTEMA GENERAL---
-    opcDesplieguePlaneacionEstrategica(data);
-    opcDesplieguePartesInteresadas(data);
-    opcDespliegueAlcance(data);
-    opcDespliegueLiderazgo(data);
-    opcDespliegueRiesgo(data);
-    opcDespliegueObjetivo(data);
-    opcDespliegueRecursos(data);
-    //opcDespliegueEvaluacion(data);
-    opcDespliegueMejora(data);
-
-    
-  });
-
-
-//////////// INICIO SISTEMA GENERAL ////////////
 function opcMapaProcesos(data) {
     for (const value of data) {
         if (value.id_fk_despliegue == 46) {
             //console.log(value.nombre_categoria)
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_");
+            let strClean = strDirty
+                .replace(/ /g, "")
+                .toLowerCase()
+                .replace(/\//g, "_");
 
             mapaProcesos.innerHTML += `<div class="form-check">
                       <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
@@ -109,8 +104,11 @@ function opcCaracterizaciones(data) {
         if (value.id_fk_despliegue == 47) {
             //console.log(value.nombre_categoria)
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '', ).toLowerCase().replace(/\((\w+)\)/g, "$1").replace(/\//g, "_");
-
+            let strClean = strDirty
+                .replace(/ /g, "")
+                .toLowerCase()
+                .replace(/\((\w+)\)/g, "$1")
+                .replace(/\//g, "_");
 
             if (count % 2 != 0) {
                 opc_caracterizaciones1.innerHTML += `<div class="form-check">
@@ -135,7 +133,11 @@ function opcDesplieguePlaneacionEstrategica(data) {
         if (value.id_fk_variable == 18) {
             //console.log(value.nombre_despliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
+            let strClean = strDirty
+                .replace(/ /g, "")
+                .toLowerCase()
+                .replace(/\//g, "_")
+                .replace(/\((\w+)\)/g, "$1");
 
             if (count % 2 != 0) {
                 despliegue_planeacion_e1.innerHTML += `<div class="form-check">
@@ -160,7 +162,11 @@ function opcDesplieguePartesInteresadas(data) {
         if (value.id_fk_variable == 19) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
+            let strClean = strDirty
+                .replace(/ /g, "")
+                .toLowerCase()
+                .replace(/\//g, "_")
+                .replace(/\((\w+)\)/g, "$1");
 
             if (count % 2 != 0) {
                 despliegue_partes_i1.innerHTML += `<div class="form-check">
@@ -185,7 +191,11 @@ function opcDespliegueAlcance(data) {
         if (value.id_fk_variable == 20) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
+            let strClean = strDirty
+                .replace(/ /g, "")
+                .toLowerCase()
+                .replace(/\//g, "_")
+                .replace(/\((\w+)\)/g, "$1");
 
             if (count % 2 != 0) {
                 despliegue_alcance1.innerHTML += `<div class="form-check">
@@ -210,7 +220,11 @@ function opcCategoriaLiderazgo(data) {
         if (value.id_fk_despliegue == 67) {
             //console.log(value.nombre_categoria)
             let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
+            let strClean = strDirty
+                .replace(/ /g, "")
+                .toLowerCase()
+                .replace(/\//g, "_")
+                .replace(/\((\w+)\)/g, "$1");
 
             if (count % 2 != 0) {
                 categoria_liderazgo1.innerHTML += `<div class="form-check">
@@ -235,7 +249,11 @@ function opcDespliegueLiderazgo(data) {
         if (value.id_fk_variable == 21 && value.id_despliegue != 67) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
+            let strClean = strDirty
+                .replace(/ /g, "")
+                .toLowerCase()
+                .replace(/\//g, "_")
+                .replace(/\((\w+)\)/g, "$1");
 
             if (count % 2 != 0) {
                 categoria_liderazgo1.innerHTML += `<div class="form-check">
@@ -259,7 +277,11 @@ function opcDespliegueRiesgo(data) {
         if (value.id_fk_variable == 22) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
+            let strClean = strDirty
+                .replace(/ /g, "")
+                .toLowerCase()
+                .replace(/\//g, "_")
+                .replace(/\((\w+)\)/g, "$1");
 
             despliegue_riesgos_oprtunidades.innerHTML += `<div class="form-check">
                       <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
@@ -274,7 +296,11 @@ function opcDespliegueObjetivo(data) {
         if (value.id_fk_variable == 23) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
+            let strClean = strDirty
+                .replace(/ /g, "")
+                .toLowerCase()
+                .replace(/\//g, "_")
+                .replace(/\((\w+)\)/g, "$1");
 
             despliegue_objetivos.innerHTML += `<div class="form-check">
                       <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
@@ -287,7 +313,11 @@ function opcDespliegueObjetivo(data) {
 function opcCategoriaRecursos(data) {
     for (const value of data) {
         let strDirty = removeAccents(value.nombre_categoria);
-        let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
+        let strClean = strDirty
+            .replace(/ /g, "")
+            .toLowerCase()
+            .replace(/\//g, "_")
+            .replace(/\((\w+)\)/g, "$1");
         if (value.id_fk_despliegue == 71) {
             //console.log(value.nombre_categoria)
 
@@ -329,7 +359,11 @@ function opcDespliegueRecursos(data) {
         ) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
+            let strClean = strDirty
+                .replace(/ /g, "")
+                .toLowerCase()
+                .replace(/\//g, "_")
+                .replace(/\((\w+)\)/g, "$1");
 
             despliegue_recursos.innerHTML += `<div class="form-check col-3">
                       <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="$${strClean}">
@@ -342,7 +376,11 @@ function opcDespliegueRecursos(data) {
 function opcCategoriaEvalucacion(data) {
     for (const value of data) {
         let strDirty = removeAccents(value.nombre_categoria);
-        let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
+        let strClean = strDirty
+            .replace(/ /g, "")
+            .toLowerCase()
+            .replace(/\//g, "_")
+            .replace(/\((\w+)\)/g, "$1");
         if (value.id_fk_despliegue == 78) {
             //console.log(value.nombre_categoria)
 
@@ -373,33 +411,16 @@ function opcCategoriaEvalucacion(data) {
     }
 }
 
-// function opcDespliegueEvaluacion(data) {
-//     for (const value of data) {
-//         if (
-//             value.id_fk_variable == 26 &&
-//             value.id_despliegue != 78 &&
-//             value.id_despliegue != 80 &&
-//             value.id_despliegue != 81 &&
-//             value.id_despliegue != 82
-//             ) {
-//                 //console.log(value.nombreDespliegue)
-//                 let strDirty = removeAccents(value.nombre_despliegue);
-//                 let strClean = strDirty.replace(/ /g, '').toLowerCase();
-
-//             despliegue_evaluacion.innerHTML += `<div class="form-check col-3">
-//                       <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
-//                       <label class="form-check-label" for="${strClean}">${value.nombre_despliegue}</label>
-//               </div>`;
-//         }
-//     }
-// }
-
 function opcDespliegueMejora(data) {
     for (const value of data) {
         if (value.id_fk_variable == 27) {
             //console.log(value.nombreDespliegue)
             let strDirty = removeAccents(value.nombre_despliegue);
-            let strClean = strDirty.replace(/ /g, '').toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
+            let strClean = strDirty
+                .replace(/ /g, "")
+                .toLowerCase()
+                .replace(/\//g, "_")
+                .replace(/\((\w+)\)/g, "$1");
 
             despliegue_mejora.innerHTML += `<div class="form-check col-4">
                       <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
@@ -408,4 +429,3 @@ function opcDespliegueMejora(data) {
         }
     }
 }
-//////////// FIN SISTEMA GENERAL ////////////

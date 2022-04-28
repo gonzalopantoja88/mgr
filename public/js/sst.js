@@ -22,19 +22,17 @@ const categoria_descripcion_diagnostico = document.querySelector(
 const despliegue_sgsst = document.querySelector("#DespliegueSST");
 const categorias_sgsst = document.querySelector("#CategoriaSST");
 
-//---SST---
+
 fetch("./despliegue", {
     mode: "no-cors",
 })
     .then((result) => result.json())
     .then((data) => {
-        //---SST---
         opcDespliegueAccidente(data);
         opcDespliegueEmergencia(data);
         opcDespliegueSST(data);
     });
 
-//---SST---
 fetch("./categoria", {
     mode: "no-cors",
 })
@@ -49,7 +47,7 @@ fetch("./categoria", {
         opcCategoriaSST(data);
     });
 
-fetch("variable", {
+fetch("./variable", {
     mode: "no-cors",
 })
     .then((result) => result.json())
@@ -57,7 +55,7 @@ fetch("variable", {
         variablesComites(data);
     });
 
-//////////// INICIO SST ////////////
+
 function opcCategoriaAsignacion(data) {
     for (const value of data) {
         if (value.id_fk_despliegue == 136) {
@@ -324,4 +322,4 @@ function opcCategoriaSST(data) {
         }
     }
 }
-//////////// FIN SST ////////////
+

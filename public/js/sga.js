@@ -28,13 +28,11 @@ const Opera = document.querySelector('#opera')
 const Evaluación_Desempeño = document.querySelector('#evadese')
 const Mejora = document.querySelector('#mejor')
 
-fetch("/categoria",{
+fetch("./categoria",{
     mode: 'no-cors'
 })
     .then((result) => result.json())
     .then((data) => {
-
-        //---SGA---
         ClimaTeología1(data)
         ClimaTeología2(data)
         ClimaTeología3(data)
@@ -47,7 +45,6 @@ fetch("/categoria",{
         ImpactosAmbientales2(data)
         ImpactosAmbientales3(data)
         PrácticasGestión(data)
-
     });
 
 fetch("./opcion",{
@@ -55,10 +52,6 @@ fetch("./opcion",{
 })
     .then((result) => result.json())
     .then((data) => {
-        //---SGA---
-        // Agua1(data);
-        // Aire1(data);
-        // Residuos1(data);
         ServicioSociales(data);
         demografia(data);
         ContextoOrganización(data);
@@ -70,7 +63,7 @@ fetch("./opcion",{
         Mejorar(data);
     });
 
-/////////// INICIO SGA //////////
+
 function ClimaTeología1(data) {
     let count = 1;
     for (const value of data) {
@@ -252,23 +245,6 @@ function ImpactosAmbientales2(data) {
     }
 }
 
-function ImpactosAmbientales3(data) {
-    let count = 1;
-    for (const value of data) {
-        if (value.id_fk_despliegue == 134) {
-            //console.log(value.nombre_categoria);
-            let strDirty = removeAccents(value.nombre_categoria);
-            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '_', ).toLowerCase().replace(/\//g, "_").replace(/\((\w+)\)/g, "$1");
-
-            impAmbientales3.innerHTML +=
-                `<div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
-                        <label class="form-check-label" for="${strClean}">${value.nombre_categoria}</label>
-                    </div>`
-            count++;
-        }
-    }
-}
 
 function PrácticasGestión(data) {
     let count = 1;
@@ -281,67 +257,14 @@ function PrácticasGestión(data) {
 
                  praGestion1.innerHTML +=
                     `<div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="" value="" id="${value.nombre_categoria}">
-                        <label class="form-check-label" for="${value.nombre_categoria}">${value.nombre_categoria}</label>
+                        <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
+                        <label class="form-check-label" for="${strClean}">${value.nombre_categoria}</label>
                     </div>`
             count++;
         }
     }
 }
 
-// function Agua1(data) {
-//     let count = 1;
-//     for (const value of data) {
-//         if (value.id_fk_categoria == 164) {
-//             //console.log(value.nombre_opcion);
-//             let strDirty = removeAccents(value.nombre_opcion);
-//             let strClean = strDirty.replace(/ /g, '').toLowerCase();
-
-//             Agua.innerHTML +=
-//                 `<div class="form-check">
-//                         <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
-//                         <label class="form-check-label" for="${strClean}">${value.nombre_opcion}</label>
-//                     </div>`
-//             count++;
-//         }
-//     }
-// }
-
-// function Aire1(data) {
-//     let count = 1;
-//     for (const value of data) {
-//         if (value.id_fk_categoria == 165) {
-//             //console.log(value.nombre_opcion);
-//             let strDirty = removeAccents(value.nombre_opcion);
-//             let strClean = strDirty.replace(/ /g, '').toLowerCase();
-
-//             Aire.innerHTML +=
-//                 `<div class="form-check">
-//                         <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
-//                         <label class="form-check-label" for="${strClean}">${value.nombre_opcion}</label>
-//                     </div>`
-//             count++;
-//         }
-//     }
-// }
-
-// function Residuos1(data) {
-//     let count = 1;
-//     for (const value of data) {
-//         if (value.id_fk_categoria == 166) {
-//             //console.log(value.nombreOption);
-//             let strDirty = removeAccents(value.nombre_opcion);
-//             let strClean = strDirty.replace(/ /g, '').toLowerCase();
-
-//             Residuos.innerHTML +=
-//                 `<div class="form-check">
-//                         <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
-//                         <label class="form-check-label" for="${strClean}">${value.nombre_opcion}</label>
-//                     </div>`
-//             count++;
-//         }
-//     }
-// }
 
 function ServicioSociales(data) {
     let count = 1;
@@ -506,5 +429,4 @@ function Mejorar(data) {
         }
     }
 }
-//////////// FIN SGA ////////////
 

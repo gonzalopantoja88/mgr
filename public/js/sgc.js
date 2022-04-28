@@ -21,14 +21,11 @@ const opcion_controlProduc1 = document.querySelector("#controlProduc1");
 const opcion_controlProduc2 = document.querySelector("#controlProduc2");
 const opcion_controlProduc3 = document.querySelector("#controlProduc3");
 
-
-/////////// INICIO CONTEXTO EMPRESA /////////////
 fetch("./despliegue",{
     mode: 'no-cors'
 })
     .then((result) => result.json())
     .then((data) => {
-        //---SGC---
         desplieguePlanificacion(data);
         despliegueRevision(data);
         despliegueControlProcesos(data);
@@ -43,7 +40,6 @@ fetch("./categoria",{
 })
     .then((result) => result.json())
     .then((data) => {
-        //---SGC---
         categoria_clientes(data);
         desarrolloProduc(data);
         controlProduccion1_2(data);
@@ -56,12 +52,10 @@ fetch("./opcion",{
 })
     .then((result) => result.json())
     .then((data) => {
-        //---SGC---
         controlProduccion1(data);
     });
 
 
-//////////// INICIO SGC ////////////
 function controlProduccion1(data) {
     let count = 1;
     for (const value of data) {
@@ -320,4 +314,3 @@ function despliegueControlSalida(data) {
         }
     }
 }
-//////////// FIN SGC ////////////

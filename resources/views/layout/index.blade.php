@@ -63,7 +63,7 @@
                 <h4>Gestionar riesgo</h4>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('analisis-riesgo')}}">Análisis y valoracion</a></li>
                 </li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="#interests">Plan de acción</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('plan-accion')}}">Plan de acción</a></li>
             </ul>
         </div>
     </nav>
