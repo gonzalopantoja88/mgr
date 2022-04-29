@@ -33,7 +33,7 @@
               <th class="px-2">OBJETIVO</th>
               <th class="px-2">ACTIVIDAD CRÍTICA</th>
               <th class="px-2">SISTEMA DE GESTIÓN</th>
-              <th class="px-2"> VARIABLE </th>
+              <th class="px-2">VARIABLE</th>
               <th class="px-2">FACTOR RIESGO</th>
               <th class="px-2">
                 <span>PROBABILIDAD</span>

@@ -61,6 +61,7 @@ class UserController extends Controller
         $company->id_fk_user = $request->cedula;
         $company->save();
 
+        // return redirect()->route('register');
         return redirect()->route('register');
     }
 

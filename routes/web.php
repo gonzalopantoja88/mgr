@@ -20,6 +20,7 @@ use App\Http\Controllers\UserController;
 use App\Models\SGSst;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Mockery\Generator\StringManipulation\Pass\Pass;
 
 /*
@@ -33,7 +34,7 @@ use Mockery\Generator\StringManipulation\Pass\Pass;
 //LOGIN
 Route::get('/', function () {
     $user = Auth::user();
-    return view('view.introduccion', compact('user'));
+    return view('view.introduccion', compact('user'));  
 })->name('index')->middleware('auth');
 
 Route::get('/login', function () {
@@ -84,6 +85,7 @@ Route::post('/editar-riesgo/{id}', [AnalisisValoracionRiesgoController::class, '
 
 //PLAN DE ACCIÓN
 Route::get('/plan-accion', [PlanAccionController::class, 'index'])->name('plan-accion');
+Route::post('/agregar-plan-accion', [PlanAccionController::class, 'store'])->name('agregar-plan-accion');
 
 
 //DATOS PARA LLENAR LOS FORMULARIOS

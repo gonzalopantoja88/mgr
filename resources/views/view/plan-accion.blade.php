@@ -11,8 +11,8 @@
             <!-- Riesgos pendiente de calificar -->
             <div class="row">
                 <div class="col-6">
-                    <div class="subheading"><strong>Plan de Acción Pendientes de Calificar</strong></div>
-                    </div>
+                    <div class="subheading"><strong>Plan de acción pendientes</strong></div>
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table table-sm table-bordered table-hover text-center align-middle">
@@ -28,24 +28,23 @@
                             <th class="px-2">OBJETIVO</th>
                             <th class="px-2">ACTIVIDAD CRÍTICA</th>
                             <th class="px-2">SISTEMA DE GESTIÓN</th>
-                            <th class="px-2"> VARIABLE </th>
+                            <th class="px-2">VARIABLE</th>
                             <th class="px-2">FACTOR RIESGO</th>
-                            <th class="px-2"><span>ACCIONES</span></th>
-                            <th class="px-4"><span>FECHA INICIO</span></th>
+                            <th class="px-5">ACCIONES</th>
+                            <th class="px-5">RESPONSABLES</th>
+                            <th class="px-4">FECHA INICIO</th>
                             <th class="px-2">FECHA FINAL</th>
-                            <th class="px-2">INDICADOR</th>
+                            <th class="px-5">INDICADOR</th>
                             <th class="px-5">META</th>
-                            <th>SEGUIMIENTO 1</th>
-                            <th>SEGUIMIENTO N</th>
+                            <th class="px-5">SEGUIMIENTO</th>
                         </tr>
                     </thead>
-                    <tbody class="table-light">
-                        @if( !isset($identificacion_riesgo))@else 
-                            @foreach ($identificacion_riesgo as $item)
-                                @if ($item->calificado != 0)
+                    <tbody class="table-light">                        
+                        @if( !isset($identificacion_riesgos))@else 
+                            @foreach ($identificacion_riesgos as $item)
+                                @if (!$item->calificado_plan_accion)
                                     <form action="{{route('agregar-plan-accion')}}" method="post">
                                         @csrf
-                                        {{-- analisis riego --}}
                                         <input type="hidden" name="id_riesgo" value="{{$item->id_riesgo}}">
                                         <tr data-id="{{$item->id_riesgo}}" data-evento="1">
                                             <td>{{$item->tipo}}</td>
@@ -53,34 +52,28 @@
                                             <td>{{$item->actividad_critica}}</td>
                                             <td>{{$item->sistema_asociado}}</td>
                                             <td>{{$item->variable}}</td>
-                                            <td>{{$item->factor_riesgo}}</td>
+                                            <td>{{$item->factor_riesgo}}</td>                                           
                                             <td>
-                                                <textarea class="form-control" name="acciones_{{$item->id_riesgo}}" id="acciones_{{$item->id_riesgo}}" rows="2">
-                                                </textarea>
+                                                <textarea class="form-control" name="acciones_{{$item->id_riesgo}}" id="acciones_{{$item->id_riesgo}}" rows="2" placeholder="Digitar acciones..." required></textarea>
+                                            </td>                                           
+                                            <td>
+                                                <textarea class="form-control" name="responsables_{{$item->id_riesgo}}" id="responsables_{{$item->id_riesgo}}" rows="2" placeholder="Digitar responsables..." required></textarea>
+                                            </td>                                           
+                                            <td>
+                                                <input class="form-control" type="date" name="fecha_inicio_{{$item->id_riesgo}}" id="fecha_inicio_{{$item->id_riesgo}}">
                                             </td>
                                             <td>
-                                                <input type="date" name="fecha_inicio_{{$item->id_riesgo}}" id="fecha_inicio_{{$item->id_riesgo}}">
+                                                <input class="form-control" type="date" name="fecha_final_{{$item->id_riesgo}}" id="fecha_final_{{$item->id_riesgo}}">
                                             </td>
                                             <td>
-                                                <input type="date" name="fecha_final_{{$item->id_riesgo}}" id="fecha_final_{{$item->id_riesgo}}">
-                                            </td>
-
-                                            <td>
-                                                <textarea class="form-control" name="indicador_{{$item->id_riesgo}}" id="indicador_{{$item->id_riesgo}}" rows="2">
-                                                </textarea>
+                                                <textarea class="form-control" name="indicador_{{$item->id_riesgo}}" id="indicador_{{$item->id_riesgo}}" rows="2" placeholder="Digitar indicadores..." required></textarea>                                                
                                             </td>
                                             <td>
-                                                <textarea class="form-control" name="meta_{{$item->id_riesgo}}" id="meta_{{$item->id_riesgo}}" rows="2">
-                                                </textarea>
+                                                <textarea class="form-control" name="meta_{{$item->id_riesgo}}" id="meta_{{$item->id_riesgo}}" rows="2" placeholder="Digitar meta..." required></textarea>
                                             </td>
                                             <td>
-                                                <textarea class="form-control" name="seguimiento_1_{{$item->id_riesgo}}" id="seguimiento_1_{{$item->id_riesgo}}" rows="2">
-                                                </textarea>
-                                            </td>
-                                            <td>
-                                                <textarea class="form-control" name="seguimineto_n_{{$item->id_riesgo}}" id="seguimineto_n_{{$item->id_riesgo}}" rows="2">
-                                                </textarea>
-                                            </td>
+                                                <textarea class="form-control" name="seguimiento_{{$item->id_riesgo}}" id="seguimiento_{{$item->id_riesgo}}" rows="2" placeholder="Digitar seguimiento..." required></textarea>
+                                            </td>                                           
                                             <td>
                                                 <button type="submit" class="btn btn-primary rounded-pill">Guardar</button>
                                             </td>
@@ -94,66 +87,64 @@
             </div>
 
             <!-- Plan de Acción calificados -->
-            <div class="subheading mt-4"><strong>Plan de Acción calificados</strong></div>
+            <div class="subheading mt-4"><strong>Plan de acción ejecutados</strong></div>
             <div class="table-responsive">
                 <table class="table table-sm table-bordered table-hover text-center align-middle">
                     <thead class="bg-primary text-nowrap">
                         <tr>
                             <th colspan="6" class="bg-primary1">RIESGO</th>
                             <th colspan="4" class="bg-primary2">TIEMPO</th>
-                            <th colspan="4" class="bg-primary2">INDICADORES</th>
-                            <th rowspan="2" class="align-middle">ACCION</th>
+                            <th colspan="3" class="bg-primary2">INDICADORES</th>
+                            <th rowspan="2" class="px-4 align-middle">ACCION</th>
                         </tr>
                         <tr>
                             <th class="px-2">PROCESO</th>
                             <th class="px-2">OBJETIVO</th>
                             <th class="px-2">ACTIVIDAD CRÍTICA</th>
                             <th class="px-2">SISTEMA DE GESTIÓN</th>
-                            <th class="px-2"> VARIABLE </th>
+                            <th class="px-2">VARIABLE</th>
                             <th class="px-2">FACTOR RIESGO</th>
-                            <th class="px-2"><span>ACCIONES</span></th>
-                            <th class="px-4"><span>FECHA INICIO</span></th>
+                            <th class="px-5">ACCIONES</th>
+                            <th class="px-5">RESPONSABLES</th>
+                            <th class="px-4">FECHA INICIO</th>
                             <th class="px-2">FECHA FINAL</th>
-                            <th class="px-2">INDICADOR</th>
+                            <th class="px-5">INDICADOR</th>
                             <th class="px-5">META</th>
-                            <th>SEGUIMIENTO 1</th>
-                            <th>SEGUIMIENTO N</th>
+                            <th class="px-2">SEGUIMIENTO</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if( !isset($identificacion_riesgo))@else 
-                            @foreach ($plan_riesgo as $item)
-                                @if ($item->plan_calificado)
-                                    <tr>
-                                        <td>{{$item->tipo}}</td>
-                                        <td>{{$item->objetivo}}</td>
-                                        <td>{{$item->actividad_critica}}</td>
-                                        <td>{{$item->sistema_asociado}}</td>
-                                        <td>{{$item->variable}}</td>
-                                        <td>{{$item->factor_riesgo}}</td>
-                                        <td>{{$item->acciones}}</td>
-                                        <td>{{$item->fecha_inicio}}</td>
-                                        <td>{{$item->fecha_final}}</td>
-                                        <td>{{$item->indicador}}</td>
-                                        <td>{{$item->meta}}</td>
-                                        <td>{{$item->seguimiento_1}}</td>
-                                        <td>{{$item->seguimiento_n}}</td>
-                                        <td>
-                                            <div class="row justify-content-center">
-                                                <div class="col-4 me-1 p-0">
-                                                    <button type="button" onclick="llenandoModal({{$item}})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarCalificacion{{$item->id_analisis_valoracion}}" >
-                                                        <i class="far fa-edit"></i>
-                                                    </button>
-                                                </div>
-                                                <div class="col-4 ms-1 p-0">
-                                                    <button type="submit" class="btn btn-primary">
-                                                        <i class="far fa-trash-alt"></i>
-                                                    </button>
-                                                </div>
+                        @if( !isset($plan_accion))@else 
+                            @foreach ($plan_accion as $item)
+                                <tr>
+                                    <td>{{$item->tipo}}</td>
+                                    <td>{{$item->objetivo}}</td>
+                                    <td>{{$item->actividad_critica}}</td>
+                                    <td>{{$item->sistema_asociado}}</td>
+                                    <td>{{$item->variable}}</td>
+                                    <td>{{$item->factor_riesgo}}</td>
+                                    <td>{{$item->acciones}}</td>
+                                    <td>{{$item->responsables}}</td>
+                                    <td>{{$item->fecha_inicio}}</td>
+                                    <td>{{$item->fecha_terminacion}}</td>
+                                    <td>{{$item->indicador}}</td>
+                                    <td>{{$item->meta}}</td>
+                                    <td>{{$item->seguimiento}}</td>
+                                    <td>
+                                        <div class="row justify-content-center">
+                                            <div class="col-4 me-1 p-0">
+                                                <button type="button" onclick="llenandoModal({{$item}})" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarCalificacion{{$item->id_analisis_valoracion}}" >
+                                                    <i class="far fa-edit"></i>
+                                                </button>
                                             </div>
-                                        </td>
-                                    </tr>
-                                @endif
+                                            <div class="col-4 ms-1 p-0">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
                             @endforeach
                         @endif
                     </tbody>

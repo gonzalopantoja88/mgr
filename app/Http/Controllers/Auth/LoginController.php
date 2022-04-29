@@ -26,11 +26,14 @@ class LoginController extends Controller
         if($credentials['password'] === $decryptPassword)
         {
             Auth::login($user);
+
             //linea de abajo evita ataques de seguridad
             $request->session()->regenerate();
-            return redirect()->route('index');
+
+            return redirect()->route('index')->with('success', '¡ Inicio de session exitoso !');
         }
-        return redirect('/login');
+
+        return redirect()->route('login-post');
     
         // if(Auth::attempt($credentials, $remember)){
         //     //linea de abajo evita ataques de seguridad

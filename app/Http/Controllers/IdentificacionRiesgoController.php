@@ -80,7 +80,7 @@ class IdentificacionRiesgoController extends Controller
         $emp_riesgo->id_fk_riesgo = $ultimo_riesgo_agregado->id_riesgo;
         $emp_riesgo->save();
 
-        return redirect()->route('identificacion-riesgo');
+        return redirect()->route('identificacion-riesgo')->with('success', '¡ Riesgo agregado con exitoso !');
     }
 
     /**
@@ -163,11 +163,10 @@ class IdentificacionRiesgoController extends Controller
         $er->delete();
         $ir->delete();
 
-
         // if ($ir->delete()) {
         //     return redirect()->route('identificacion-riesgo');
         // }
 
-        return redirect()->route('identificacion-riesgo');
+        return redirect()->route('identificacion-riesgo')->with('delete', '¡ Eliminado con exitoso !');
     }
 }
