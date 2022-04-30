@@ -103,7 +103,7 @@ class AnalisisValoracionRiesgoController extends Controller
         $riesgo->calificado = 1;
         $riesgo->save();
 
-        return redirect()->route('analisis-riesgo');
+        return redirect()->route('analisis-riesgo')->with('success-tr', 'Riesgo calificado exitosamente.');
     }
 
     /**
@@ -166,7 +166,7 @@ class AnalisisValoracionRiesgoController extends Controller
                 'opciones_manejo' => $request->$vlr_opciones_manejo
             ]);
 
-        return redirect()->route('analisis-riesgo');
+        return redirect()->route('analisis-riesgo')->with('success-tr', 'Calificación modificada exitosamente.');
     }
 
     /**
@@ -178,5 +178,16 @@ class AnalisisValoracionRiesgoController extends Controller
     public function destroy(AnalisisValoracionRiesgo $analisisValoracionRiesgo)
     {
         //
+    }
+
+
+    public function descalificar_riesgo($id)
+    {
+        IdentificacionRiesgo::where('id_riesgo', $id)->update(['calificado' => false]);
+
+        $avr = AnalisisValoracionRiesgo::where('id_fk_riesgo', $id);
+        $avr->delete();
+
+        return redirect()->route('analisis-riesgo')->with('success-tr', 'Riesgo descalificado exitosamente.');
     }
 }

@@ -62,7 +62,7 @@ class UserController extends Controller
         $company->save();
 
         // return redirect()->route('register');
-        return redirect()->route('register');
+        return redirect()->route('register')->with('success-tr', 'Usuario/Empresa agregados exitosamente.');
     }
 
     /**

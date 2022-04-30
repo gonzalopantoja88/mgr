@@ -95,7 +95,7 @@
                             <th colspan="6" class="bg-primary1">RIESGO</th>
                             <th colspan="4" class="bg-primary2">TIEMPO</th>
                             <th colspan="3" class="bg-primary2">INDICADORES</th>
-                            <th rowspan="2" class="px-4 align-middle">ACCION</th>
+                            <th rowspan="2" class="px-4 align-middle">ACCION</th>                                                        
                         </tr>
                         <tr>
                             <th class="px-2">PROCESO</th>
@@ -139,7 +139,7 @@
                                             </div>
                                             <div class="col-4 ms-1 p-0">
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="far fa-trash-alt"></i>
+                                                    <i class="fas fa-undo"></i>
                                                 </button>
                                             </div>
                                         </div>

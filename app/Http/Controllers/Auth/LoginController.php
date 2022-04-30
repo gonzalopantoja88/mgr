@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Mockery\Generator\StringManipulation\Pass\Pass;
@@ -21,26 +22,24 @@ class LoginController extends Controller
         $remember = $request->filled('remember');
 
         $user = User::where('email', $credentials['email'])->first();
-        $decryptPassword = Crypt::decryptString($user->password);
 
-        if($credentials['password'] === $decryptPassword)
-        {
-            Auth::login($user);
+        if (isset($user)) {    
 
-            //linea de abajo evita ataques de seguridad
-            $request->session()->regenerate();
+            $decryptPassword = Crypt::decryptString($user->password);
 
-            return redirect()->route('index')->with('success', '¡ Inicio de session exitoso !');
-        }
+            if($credentials['password'] === $decryptPassword) {
+                
+                Auth::login($user);
 
-        return redirect()->route('login-post');
-    
-        // if(Auth::attempt($credentials, $remember)){
-        //     //linea de abajo evita ataques de seguridad
-        //     $request->session()->regenerate();
+                //linea de abajo evita ataques de seguridad
+                $request->session()->regenerate();
 
-        //     return redirect()->route('index');
-        // };  
+                return redirect()->route('index')->with('success', "Inicio de sessión exitoso");
+            }
+        } 
+
+        return redirect()->back()->with('error_message', 'Credenciales incorrectas 😬')->withInput();
+        // return redirect()->route('login-post');
     }
 
 

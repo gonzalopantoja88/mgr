@@ -129,12 +129,8 @@
                                     <div class="col-4 me-1 p-0">
                                         <button type="button" class="btn btn-primary" onclick="llenandoModalIdentificacion({{$item}})" data-bs-toggle="modal" data-bs-target="#modalEditarIdentificacion{{$item->id_riesgo}}"><i class="far fa-edit"></i></button>
                                     </div>
-                                    <div class="col-4 ms-1 p-0">
-                                      <form action="{{route('eliminar-identificacion-riesgo', $item->id_riesgo)}}" method="post">
-                                        @csrf
-                                        @method('DELETE')                                                                     
-                                        <button type="submit" class="btn btn-primary"><i class="far fa-trash-alt"></i></button>
-                                      </form>
+                                    <div class="col-4 ms-1 p-0">                                                            
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEliminarRiesgo{{$item->id_riesgo}}"><i class="far fa-trash-alt"></i></button>
                                     </div>
                                 </div>
                               </td>
@@ -327,6 +323,40 @@
                     </div>
                 </form>
             </div>
+            </div>
+        </div>
+    @endforeach
+@endif
+
+<!--Modal eliminar riesgo-->
+@if( !isset($idenfiticacion_riesgo))@else
+    @foreach ($idenfiticacion_riesgo as $item)
+        <div class="modal fade" id="modalEliminarRiesgo{{$item->id_riesgo}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <span class="text-center fs-2 text-primary"><i class="fas fa-exclamation-triangle"></i></span>
+                        </div>
+                        <div class="row">
+                            <h3 class="modal-title d-flex justify-content-center">
+                                ¿ Esta seguro de eliminar el riesgo ?
+                            </h3>
+                        </div>
+                        <div class="row d-flex justify-content-center py-3">
+                            <div class="col-sm-3 col-4 d-flex justify-content-center">
+                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                            <div class="col-sm-3 col-4 d-flex justify-content-center">
+                                <form action="{{route('eliminar-identificacion-riesgo', $item->id_riesgo)}}" method="post">
+                                    @csrf
+                                    @method('DELETE') 
+                                    <button type="submit" class="btn btn-success">Confirmar</button>
+                                </form>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     @endforeach

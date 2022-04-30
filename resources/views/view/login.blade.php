@@ -22,6 +22,14 @@
 			<div class="wrap-login100 shadow-login">
 				<form class="login100-form validate-form" action="{{route('login-post')}}" method="post">
 					@csrf
+
+					@if(Session::has('error_message'))
+						<div class="alert alert-danger m-0"  id="alert" role="alert">
+							<h4>¡Uups!</h4>
+							{{ Session::get('error_message') }}
+						</div>		
+					@endif
+
 					<span class="login100-form-title p-b-7">
 						<i class="zmdi zmdi-account-circle text-orange fs-100"></i>
 					</span>
@@ -30,7 +38,7 @@
 					</span>
 					
 					<div class="wrap-input100 validate-input" data-validate = "Digitar correo valido: '@'">
-						<input class="input100" type="text" name="email" autofocus>
+						<input class="input100" type="text" name="email" value="{{ old('email')}}" autofocus>
 						<span class="focus-input100" data-placeholder="Email"></span>
 					</div>
 
@@ -54,7 +62,7 @@
 	</div>
 	
 	<div id="dropDownSelect1"></div>
-	
+
 	<script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
 	<script src="{{asset('js/animsition.min.js')}}"></script>
 	<script src="{{asset('js/popper.js')}}"></script>
@@ -64,5 +72,13 @@
 	<script src="{{asset('js/daterangepicker.js')}}"></script>
 	<script src="{{asset('js/countdowntime.js')}}"></script>
 	<script src="{{asset('js/main.js')}}"></script>
+
+	<script>
+		// Ocultar alert de credenciales incorrectas en 2 segundos
+		const alert = document.querySelector('#alert');
+		const alertUps = () => {alert.setAttribute("class", "d-none")}		
+		setTimeout(alertUps, 1500);
+	</script>
+
 </body>
 </html>

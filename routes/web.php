@@ -51,7 +51,9 @@ Route::post('/register', [UserController::class, 'store'])->name('post-register'
 //CONTEXTO EMPRESA
 Route::get('/contexto-empresa', [ContextoEmpresaController::class, 'index'])->name('contexto-empresa')->middleware('auth');
 Route::post('/contexto-empresa', [ContextoEmpresaController::class, 'store'])->name('agregar-contexto-empresa');
+Route::post('/editar-contexto-empresa/{id}', [ContextoEmpresaController::class, 'update'])->name('editar-contexto-empresa');
 Route::get('/datos-contexto-empresa', [ContextoEmpresaController::class, 'show'])->name('ver-contexto-empresa');
+Route::delete('/eliminar-contexto-empresa/{id}', [ContextoEmpresaController::class, 'destroy'])->name('eliminar-contexto-empresa');
 
 //SISTEMA GENERAL
 Route::get('/sistema-general', [SistemaGeneralController::class, 'index'])->name('sistema-general')->middleware('auth');
@@ -82,6 +84,7 @@ Route::delete('/eliminar-identificacion-riesgo/{id}', [IdentificacionRiesgoContr
 Route::get('/analisis-riesgo', [AnalisisValoracionRiesgoController::class, 'index'])->name('analisis-riesgo');
 Route::post('/analisis-riesgo', [AnalisisValoracionRiesgoController::class, 'store'])->name('agregar-analisis-riesgo');
 Route::post('/editar-riesgo/{id}', [AnalisisValoracionRiesgoController::class, 'update'])->name('editar-riesgo');
+Route::put('/descalificar-riesgo/{id}', [AnalisisValoracionRiesgoController::class, 'descalificar_riesgo'])->name('descalificar-riesgo');
 
 //PLAN DE ACCIÓN
 Route::get('/plan-accion', [PlanAccionController::class, 'index'])->name('plan-accion');

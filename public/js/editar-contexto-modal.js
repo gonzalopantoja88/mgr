@@ -1,0 +1,391 @@
+function llenandoModal(datos) {
+    let ce = datos;
+    let id = ce.id_contexto_empresa;
+
+    console.log(datos)
+
+    const origenCapitalModal = document.querySelector("#origenCapital" + id); 
+    const dimensionModal = document.querySelector("#dimension"  + id); 
+    const objetoSocialModal = document.querySelector("#objetoSocial"  + id); 
+    const sectorEconomicoModal = document.querySelector("#sectorEconomico"  + id); 
+    const opcionesSectorEcoModal = document.querySelector("#opcionesSectorEco"  + id); 
+    const propietariosModal = document.querySelector("#propietarios"  + id); 
+    const tipoPersonaModal = document.querySelector("#tipoPersona"  + id); 
+    const tangiblesModal = document.querySelector("#tangibles"  + id); 
+    const bienesModal = document.querySelector("#bienes"  + id); 
+    const intangiblesModal = document.querySelector("#intangibles"  + id); 
+    const colAModal = document.querySelector("#colA"  + id); colAModal.innerHTML = "";
+    const colBModal = document.querySelector("#colB"  + id); colBModal.innerHTML = "";
+    const colCModal = document.querySelector("#colC"  + id); colCModal.innerHTML = "";
+    const normaTecModal = document.querySelector("#normaTec"  + id); normaTecModal.innerHTML = "<option selected> --Seleccionar-- </option>";
+    const imgEmpModal = document.querySelector("#imgEmp"  + id); imgEmpModal.innerHTML = "";
+    const colAvModal = document.querySelector("#colAv"  + id); colAvModal.innerHTML = "";
+    const colBvModal = document.querySelector("#colBv"  + id); colBvModal.innerHTML = "";
+    const colCvModal = document.querySelector("#colCv"  + id); colCvModal.innerHTML = "";
+    const gestClienteModal = document.querySelector("#gestCliente"  + id); gestClienteModal.innerHTML = "";
+
+    fetch("./despliegue", {
+            mode: 'no-cors'
+        })
+        .then((result) => result.json())
+        .then((data) => {
+            fichaTecnica(data);
+            normaTecnica(data);
+            imagenEmpresarial(data);
+            ventas(data);
+            gestionClientes(data);
+        });
+
+    fetch("./categoria", {
+            mode: 'no-cors'
+        })
+        .then((result) => result.json())
+        .then((data) => {
+            segunOrigen(data);
+            segunDimension(data);
+            segunObjetoSocial(data);
+            segunSectorEconomico(data);
+            segunNumPropietarios(data);
+            productoTangible(data);
+            productoIntangible(data);
+        });
+
+    function segunOrigen(data) {
+        for (const value of data) {
+            if (value.id_fk_despliegue == 1) {
+                origenCapitalModal.innerHTML += `<option value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
+                origenCapitalModal.value = ce.origen_capital
+            }
+        }
+    }
+
+    function segunDimension(data) {
+        for (const value of data) {
+            if (value.id_fk_despliegue == 2) {
+                dimensionModal.innerHTML += `<option value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
+                dimensionModal.value = ce.dimension;
+            }
+        }
+    }
+
+    function segunObjetoSocial(data) {
+        for (const value of data) {
+            if (value.id_fk_despliegue == 3) {
+                objetoSocialModal.innerHTML += `<option value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
+                objetoSocialModal.value = ce.objeto_social;
+            }
+        }
+    }
+
+    function segunSectorEconomico(data) {
+        for (const value of data) {
+            if (value.id_fk_despliegue == 4) {
+                sectorEconomicoModal.innerHTML += `<option data-id="${value.id_categoria}" value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
+                sectorEconomicoModal.value = ce.sector_economico;
+            }
+        }
+
+        sectorEconomicoModal.addEventListener("change", (op) => {
+            let indexSelect = op.target.options.selectedIndex
+            let opcion = op.target.options[indexSelect].dataset.id
+            fetch("./opcion/" + opcion, {
+                    mode: 'no-cors'
+                })
+                .then((result) => result.json())
+                .then((data) => {
+                    opcionesSectorEcoModal.innerHTML = "";
+                    if (data.length > 0) {
+                        for (const value of data) {
+                            opcionesSectorEcoModal.removeAttribute("disabled", "");
+                            opcionesSectorEcoModal.setAttribute("active", "");
+                            opcionesSectorEcoModal.innerHTML += `<option value="${value.nombre_opcion}">${value.nombre_opcion}</option>`;
+                            
+                        }
+                    } else {
+                        opcionesSectorEcoModal.removeAttribute("active", "");
+                        opcionesSectorEcoModal.setAttribute("disabled", "");
+                        opcionesSectorEcoModal.innerHTML += `<option value="Sin opciones">--Sin opciones--</option>`;
+                    }
+                });
+        });
+    }
+
+    function segunNumPropietarios(data) {
+        for (const value of data) {
+            if (value.id_fk_despliegue == 5) {
+                propietariosModal.innerHTML += `<option data-id="${value.id_categoria}" value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
+                propietariosModal.value = ce.propietario;
+            }
+        }
+
+        propietariosModal.addEventListener("change", (op) => {
+            let indexSelect = op.target.options.selectedIndex
+            let opcion = op.target.options[indexSelect].dataset.id
+
+            fetch("./opcion/" + opcion, {
+                    mode: 'no-cors'
+                })
+                .then((result) => result.json())
+                .then((data) => {
+                    tipoPersona.innerHTML = "";
+                    if (data.length > 0) {
+                        for (const value of data) {
+                            tipoPersonaModal.removeAttribute("disabled", "");
+                            tipoPersonaModal.setAttribute("active", "");
+                            tipoPersonaModal.innerHTML += `<option value="${value.nombre_opcion}">${value.nombre_opcion}</option>`;
+                        }
+                    } else {
+                        tipoPersonaModal.removeAttribute("active", "");
+                        tipoPersonaModal.setAttribute("disabled", "");
+                        tipoPersonaModal.innerHTML += `<option value="Sin opciones">--Sin opciones--</option>`;
+                    }
+                });
+        });
+    }
+
+    function productoTangible(data) {
+        for (const value of data) {
+            if (value.id_fk_despliegue == 6) {
+                tangiblesModal.innerHTML += `<option data-id="${value.id_categoria}" value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
+                tangiblesModal.value = ce.tangible;
+
+            }
+        }
+
+        tangiblesModal.addEventListener("change", (op) => {
+            let indexSelect = op.target.options.selectedIndex
+            let opcion = op.target.options[indexSelect].dataset.id
+            fetch("./opcion/" + opcion, {
+                    mode: 'no-cors'
+                })
+                .then((result) => result.json())
+                .then((data) => {
+                    bienesModal.innerHTML = "";
+                    if (data.length > 0) {
+                        for (const value of data) {
+                            bienesModal.removeAttribute("disabled", "");
+                            bienesModal.setAttribute("active", "");
+                            bienesModal.innerHTML += `<option value="${value.nombre_opcion}">${value.nombre_opcion}</option>`;
+                        }
+                    } else {
+                        bienesModal.removeAttribute("active", "");
+                        bienesModal.setAttribute("disabled", "");
+                        bienesModal.innerHTML += `<option value="Sin opciones">--Sin opciones--</option>`;
+                    }
+                });
+        });
+    }
+
+    function productoIntangible(data) {
+        for (const value of data) {
+            if (value.id_fk_despliegue == 7) {
+                intangiblesModal.innerHTML += `<option value="${value.nombre_categoria}">${value.nombre_categoria}</option>`;
+                intangiblesModal.value = ce.intangible;
+            }
+        }
+    }
+
+   
+
+    function fichaTecnica(data) {
+        let countColA = 0;
+        let countColC = 0;
+        let count = 1;
+
+        for (const value of data) {
+            if (value.id_fk_variable == 3) {
+                let strDirty = removeAccents(value.nombre_despliegue);
+                let strClean = strDirty.replace(/ /g, "").toLowerCase();
+
+                let vlrChecked = ''
+                for (const item in datos) {  
+                    if(item+datos.id_emp_contexto_emp == strClean+datos.id_emp_contexto_emp){
+                        
+                        vlrChecked = (datos[item] == "si") && "checked";
+
+                        if (count % 2 != 0 && countColA <= countColC) {
+                            colAModal.innerHTML += `<div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="${strClean}`+id+`" id="${strClean}`+id+`" value="si" ${vlrChecked}>
+                            <label class="form-check-label" for="${strClean}`+id+`" >${value.nombre_despliegue}</label>
+                            </div>`;
+                            count++;
+                            countColA++;
+        
+                        } else if (count % 2 != 0 && countColA > countColC) {
+                            colCModal.innerHTML += `<div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="${strClean}`+id+`" id="${strClean}`+id+`" value="si" ${vlrChecked}>
+                            <label class="form-check-label" for="${strClean}`+id+`">${value.nombre_despliegue}</label>
+                            </div>`;
+                            countColC++;
+                        } else {
+                            colBModal.innerHTML += `<div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="${strClean}`+id+`" id="${strClean}`+id+`" value="si" ${vlrChecked}>
+                            <label class="form-check-label" for="${strClean}`+id+`">${value.nombre_despliegue}</label>
+                            </div>`;
+                            count++;
+                        }
+                        
+                        break;
+                    }
+                }      
+            }
+        }    
+    }
+
+
+    function normaTecnica(data) {
+        for (const value of data) {
+            if (value.id_fk_variable == 4) {
+                normaTecModal.innerHTML += `<option value="${value.nombre_despliegue}">${value.nombre_despliegue}</option>`;
+                normaTecModal.value = datos.norma_tecnica;
+
+            }
+        }
+    }
+
+ 
+    function imagenEmpresarial(data) {
+        for (const value of data) {
+            if (value.id_fk_variable == 5) {
+
+                let strDirty = removeAccents(value.nombre_despliegue);
+                let strClean = strDirty.replace(/ /g, "").toLowerCase();
+
+                // Condicion para asignar el check a los campos que el usuario selecciono en su formulario
+                let vlrChecked = ''
+                for (const item in datos) {  
+                    if(item+datos.id_emp_contexto_emp == strClean+datos.id_emp_contexto_emp){
+                        
+                        vlrChecked = (datos[item] == "si") && "checked";
+
+                        // CODIGO BASE PARA LA CONDICION DE LOS CHECKBOX:
+                        // if(datos[item] == "si"){
+                        //     console.log(item + " - " + datos[item])
+                        //     console.log("checked")
+                        //     vlrChecked = "checked"
+                        // } else {
+                        //     console.log(item + " - " + datos[item])
+                        //     console.log("no checked")    
+                        // }
+
+                        imgEmpModal.innerHTML += `<div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox"  name="${strClean}`+id+`" id="${strClean}`+id+`" value="si" ${vlrChecked}>
+                        <label class="form-check-label" for="${strClean}`+id+`">${value.nombre_despliegue}</label>
+                        </div>`;
+                        
+                        break;
+                    }
+                }
+            }
+        }   
+    }
+
+    function ventas(data) {
+        let countColAv = 0;
+        let countColCv = 0;
+        let countv = 1;
+
+        for (const value of data) {
+            if (value.id_fk_variable == 53) {
+                let strDirty = removeAccents(value.nombre_despliegue);
+                let strClean = strDirty.replace(/ /g, "").toLowerCase();
+
+                let vlrChecked = ''
+                for (const item in datos) {  
+                    if(item+datos.id_emp_contexto_emp == strClean+datos.id_emp_contexto_emp){
+                        
+                        vlrChecked = (datos[item] == "si") && "checked";
+
+                        if (countv % 2 != 0 && countColAv <= countColCv) {
+                            colAvModal.innerHTML += `<div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="${strClean}`+id+`" id="${strClean}`+id+`" value="si" ${vlrChecked}>
+                            <label class="form-check-label" for="${strClean}`+id+`">${value.nombre_despliegue}</label>
+                            </div>`;
+                            countv++;
+                            countColAv++;
+                        } else if (countv % 2 != 0 && countColAv > countColCv) {
+                            colCvModal.innerHTML += `<div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="${strClean}`+id+`" id="${strClean}`+id+`" value="si" ${vlrChecked}>
+                            <label class="form-check-label" for="${strClean}`+id+`">${value.nombre_despliegue}</label>
+                            </div>`;
+                            countColCv++;
+                        } else {
+                            colBvModal.innerHTML += `<div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" name="${strClean}`+id+`" id="${strClean}`+id+`" value="si" ${vlrChecked}>
+                            <label class="form-check-label" for="${strClean}`+id+`">${value.nombre_despliegue}</label>
+                            </div>`;
+                            countv++;
+                        }
+                        
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    function gestionClientes(data) {
+        for (const value of data) {
+            if (value.id_fk_variable == 16) {
+                let strDirty = removeAccents(value.nombre_despliegue);
+                let strClean = strDirty.replace(/ /g, "").toLowerCase();
+
+                let vlrChecked = ''
+                for (const item in datos) {         
+                    if(item+datos.id_emp_contexto_emp == strClean+datos.id_emp_contexto_emp){
+                        
+                        vlrChecked = (datos[item] == "si") && "checked";
+        
+                        gestClienteModal.innerHTML += `<div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="${strClean}`+id+`" id="${strClean}`+id+`" value="si" ${vlrChecked}>
+                        <label class="form-check-label" for="${strClean}`+id+`">${value.nombre_despliegue}</label>
+                        </div>`;
+                        
+                        break;
+                    }
+                }   
+            }
+        }
+    }
+
+
+
+    const vlrIdentificacion = document.querySelector('#identificacion'+ id);
+    const vlrDuracion = document.querySelector('#duracion'+ id);
+    const vlrCaracteristicasmicrobiologicas = document.querySelector('#caracteristicasmicrobiologicas'+ id);
+    const vlrRestricciones = document.querySelector('#restricciones'+ id);
+    const vlrEmpaque = document.querySelector('#empaque'+ id);
+    const vlrDestinofinal = document.querySelector('#destinofinal'+ id);
+    const vlrDescripcion = document.querySelector('#descripcion'+ id);
+    const vlrCaracteristicasfisicas = document.querySelector('#caracteristicasfisicas'+ id);
+    const vlrFormasdeuso = document.querySelector('#formasdeuso'+ id);
+    const vlrCondicionesdemanejo = document.querySelector('#condicionesdemanejo'+ id);
+    const vlrEtiquetado = document.querySelector('#etiquetado'+ id);
+    const vlrComposicion = document.querySelector('#composicion'+ id);
+    const vlrCaracteristicasquimicas = document.querySelector('#caracteristicasquimicas'+ id);
+    const vlrUsuariospotenciales = document.querySelector('#usuariospotenciales'+ id);
+    const vlrCondicionesdeconservacion = document.querySelector('#condicionesdeconservacion'+ id);
+    const vlrPresentacion = document.querySelector('#presentacion'+ id);
+    const vlrLogotipo = document.querySelector('#logotipo'+ id);
+    const vlrMarca = document.querySelector('#marca'+ id);
+    const vlrEslogan = document.querySelector('#eslogan'+ id);
+    const vlrAnalisisdelacompetencia = document.querySelector('#analisisdelacompetencia'+ id);
+    const vlrPresupuestodeventas = document.querySelector('#presupuestodeventas'+ id);
+    const vlrBlog = document.querySelector('#blog'+ id);
+    const vlrMercadolibre = document.querySelector('#mercadolibre'+ id);
+    const vlrOlx = document.querySelector('#olx'+ id);
+    const vlrPrecio = document.querySelector('#precio'+ id);
+    const vlrVentadirecta = document.querySelector('#ventadirecta'+ id);
+    const vlrFacebook = document.querySelector('#facebook'+ id);
+    const vlrAmazon = document.querySelector('#amazon'+ id);
+    const vlrPromocion = document.querySelector('#promocion'+ id);
+    const vlrWeb = document.querySelector('#web'+ id);
+    const vlrInstagram = document.querySelector('#instagram'+ id);
+    const vlrEbay = document.querySelector('#bay'+ id);
+    const vlrServicioalcliente = document.querySelector('#servicioalcliente'+ id);
+    const vlrFidelizaciondeclientes = document.querySelector('#fidelizaciondeclientes'+ id);
+    const vlrPqrsf = document.querySelector('#pqrsf'+ id);
+    const vlrIdentificacionclientes = document.querySelector('#identificacionclientes'+ id);
+
+
+}

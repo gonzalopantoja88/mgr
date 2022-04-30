@@ -23,7 +23,7 @@
                                 <div class="col-lg-3 col-sm-12">
                                     <label class="form-label m-0" for="origenCapital">Origen capital</label>
                                     <select class="form-select" id="origenCapital" name="origenCapital" aria-label="Origen capital">
-                                        <option> --Seleccionar-- </option>
+                                        <option selected> --Seleccionar-- </option>
                                     </select>
                                 </div>
                                 <div class="col-lg-3 col-sm-12">
@@ -171,15 +171,14 @@
                                 </div>
                             </div>
                         </div>
-                    </div>    
+                    </div>
+                    
                     <div class="row text-center my-3">
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Guardar</button>
                         </div>
                     </div>
-                </form>  
-                
-                <!--Tabla con los datos que se llenaron en el formulario -->
+                </form>   
                 <div class="table-responsive">
                     <table class="table table-sm table-bordered table-hover text-center align-middle">
                         <thead class="bg-primary text-nowrap">
@@ -244,10 +243,10 @@
                                 <td>
                                     <div class="row justify-content-center">
                                         <div class="col-4 me-1 p-0">
-                                            <button type="button" class="btn btn-primary" onclick="llenandoModal({{$item}})" data-bs-toggle="modal" data-bs-target="#modalEditarContexto{{$item->id_contexto_empresa}}"><i class="far fa-edit"></i></button>
+                                            <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i></button>
                                         </div>
                                         <div class="col-4 ms-1 p-0">
-                                            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEliminarContexto{{$item->id_contexto_empresa}}"><i class="far fa-trash-alt"></i></button>
+                                            <button type="submit" class="btn btn-primary"><i class="far fa-trash-alt"></i></button>
                                         </div>
                                     </div>
                                 </td>
@@ -359,10 +358,10 @@
                                     <td>
                                         <div class="row justify-content-center">
                                             <div class="col-4 me-1 p-0">
-                                                <button type="button" class="btn btn-primary" onclick="llenandoModal({{$item}})" data-bs-toggle="modal" data-bs-target="#modalEditarContexto{{$item->id_contexto_empresa}}"><i class="far fa-edit"></i></button>
+                                                <button type="submit" class="btn btn-primary"><i class="far fa-edit"></i></button>
                                             </div>
                                             <div class="col-4 ms-1 p-0">
-                                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEliminarContexto{{$item->id_contexto_empresa}}"><i class="far fa-trash-alt"></i></button>
+                                                <button type="submit" class="btn btn-primary"><i class="far fa-trash-alt"></i></button>
                                             </div>
                                         </div>
                                     </td>
@@ -378,234 +377,8 @@
         </div>
     </div>
 </section>
-
-@if( !isset($contexto_empresa))@else
-    @foreach ($contexto_empresa as $item)
-        <div class="modal fade" id="modalEditarContexto{{$item->id_contexto_empresa}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h3 class="modal-title">
-                    Editar contexto de la empresa
-                </h3>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{route('editar-contexto-empresa', $item->id_contexto_empresa)}}" method="POST">
-                    <div class="modal-body g-2">
-                        @csrf
-                        <input type="hidden" name="id_identificacion_riesgo" value="{{$item->id_contexto_empresa}}">
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <div class="subheading">Tipo de empresa</div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row d-flex align-items-end justify-content-between mb-3">
-                                
-                                    <div class="col-lg-3 col-sm-12">
-                                        <label class="form-label m-0" for="origenCapital{{$item->id_contexto_empresa}}" id="labelOrigenCapital{{$item->id_contexto_empresa}}">Origen capital</label>
-                                        <select class="form-select" id="origenCapital{{$item->id_contexto_empresa}}" name="origenCapital_{{$item->id_contexto_empresa}}" aria-label="Origen capital">
-                                            <option value="{{old($item->origen_capital)}}"> --Seleccionar-- </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3 col-sm-12">
-                                        <label class="form-label m-0" for="dimension{{$item->id_contexto_empresa}}">Tamaño</label>
-                                        <select class="form-select" id="dimension{{$item->id_contexto_empresa}}" name="dimension" aria-label="dimension">
-                                            <option selected> --Seleccionar-- </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3 col-12">
-                                        <label class="form-label m-0" for="objetoSocial{{$item->id_contexto_empresa}}">Objeto social</label>
-                                        <select class="form-select" id="objetoSocial{{$item->id_contexto_empresa}}" name="objetoSocial" aria-label="Objeto social">
-                                            <option selected> --Seleccionar-- </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row d-flex align-items-end justify-content-center">
-                                    <div class="col-lg-3 col-12">
-                                        <label class="form-label m-0" for="sectorEconomico{{$item->id_contexto_empresa}}">Sector económico</label>
-                                        <select class="form-select" id="sectorEconomico{{$item->id_contexto_empresa}}" name="sectorEconomico" aria-label="Sector economico">
-                                            <option selected> --Seleccionar-- </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3 col-12">
-                                        <label class="form-label m-0" for="opcionesSectorEco{{$item->id_contexto_empresa}}">Opción sector económico</label>
-                                        <select disabled class="form-select" id="opcionesSectorEco{{$item->id_contexto_empresa}}" name="opcionesSectorEco" aria-label="Opcion sector economico">
-                                            <option selected value="Sin opciones">--Sin opciones--</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3 col-12">
-                                        <label class="form-label m-0" for="propietarios{{$item->id_contexto_empresa}}">Persona</label>
-                                        <select class="form-select" id="propietarios{{$item->id_contexto_empresa}}" name="tipoPersona" aria-label="Propietarios">
-                                            <option selected> --Seleccionar-- </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3 col-12">
-                                        <label class="form-label m-0" for="tipoPersona{{$item->id_contexto_empresa}}" id="opcionTipoPersona">Tipo de propietario</label>
-                                        <select disabled class="form-select" id="tipoPersona{{$item->id_contexto_empresa}}" name="propietarios" aria-label="Tipo persona">
-                                            <option selected value="Sin opciones">--Sin opciones--</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- card tipo producto -->
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <div class="subheading">Tipo de producto</div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row d-flex align-items-end">
-                                    <div class="col-lg-3 col-sm-12">
-                                        <label class="form-label m-0" for="tangibles{{$item->id_contexto_empresa}}">Tangibles</label>
-                                        <select class="form-select" id="tangibles{{$item->id_contexto_empresa}}" name="tangibles" aria-label="Tangibles">
-                                            <option selected> --Seleccionar-- </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3 col-sm-12">
-                                        <label class="form-label m-0" for="bienes{{$item->id_contexto_empresa}}" id="opcionBienes">Bienes</label>
-                                        <select disabled class="form-select" id="bienes{{$item->id_contexto_empresa}}" name="bienes" aria-label="Bienes">
-                                            <option selected value="Sin opciones">--Sin opciones--</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12">
-                                        <label class="form-label m-0" for="intangibles{{$item->id_contexto_empresa}}">Intangibles</label>
-                                        <select class="form-select" id="intangibles{{$item->id_contexto_empresa}}" name="intangibles" aria-label="Intangibles">
-                                            <option selected> --Seleccionar-- </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- card ficha tecnica -->
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <div class="subheading">Ficha técnica</div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4 col-12 d-flex flex-column" id="colA{{$item->id_contexto_empresa}}">
-                                        <!-- condicion colA -->
-                                    </div>
-                                    <div class="col-md-4 col-12 d-flex flex-column" id="colB{{$item->id_contexto_empresa}}">
-                                        <!-- condicion colB -->
-                                    </div>
-                                    <div class="col-md-4 col-12 d-flex flex-column" id="colC{{$item->id_contexto_empresa}}">
-                                        <!-- condicion ColC-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- card norma tecnica y img empresarial -->
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <div class="subheading">Imagen y norma técnica</div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-lg-6 col-sm-12" >
-                                        <div class="row">
-                                            <label class="form-label m-0">Imagen empresarial</label>
-                                        </div>
-                                        <div class="d-flex flex-row" id="imgEmp{{$item->id_contexto_empresa}}">
-                                            <!-- condicion imagen empresarial -->
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-sm-12" id="normaTecnica{{$item->id_contexto_empresa}}">
-                                        <label class="form-label m-0" for="normaTec{{$item->id_contexto_empresa}}">Norma técnica</label>
-                                        <select class="form-select" id="normaTec{{$item->id_contexto_empresa}}" name="normatecnica" aria-label="Norma tecnica">
-                                            <option selected> --Seleccionar-- </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- card ventas -->
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <div class="subheading">Ventas</div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4 col-12 d-flex flex-column" id="colAv{{$item->id_contexto_empresa}}">
-                                        <!-- condicion colAv -->
-                                    </div>
-                                    <div class="col-md-4 col-12 d-flex flex-column" id="colBv{{$item->id_contexto_empresa}}">
-                                        <!-- condicion colBv -->
-                                    </div>
-                                    <div class="col-md-4 col-12 d-flex flex-column" id="colCv{{$item->id_contexto_empresa}}">
-                                        <!-- condicion ColCv-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- card gestión clientes-->
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <div class="subheading">Gestión clientes</div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-12 col-12 d-flex flex-row" id="gestCliente{{$item->id_contexto_empresa}}">
-                                        <!-- condicion gestion cliente -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    </div>
-                </form>
-            </div>
-            </div>
-        </div>
-    @endforeach
-@endif
-
-
-<!--Modal eliminar contexto-->
-@if( !isset($contexto_empresa))@else
-    @foreach ($contexto_empresa as $item)
-        <div class="modal fade" id="modalEliminarContexto{{$item->id_contexto_empresa}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="row">
-                            <span class="text-center fs-2 text-primary"><i class="fas fa-exclamation-triangle"></i></span>
-                        </div>
-                        <div class="row">
-                            <h3 class="modal-title d-flex justify-content-center">
-                                ¿ Esta seguro de eliminar la Información ?
-                            </h3>
-                        </div>
-                        <div class="row d-flex justify-content-center py-3">
-                            <div class="col-sm-3 col-4 d-flex justify-content-center">
-                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
-                            </div>
-                            <div class="col-sm-3 col-4 d-flex justify-content-center">
-                                <form action="{{route('eliminar-contexto-empresa', $item->id_contexto_empresa)}}" method="post">
-                                    @csrf
-                                    @method('DELETE') 
-                                    <button type="submit" class="btn btn-success">Confirmar</button>
-                                </form>
-                            </div>   
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endforeach
-@endif
-
 @endsection
 
 @section('script')
     <script src="js/contexto-empresa.js"></script>
-    <script src="js/editar-contexto-modal.js"></script>
 @endsection
