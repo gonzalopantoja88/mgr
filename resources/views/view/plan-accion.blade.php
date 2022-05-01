@@ -138,9 +138,13 @@
                                                 </button>
                                             </div>
                                             <div class="col-4 ms-1 p-0">
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i class="fas fa-undo"></i>
-                                                </button>
+                                                <form action="{{route('descalificar-plan-accion', $item->id_riesgo)}}" method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="fas fa-undo"></i>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </td>

@@ -379,6 +379,7 @@
     </div>
 </section>
 
+{{-- Modal editar contexto empresa --}}
 @if( !isset($contexto_empresa))@else
     @foreach ($contexto_empresa as $item)
         <div class="modal fade" id="modalEditarContexto{{$item->id_contexto_empresa}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -429,7 +430,7 @@
                                     </div>
                                     <div class="col-lg-3 col-12">
                                         <label class="form-label m-0" for="opcionesSectorEco{{$item->id_contexto_empresa}}">Opción sector económico</label>
-                                        <select disabled class="form-select" id="opcionesSectorEco{{$item->id_contexto_empresa}}" name="opcionesSectorEco" aria-label="Opcion sector economico">
+                                        <select  class="form-select" id="opcionesSectorEco{{$item->id_contexto_empresa}}" name="opcionesSectorEco" aria-label="Opcion sector economico">
                                             <option selected value="Sin opciones">--Sin opciones--</option>
                                         </select>
                                     </div>
@@ -441,7 +442,7 @@
                                     </div>
                                     <div class="col-lg-3 col-12">
                                         <label class="form-label m-0" for="tipoPersona{{$item->id_contexto_empresa}}" id="opcionTipoPersona">Tipo de propietario</label>
-                                        <select disabled class="form-select" id="tipoPersona{{$item->id_contexto_empresa}}" name="propietarios" aria-label="Tipo persona">
+                                        <select class="form-select" id="tipoPersona{{$item->id_contexto_empresa}}" name="propietarios" aria-label="Tipo persona">
                                             <option selected value="Sin opciones">--Sin opciones--</option>
                                         </select>
                                     </div>
@@ -463,7 +464,7 @@
                                     </div>
                                     <div class="col-lg-3 col-sm-12">
                                         <label class="form-label m-0" for="bienes{{$item->id_contexto_empresa}}" id="opcionBienes">Bienes</label>
-                                        <select disabled class="form-select" id="bienes{{$item->id_contexto_empresa}}" name="bienes" aria-label="Bienes">
+                                        <select class="form-select" id="bienes{{$item->id_contexto_empresa}}" name="bienes" aria-label="Bienes">
                                             <option selected value="Sin opciones">--Sin opciones--</option>
                                         </select>
                                     </div>

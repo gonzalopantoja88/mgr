@@ -61,15 +61,18 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('sgc')}}">SGC</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('sga')}}">SGA</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('sgsst')}}">SST</a></li>
-                {{-- <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('result-sg')}}">Resultados</a></li> --}}
                 <hr class="text-black">
                 <h4>Identificar riesgo</h4>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('identificacion-riesgo')}}">Identificar riesgo</a></li>
                 <hr class="text-black">
                 <h4>Gestionar riesgo</h4>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('analisis-riesgo')}}">Análisis y valoracion</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('analisis-riesgo')}}">Análisis y valoración</a></li>
                 </li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger py-0" href="{{route('plan-accion')}}">Plan de acción</a></li>
+                <hr class="text-black">
+                <h4>Resultaldos MGR</h4>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('resultados')}}">Resultados</a></li>
+                </li>
             </ul>
         </div>
     </nav>

@@ -17,7 +17,7 @@ use App\Http\Controllers\SGCalidadController;
 use App\Http\Controllers\SGAmbientalController;
 use App\Http\Controllers\SGSstController;
 use App\Http\Controllers\UserController;
-use App\Models\SGSst;
+use App\Http\Controllers\ResultadosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -47,6 +47,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 //REGISTRAR USUARIO
 Route::get('/register', [UserController::class, 'index'])->name('register');
 Route::post('/register', [UserController::class, 'store'])->name('post-register');
+Route::put('/actualziar-usuario-empresa', [UserController::class, 'update'])->name('actualziar-usuario-empresa');
+Route::delete('/eliminar-usuario-empresa/{id}', [UserController::class, 'destroy'])->name('eliminar-usuario-empresa');
+
 
 //CONTEXTO EMPRESA
 Route::get('/contexto-empresa', [ContextoEmpresaController::class, 'index'])->name('contexto-empresa')->middleware('auth');
@@ -89,7 +92,10 @@ Route::put('/descalificar-riesgo/{id}', [AnalisisValoracionRiesgoController::cla
 //PLAN DE ACCIÓN
 Route::get('/plan-accion', [PlanAccionController::class, 'index'])->name('plan-accion');
 Route::post('/agregar-plan-accion', [PlanAccionController::class, 'store'])->name('agregar-plan-accion');
+Route::put('/descalificar-plan-accion/{id}', [PlanAccionController::class, 'descalificar_plan_accion'])->name('descalificar-plan-accion');
 
+//RESULTADOS
+Route::get('/resultados', [ResultadosController::class, 'index'])->name('resultados');
 
 //DATOS PARA LLENAR LOS FORMULARIOS
 Route::get('/sistema-asociado', [SistemaAsociadoController::class, 'index']);

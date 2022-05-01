@@ -140,4 +140,14 @@ class PlanAccionController extends Controller
     {
         //
     }
+
+    public function descalificar_plan_accion($id)
+    {
+        IdentificacionRiesgo::where('id_riesgo', $id)->update(['calificado_plan_accion' => false]);
+
+        $pa = PlanAccion::where('id_fk_riesgo', $id);
+        $pa->delete();
+
+        return redirect()->route('plan-accion')->with('success-tr', 'Riesgo descalificado exitosamente.');
+    }
 }

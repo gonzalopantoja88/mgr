@@ -4,16 +4,16 @@ function llenandoModal(datos) {
 
     console.log(datos)
 
-    const origenCapitalModal = document.querySelector("#origenCapital" + id); 
-    const dimensionModal = document.querySelector("#dimension"  + id); 
-    const objetoSocialModal = document.querySelector("#objetoSocial"  + id); 
-    const sectorEconomicoModal = document.querySelector("#sectorEconomico"  + id); 
-    const opcionesSectorEcoModal = document.querySelector("#opcionesSectorEco"  + id); 
-    const propietariosModal = document.querySelector("#propietarios"  + id); 
-    const tipoPersonaModal = document.querySelector("#tipoPersona"  + id); 
-    const tangiblesModal = document.querySelector("#tangibles"  + id); 
-    const bienesModal = document.querySelector("#bienes"  + id); 
-    const intangiblesModal = document.querySelector("#intangibles"  + id); 
+    const origenCapitalModal = document.querySelector("#origenCapital" + id); origenCapitalModal.innerHTML = "<option selected> --Seleccionar-- </option>";
+    const dimensionModal = document.querySelector("#dimension"  + id); dimensionModal.innerHTML = "<option selected> --Seleccionar-- </option>";
+    const objetoSocialModal = document.querySelector("#objetoSocial"  + id); objetoSocialModal.innerHTML = "<option selected> --Seleccionar-- </option>";
+    const sectorEconomicoModal = document.querySelector("#sectorEconomico"  + id); sectorEconomicoModal.innerHTML = "<option selected> --Seleccionar-- </option>";
+    const opcionesSectorEcoModal = document.querySelector("#opcionesSectorEco"  + id); opcionesSectorEcoModal.innerHTML = "<option selected> --Seleccionar-- </option>";
+    const propietariosModal = document.querySelector("#propietarios"  + id); propietariosModal.innerHTML = "<option selected> --Seleccionar-- </option>";
+    const tipoPersonaModal = document.querySelector("#tipoPersona"  + id); tipoPersonaModal.innerHTML = "<option selected> --Seleccionar-- </option>";
+    const tangiblesModal = document.querySelector("#tangibles"  + id); tangiblesModal.innerHTML = "<option selected> --Seleccionar-- </option>";
+    const bienesModal = document.querySelector("#bienes"  + id); bienesModal.innerHTML = "<option selected> --Seleccionar-- </option>";
+    const intangiblesModal = document.querySelector("#intangibles"  + id); intangiblesModal.innerHTML = "<option selected> --Seleccionar-- </option>";
     const colAModal = document.querySelector("#colA"  + id); colAModal.innerHTML = "";
     const colBModal = document.querySelector("#colB"  + id); colBModal.innerHTML = "";
     const colCModal = document.querySelector("#colC"  + id); colCModal.innerHTML = "";
@@ -127,7 +127,7 @@ function llenandoModal(datos) {
                 })
                 .then((result) => result.json())
                 .then((data) => {
-                    tipoPersona.innerHTML = "";
+                    tipoPersonaModal.innerHTML = "";
                     if (data.length > 0) {
                         for (const value of data) {
                             tipoPersonaModal.removeAttribute("disabled", "");
@@ -348,44 +348,8 @@ function llenandoModal(datos) {
         }
     }
 
-
-
-    const vlrIdentificacion = document.querySelector('#identificacion'+ id);
-    const vlrDuracion = document.querySelector('#duracion'+ id);
-    const vlrCaracteristicasmicrobiologicas = document.querySelector('#caracteristicasmicrobiologicas'+ id);
-    const vlrRestricciones = document.querySelector('#restricciones'+ id);
-    const vlrEmpaque = document.querySelector('#empaque'+ id);
-    const vlrDestinofinal = document.querySelector('#destinofinal'+ id);
-    const vlrDescripcion = document.querySelector('#descripcion'+ id);
-    const vlrCaracteristicasfisicas = document.querySelector('#caracteristicasfisicas'+ id);
-    const vlrFormasdeuso = document.querySelector('#formasdeuso'+ id);
-    const vlrCondicionesdemanejo = document.querySelector('#condicionesdemanejo'+ id);
-    const vlrEtiquetado = document.querySelector('#etiquetado'+ id);
-    const vlrComposicion = document.querySelector('#composicion'+ id);
-    const vlrCaracteristicasquimicas = document.querySelector('#caracteristicasquimicas'+ id);
-    const vlrUsuariospotenciales = document.querySelector('#usuariospotenciales'+ id);
-    const vlrCondicionesdeconservacion = document.querySelector('#condicionesdeconservacion'+ id);
-    const vlrPresentacion = document.querySelector('#presentacion'+ id);
-    const vlrLogotipo = document.querySelector('#logotipo'+ id);
-    const vlrMarca = document.querySelector('#marca'+ id);
-    const vlrEslogan = document.querySelector('#eslogan'+ id);
-    const vlrAnalisisdelacompetencia = document.querySelector('#analisisdelacompetencia'+ id);
-    const vlrPresupuestodeventas = document.querySelector('#presupuestodeventas'+ id);
-    const vlrBlog = document.querySelector('#blog'+ id);
-    const vlrMercadolibre = document.querySelector('#mercadolibre'+ id);
-    const vlrOlx = document.querySelector('#olx'+ id);
-    const vlrPrecio = document.querySelector('#precio'+ id);
-    const vlrVentadirecta = document.querySelector('#ventadirecta'+ id);
-    const vlrFacebook = document.querySelector('#facebook'+ id);
-    const vlrAmazon = document.querySelector('#amazon'+ id);
-    const vlrPromocion = document.querySelector('#promocion'+ id);
-    const vlrWeb = document.querySelector('#web'+ id);
-    const vlrInstagram = document.querySelector('#instagram'+ id);
-    const vlrEbay = document.querySelector('#bay'+ id);
-    const vlrServicioalcliente = document.querySelector('#servicioalcliente'+ id);
-    const vlrFidelizaciondeclientes = document.querySelector('#fidelizaciondeclientes'+ id);
-    const vlrPqrsf = document.querySelector('#pqrsf'+ id);
-    const vlrIdentificacionclientes = document.querySelector('#identificacionclientes'+ id);
-
+    tipoPersonaModal.innerHTML = `<option value="${ce.tipo_persona}">${ce.tipo_persona}</option>`; 
+    opcionesSectorEcoModal.innerHTML = `<option value="${ce.opcion_sector_eco}">${ce.opcion_sector_eco}</option>`; 
+    bienesModal.innerHTML = `<option value="${ce.bienes}">${ce.bienes}</option>`; 
 
 }
