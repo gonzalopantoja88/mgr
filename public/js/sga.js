@@ -245,6 +245,24 @@ function ImpactosAmbientales2(data) {
     }
 }
 
+function ImpactosAmbientales3(data) {
+    let count = 1;
+    for (const value of data) {
+        if (value.id_fk_despliegue == 134) {
+            //console.log(value.nombre_categoria);
+            let strDirty = removeAccents(value.nombre_categoria);
+            let strClean = strDirty.replace(/ /g, '', ).replace(/,/g, '', ).toLowerCase().replace(/\//g, "").replace(/\((\w+)\)/g, "$1");
+
+            impAmbientales3.innerHTML +=
+                `<div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="${strClean}" value="si" id="${strClean}">
+                        <label class="form-check-label" for="${strClean}">${value.nombre_categoria}</label>
+                    </div>`
+            count++;
+        }
+    }
+}
+
 
 function PrácticasGestión(data) {
     let count = 1;

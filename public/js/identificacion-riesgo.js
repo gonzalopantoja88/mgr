@@ -1,4 +1,4 @@
-const tipoIdRiesgo = document.querySelector("#tipoIdRiesgo");
+const tipoIdRiesgo = document.querySelector("#tipoIdRiesgo"); 
 const sistAsociadoIdRiesgo = document.querySelector("#sistAsociadoIdRiesgo");
 const variableIdRiesgo = document.querySelector("#variableIdRiesgo");
 const factorIdRiesgo = document.querySelector("#factorIdRiesgo");
@@ -70,12 +70,16 @@ function sistemaAsociado(data) {
 function llenandoModalIdentificacion(datos) {
     var a = datos;    
     const tipoIdRiesgo = document.querySelector('#editarTipoIdRiesgo_' + a.id_riesgo);
+    tipoIdRiesgo.innerHTML = "<option selected> --Seleccionar-- </option>";
     const procesoIdRiesgo = document.querySelector('#editar_procesoIdRiesgo_' + a.id_riesgo);
     const objetivoIdRiesgo = document.querySelector('#editar_objetivoIdRiesgo_' + a.id_riesgo);
     const actCriticaIdRiesgo = document.querySelector('#editar_actCriticaIdRiesgo_' + a.id_riesgo);
-    const sistAsociadoIdRiesgo = document.querySelector('#editarSistAsociadoIdRiesgo_' + a.id_riesgo);
+    const sistAsociadoIdRiesgo = document.querySelector('#editarSistAsociadoIdRiesgo_' + a.id_riesgo); 
+    sistAsociadoIdRiesgo.innerHTML = "<option selected> --Seleccionar-- </option>";
     const variableIdRiesgo = document.querySelector('#editarVariableIdRiesgo_' + a.id_riesgo);
+    variableIdRiesgo.innerHTML = "<option selected> --Seleccionar-- </option>";
     const factorIdRiesgo = document.querySelector('#editarFactorIdRiesgo_' + a.id_riesgo);
+    factorIdRiesgo.innerHTML = "<option selected> --Seleccionar-- </option>";
     const riesgoIdRiesgo = document.querySelector('#editar_riesgoIdRiesgo_' + a.id_riesgo);
     const descripcionIdRiesgo = document.querySelector('#editar_descripcionIdRiesgo_' + a.id_riesgo);
     const causaRaizIdRiesgo = document.querySelector('#editar_causaRaizIdRiesgo_' + a.id_riesgo);
