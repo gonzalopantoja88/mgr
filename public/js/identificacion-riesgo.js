@@ -83,7 +83,7 @@ function llenandoModalIdentificacion(datos) {
     const riesgoIdRiesgo = document.querySelector('#editar_riesgoIdRiesgo_' + a.id_riesgo);
     const descripcionIdRiesgo = document.querySelector('#editar_descripcionIdRiesgo_' + a.id_riesgo);
     const causaRaizIdRiesgo = document.querySelector('#editar_causaRaizIdRiesgo_' + a.id_riesgo);
-    const consecuenciasIdRiesgo = document.querySelector('#editar_consecuenciasIdRiesgo_' + a.id_riesgo);
+    const consecuenciasIdRiesgo = document.querySelector('#editar_consecuenciasIdRiesgo_' + a.id_riesgo);  
 
     fetch("./categoria",{
         mode : 'no-cors'
