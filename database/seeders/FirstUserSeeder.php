@@ -15,7 +15,7 @@ class FirstUserSeeder extends Seeder
      */
     public function run()
     {
-        $password = "12345";
+        $password = "Sena2023MGR";
         $user = new User([
             "first_name" => "Administrador",
             "last_name" => "Administrador",
