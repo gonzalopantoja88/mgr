@@ -496,8 +496,3 @@ INSERT INTO `opcions` (`id_opcion`, `nombre_opcion`, `id_fk_categoria`) VALUES
 (57, 'Auditoria interna', 196),
 (58, 'Revisión por la dirección', 196),
 (59, 'No conformidades y acción correctiva', 197);
-
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin', 'admin@mail.com', NULL, 'eyJpdiI6ImorcTJCUy9qWG1pYTBxR0dWQy9ZYVE9PSIsInZhbHVlIjoiekxQQTFvbEJFYTExdWswS09jQlpxZz09IiwibWFjIjoiMmVhM2U4MjM1YzlhYmUyNjNkNmMxMTExNDRhNTkxNzg0NWE2NGFjYjVkOWI1OWE0MzMxMTkwZjM1Y2Y4MjI5NCIsInRhZyI6IiJ9', NULL, NULL, NULL);
-
-INSERT INTO `empresas` (`company_name`, `id_fk_user`, `created_at`, `updated_at`) VALUES ('1', '1', NULL, NULL);
